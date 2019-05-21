@@ -32,7 +32,7 @@
     </script>
 
 </head>
-<body class="hold-transition login-page" style="background-color:rgba(243, 156, 18, 0.42)!important">
+<body class="hold-transition login-page">
     <form id="form1" runat="server">
         <div>
             <div class="login-box">

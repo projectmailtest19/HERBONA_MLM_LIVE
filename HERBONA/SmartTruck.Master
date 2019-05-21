@@ -78,7 +78,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body class="sidebar-mini skin-yellow-light">
+<body class="sidebar-mini skin-blue">
     <div class="wrapper">
         <form id="form1" runat="server" autocomplete="off">
             <header class="main-header">
