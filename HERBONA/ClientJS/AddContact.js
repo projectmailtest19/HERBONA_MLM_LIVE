@@ -119,8 +119,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
 
                     $.each(json, function (index, item) {
                         $("#ID_hidden").val(item.ID);
-                        $("#txtName").val(item.Name);
-                      //  $("#cmbRole").val(item.RoleId);
+                        $("#txtName").val(item.Name);                    
                         $("#cmbRole option").each(function () {
                             if ($(this).val().trim() == item.RName) {
                                 $(this).attr("selected", "selected");
@@ -134,8 +133,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
                         $('#txtPassword').attr('readonly', 'true');
                         $("#txtCity").val(item.City);
                         $("#txtType").val(item.Type);
-                        $("#txtAddress").val(item.Address);
-                        $("#txtWebsite").val(item.WebsiteUrl);
+                        $("#txtAddress").val(item.Address);                     
 
                         $("#cmbCountry option").each(function () {
                             if ($(this).val().trim() == item.Country) {
@@ -156,26 +154,12 @@ function LoadAjaxContact(ht, obj, Req, url) {
                         $('#selectimg').attr('src', "");
                         $('#LogoPath').val(item.LogoPath);
 
-                        if (item.IsStatus == "1") {
+                        if (item.IsActive == "1" || item.IsActive == "True") {
 
                             $("#chkStatus").iCheck('check');
                         }
                         else {
                             $("#chkStatus").iCheck('uncheck');
-                        }
-                        if (item.IsVisibilitySets == "1") {
-
-                            $("#chkVisibilitySet").iCheck('check');
-                        }
-                        else {
-                            $("#chkVisibilitySet").iCheck('uncheck');
-                        }
-                        if (item.IsMainOffice == "1") {
-
-                            $("#chkMainOffice").iCheck('check');
-                        }
-                        else {
-                            $("#chkMainOffice").iCheck('uncheck');
                         }
 
                         //alert(item.Logo);                    

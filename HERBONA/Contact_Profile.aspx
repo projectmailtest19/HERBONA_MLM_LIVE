@@ -74,14 +74,7 @@
                                     <div class="col-sm-10">
                                         <input id="txtEmail" class="form-control" type="email" placeholder="Email" />
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputWebsite" class="col-sm-2 control-label">Website</label>
-
-                                    <div class="col-sm-10">
-                                        <input id="txtWebsite" class="form-control" type="text" placeholder="Website Address.." />
-                                    </div>
-                                </div>
+                                </div>                            
                                 <div class="form-group">
                                     <label for="inputRight" class="col-sm-2 control-label">Right</label>
 

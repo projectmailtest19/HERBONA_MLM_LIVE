@@ -51,7 +51,7 @@ function LoadAjaxCompany(ht, obj, Req, url) {
                 var table = '<table id="ContactList" class="table table-bordered table-striped">';
                 table = table + '<thead><tr><th style="display:none">Contact ID</th><th>Status</th><th>Contact Name</th><th>Position</th><th>Phone#</th><th>Email ID</th><th>Address</th><th  class=' + _allowedit + '>Edit</th><th  class=' + _allowedit + '>Profile</th><th  class=' + _allowdelete + '>Delete</th></tr></thead> <tbody>';
                 $.each(data, function (i, item) {
-                    if (item.IsStatus == "1") {
+                    if (item.IsActive == "1" || item.IsActive == "True") {
                         statusclass = 'btn btn-block btn-success';
                         Text = 'Active';
                     }
