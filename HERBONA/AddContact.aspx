@@ -78,17 +78,7 @@
                                         <input id="txtPassword" class="form-control" type="password" placeholder="Password" />
 
                                     </div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="form-group" style="padding-top: 5px; display: none;">
-                                    <div class="col-lg-4">
-                                        <label>Website</label>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <input id="txtWebsite" class="form-control" type="text" placeholder="Website URL" />
-
-                                    </div>
-                                </div>
+                                </div>    
                                 <div class="clearfix"></div>
                                 <div class="form-group" style="padding-top: 5px;">
                                     <div class="col-lg-4">
@@ -110,16 +100,6 @@
                             </div>
                             <!-- /.col -->
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="col-lg-4">
-                                        <label>Available Visibility Sets</label>
-                                    </div>
-                                    <div class="col-lg-8">
-                                       <input id="chkVisibilitySet" type="checkbox" class="flat-red" />
-                                                          Visibility Set1
-                                    </div>
-                                </div>
-                                 <div class="clearfix"></div>
                                 <div class="form-group" style="padding-top: 5px;">
                                     <div class="col-lg-4">
                                         <label>Position</label>
@@ -182,17 +162,7 @@
                                     <div class="col-lg-8">
                                         <textarea id="txtAddress" class="form-control" rows="3" placeholder="Enter  Address..."></textarea>
                                     </div>
-                                </div>
-                                 <div class="clearfix"></div>
-                                <div class="form-group" style="padding-top: 5px;">
-                                    <div class="col-lg-4">
-                                        <label>Authorized Terminals</label>
-                                    </div>
-                                    <div class="col-lg-8">
-                                       <input id="chkMainOffice" type="checkbox" class="flat-red" />
-                                                        Main Office
-                                    </div>
-                                </div>
+                                </div>                              
 
                             </div>
                             <!-- /.col -->

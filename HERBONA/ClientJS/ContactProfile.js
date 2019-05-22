@@ -7,7 +7,7 @@ var Action = "";
 
 $(document).ready(function () {
     var cid = GetParameterValues('cid');
-    
+
     function GetParameterValues(param) {
         var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
         for (var i = 0; i < url.length; i++) {
@@ -80,7 +80,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
             }
             if (obj == "Fill") {
 
-               
+
                 if (Result.d.Country != "" && Result.d.Country != undefined) {
                     var Country = jQuery.parseJSON(Result.d.Country);
                     $('#cmbCountry').html('');
@@ -115,10 +115,9 @@ function LoadAjaxContact(ht, obj, Req, url) {
                     $("#btnupdate").text("Update");
 
                     $.each(json, function (index, item) {
-                      
+
                         $("#ID_hidden").val(item.ID);
                         $("#txtName").val(item.Name);
-                        //  $("#cmbRole").val(item.RoleId);
                         $("#cmbRole option").each(function () {
                             if ($(this).val().trim() == item.RName) {
                                 $(this).attr("selected", "selected");
@@ -129,12 +128,8 @@ function LoadAjaxContact(ht, obj, Req, url) {
                         $("#txtMobileNo").val(item.MobileNo);
                         $("#txtPhoneNo").val(item.PhoneNo);
                         $("#txtEmail").val(item.Email);
-                       // $('#txtPassword').val("............");
-                      //  $('#txtPassword').attr('readonly', 'true');
                         $("#txtCity").val(item.City);
-                       // $("#txtType").val(item.Type);
                         $("#txtAddress").val(item.Address);
-                        $("#txtWebsite").val(item.WebsiteUrl);
 
 
                         $("#cmbCountry option").each(function () {
@@ -164,10 +159,10 @@ function LoadAjaxContact(ht, obj, Req, url) {
                     });
                 }
             }
-         
+
             if (obj == "Update") {
-                
-                
+
+
                 if (Result.d.Update != "" && Result.d.Update != undefined) {
                     var json = jQuery.parseJSON(Result.d.Update)[0];
 
@@ -200,7 +195,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
                 }
                 else {
                     swal("", "Some problem occurred please try again later", "info");
-                }              
+                }
             }
             $('body').pleaseWait('stop');
         }
@@ -229,22 +224,13 @@ function UpdateContact() {
             ht["Country"] = $("#cmbCountry :selected").val();
             ht["State"] = $("#cmbState :selected").val();
             ht["City"] = $("#txtCity").val();
-         //   ht["Type"] = $("#txtType").val();
 
             ht["Address"] = $("#txtAddress").val();
-            ht["WebsiteUrl"] = $("#txtWebsite").val();
             ht["Logo"] = $("#LogoPath").val();
 
-            
+            ht["MODE"] = "UPDATE";
 
-            //ht["MODE"] = $("#ID_hidden").val() == undefined ? "INSERT" : "UPDATE";
-
-          
-                ht["MODE"] = "UPDATE";
-           
-
-        
-                if ($("#btnupdate").text() == "Update") {
+            if ($("#btnupdate").text() == "Update") {
                 Req = 'Update';
                 obj = "Update";
                 url = "Contact_Profile.aspx/ContactDetails";

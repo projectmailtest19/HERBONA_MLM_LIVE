@@ -67,8 +67,7 @@ namespace SmartTrucking
                               Password = row["Password"].ToString(),
                               Country = row["Country"].ToString(),
                               City = row["City"].ToString(),
-                              State = row["State"].ToString(),
-                              Type = row["Type"].ToString(),
+                              State = row["State"].ToString(),                            
                               Address = row["Address"].ToString(),
                               IsActive = row["IsActive"].ToString()
                           }).ToList();

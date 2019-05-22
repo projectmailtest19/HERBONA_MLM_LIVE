@@ -117,14 +117,9 @@ namespace SmartTrucking
                                       Password = row["Password"].ToString(),
                                       Country = row["Country"].ToString(),
                                       City = row["City"].ToString(),
-                                      State = row["State"].ToString(),
-                                      Type = row["Type"].ToString(),
-                                      Address = row["Address"].ToString(),
-                                      WebsiteUrl = row["WebsiteUrl"].ToString(),
-                                      LogoPath = row["LogoPath"].ToString(),
-                                      IsStatus = row["IsStatus"].ToString(),
-                                      IsVisibilitySets = row["IsVisibilitySets"].ToString(),
-                                      IsMainOffice = row["IsMainOffice"].ToString(),
+                                      State = row["State"].ToString(),                                     
+                                      Address = row["Address"].ToString(),                                     
+                                      LogoPath = row["LogoPath"].ToString(),                                      
                                       IsActive = row["IsActive"].ToString()
                                   }).ToList();
                             }
@@ -162,8 +157,7 @@ namespace SmartTrucking
                     _UserSaveModel.Clear();
                     ht_param.Clear();
                     ht_param.Add("@ID", ht["ID"]);
-                    ht_param.Add("Name", ht["Name"].ToString());
-                    //ht_param.Add("@RoleId", ht["RoleId"].ToString());
+                    ht_param.Add("Name", ht["Name"].ToString());                  
                     if (ht["RoleId"].ToString() == "")
                     {
                         ht_param.Add("@RoleId", DBNull.Value);
@@ -175,8 +169,7 @@ namespace SmartTrucking
                     ht_param.Add("@MobileNo", ht["MobileNo"].ToString());
                     ht_param.Add("@PhoneNo", ht["PhoneNo"].ToString());
                     ht_param.Add("@Email", ht["Email"].ToString());
-                    ht_param.Add("@Password", ht["Password"].ToString());
-                    //ht_param.Add("@Country", ht["Country"].ToString());
+                    ht_param.Add("@Password", ht["Password"].ToString());                   
                     if (ht["Country"].ToString() == "")
                     {
                         ht_param.Add("@Country", DBNull.Value);
@@ -185,8 +178,7 @@ namespace SmartTrucking
                     {
                         ht_param.Add("@Country", ht["Country"].ToString());
                     }
-
-                    //ht_param.Add("@State", ht["State"].ToString());
+                 
                     if (ht["State"].ToString() == "")
                     {
                         ht_param.Add("@State", DBNull.Value);
@@ -197,12 +189,9 @@ namespace SmartTrucking
                     }
                     ht_param.Add("@City", ht["City"].ToString());
                     ht_param.Add("@Type", ht["Type"].ToString());
-                    ht_param.Add("@Address", ht["Address"].ToString());
-                    ht_param.Add("@WebsiteUrl", ht["WebsiteUrl"].ToString());
+                    ht_param.Add("@Address", ht["Address"].ToString());               
                     ht_param.Add("@LogoPath", ht["Logo"].ToString());
-                    ht_param.Add("@IsStatus", ht["IsStatus"].ToString());
-                    ht_param.Add("@IsVisibilitySets", ht["IsVisibilitySets"].ToString());
-                    ht_param.Add("@IsMainOffice", ht["IsMainOffice"].ToString());
+                    ht_param.Add("@IsStatus", ht["IsStatus"].ToString());                   
                     ht_param.Add("@MODE", ht["MODE"].ToString());
                     ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
                     ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
@@ -229,8 +218,7 @@ namespace SmartTrucking
                     _UserSaveModel.Clear();
                     ht_param.Clear();
                     ht_param.Add("@ID", ht["ID"]);
-                    ht_param.Add("@Name", ht["Name"].ToString());
-                    //ht_param.Add("@RoleId", ht["RoleId"].ToString());
+                    ht_param.Add("@Name", ht["Name"].ToString());                    
                     if (ht["RoleId"].ToString() == "")
                     {
                         ht_param.Add("@RoleId", DBNull.Value);
@@ -242,8 +230,7 @@ namespace SmartTrucking
                     ht_param.Add("@MobileNo", ht["MobileNo"].ToString());
                     ht_param.Add("@PhoneNo", ht["PhoneNo"].ToString());
                     ht_param.Add("@Email", ht["Email"].ToString());
-                    ht_param.Add("@Password", ht["Password"].ToString());
-                    //ht_param.Add("@Country", ht["Country"].ToString());
+                    ht_param.Add("@Password", ht["Password"].ToString());                   
                     if (ht["Country"].ToString() == "")
                     {
                         ht_param.Add("@Country", DBNull.Value);
@@ -252,8 +239,7 @@ namespace SmartTrucking
                     {
                         ht_param.Add("@Country", ht["Country"].ToString());
                     }
-
-                    //ht_param.Add("@State", ht["State"].ToString());
+                  
                     if (ht["State"].ToString() == "")
                     {
                         ht_param.Add("@State", DBNull.Value);
@@ -264,12 +250,9 @@ namespace SmartTrucking
                     }
                     ht_param.Add("@City", ht["City"].ToString());
                     ht_param.Add("@Type", ht["Type"].ToString());
-                    ht_param.Add("@Address", ht["Address"].ToString());
-                    ht_param.Add("@WebsiteUrl", ht["WebsiteUrl"].ToString());
+                    ht_param.Add("@Address", ht["Address"].ToString());                   
                     ht_param.Add("@LogoPath", ht["Logo"].ToString());
-                    ht_param.Add("@IsStatus", ht["IsStatus"].ToString());
-                    ht_param.Add("@IsVisibilitySets", ht["IsVisibilitySets"].ToString());
-                    ht_param.Add("@IsMainOffice", ht["IsMainOffice"].ToString());
+                    ht_param.Add("@IsStatus", ht["IsStatus"].ToString());               
                     ht_param.Add("@MODE", ht["MODE"].ToString());
                     ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
                     ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
