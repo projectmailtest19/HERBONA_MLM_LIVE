@@ -27,8 +27,9 @@ public class AgentDocUploadHandler : IHttpHandler
 
             if (!string.IsNullOrEmpty(fileName))
             {
+                string guidFileName = Guid.NewGuid().ToString();
                 fileExtension = System.IO.Path.GetExtension(fileName);
-                str_image = "DOC_" + numFiles.ToString() + fileExtension;
+                str_image = "DOC_" + numFiles.ToString() +guidFileName+ fileExtension;
                 pathToSave_100 = HttpContext.Current.Server.MapPath("AgentDocument/") + str_image;
                 if (System.IO.File.Exists(pathToSave_100))
                 {

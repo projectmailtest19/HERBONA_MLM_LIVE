@@ -125,6 +125,7 @@
     <Content Include="ClientJS\Changepassword.js" />
     <Content Include="ClientJS\CompanyList.js" />
     <Content Include="ClientJS\CompanyProfile.js" />
+    <Content Include="ClientJS\AgentList.js" />
     <Content Include="ClientJS\ContactList.js" />
     <Content Include="ClientJS\CreateAgentProfile.js" />
     <Content Include="ClientJS\ContactProfile.js" />
@@ -153,6 +154,7 @@
     <Content Include="CompanyLogo\CMPPHOTO_7.jpg" />
     <Content Include="CompanyLogo\CMPPHOTO_8.jpg" />
     <Content Include="CompanyLogo\CMPPHOTO_9.jpg" />
+    <Content Include="AgentList.aspx" />
     <Content Include="ContactLogo\CONPHOTO_1.jpg" />
     <Content Include="ContactLogo\CONPHOTO_10.png" />
     <Content Include="ContactLogo\CONPHOTO_11.jpg" />
@@ -1235,6 +1237,13 @@
     </Compile>
     <Compile Include="Company_Profile.aspx.designer.cs">
       <DependentUpon>Company_Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgentList.aspx.cs">
+      <DependentUpon>AgentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgentList.aspx.designer.cs">
+      <DependentUpon>AgentList.aspx</DependentUpon>
     </Compile>
     <Compile Include="ContactList.aspx.cs">
       <DependentUpon>ContactList.aspx</DependentUpon>
