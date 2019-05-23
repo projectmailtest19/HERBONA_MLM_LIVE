@@ -26,7 +26,7 @@ namespace SmartTrucking
         static List<ErrorModel> _ErrorModel = new List<ErrorModel>();
         static List<ContactModel> _Contactlist = new List<ContactModel>();
         static List<UserSaveModel> _UserSaveModel = new List<UserSaveModel>();
-        static List<Role_ddl_Model> _Role_ddl_Model = new List<Role_ddl_Model>();
+        static List<UserSaveModelWithEmailDetails> _UserSaveModelWithEmailDetails = new List<UserSaveModelWithEmailDetails>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (HttpContext.Current.Session["Company_ID"] == null || HttpContext.Current.Session["Company_ID"] == "")
@@ -156,69 +156,167 @@ namespace SmartTrucking
 
 
 
-                if (Type == "Update")
+                if (Type == "Save")
                 {
-                    _UserSaveModel.Clear();
+                    _UserSaveModelWithEmailDetails.Clear();
 
                     ht_param.Clear();
-                    ht_param.Add("@ID", ht["ID"]);
+                    //ht_param.Add("@ID", ht["ID"]);
                     ht_param.Add("@Name", ht["Name"].ToString());
-                    // ht_param.Add("@RoleId", ht["RoleId"].ToString());
-                    if (ht["RoleId"].ToString() == "")
+                    if (ht["Gender"].ToString() == "")
                     {
-                        ht_param.Add("@RoleId", DBNull.Value);
+                        ht_param.Add("@Gender", DBNull.Value);
                     }
                     else
                     {
-                        ht_param.Add("@RoleId", ht["RoleId"].ToString());
+                        ht_param.Add("@Gender", ht["Gender"].ToString());
                     }
                     ht_param.Add("@MobileNo", ht["MobileNo"].ToString());
-                    ht_param.Add("@PhoneNo", ht["PhoneNo"].ToString());
                     ht_param.Add("@Email", ht["Email"].ToString());
-                   //ht_param.Add("@Country", ht["Country"].ToString());
-                    if (ht["Country"].ToString() == "")
+                    ht_param.Add("@ImageURL", ht["ImageURL"].ToString());
+                    if (ht["country_id"].ToString() == "")
                     {
-                        ht_param.Add("@Country", DBNull.Value);
+                        ht_param.Add("@country_id", DBNull.Value);
                     }
                     else
                     {
-                        ht_param.Add("@Country", ht["Country"].ToString());
+                        ht_param.Add("@country_id", ht["country_id"].ToString());
                     }
 
-                    //ht_param.Add("@State", ht["State"].ToString());
-                    if (ht["State"].ToString() == "")
+                    if (ht["state_id"].ToString() == "")
                     {
-                        ht_param.Add("@State", DBNull.Value);
+                        ht_param.Add("@state_id", DBNull.Value);
                     }
                     else
                     {
-                        ht_param.Add("@State", ht["State"].ToString());
+                        ht_param.Add("@state_id", ht["state_id"].ToString());
                     }
-                    ht_param.Add("@City", ht["City"].ToString());
-                   // ht_param.Add("@Type", ht["Type"].ToString());
-                    ht_param.Add("@Address", ht["Address"].ToString());
-                    ht_param.Add("@WebsiteUrl", ht["WebsiteUrl"].ToString());
-                    ht_param.Add("@LogoPath", ht["Logo"].ToString());
+                    if (ht["district_id"].ToString() == "")
+                    {
+                        ht_param.Add("@district_id", DBNull.Value);
+                    }
+                    else
+                    {
+                        ht_param.Add("@district_id", ht["district_id"].ToString());
+                    }
+                    ht_param.Add("@addressline", ht["addressline"].ToString());
+                    ht_param.Add("@pincode", ht["pincode"].ToString());
                     ht_param.Add("@MODE", ht["MODE"].ToString());
                     ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
                     ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
                     ht_param.Add("@Login_user_ID", HttpContext.Current.Session["Login_user_ID"].ToString());
-                    ds = db.SysFetchDataInDataSet("[INSERT_Contact_DETAILS]", ht_param);
+                    ds = db.SysFetchDataInDataSet("[INSERT_Contact_DETAILS_Agent]", ht_param);
                     if (ds.Tables.Count > 0)
                     {
                         foreach (DataRow item in ds.Tables[0].Rows)
                         {
-                            UserSaveModel _UserSaveModelDetails = new UserSaveModel();
-                            _UserSaveModelDetails.CustomErrorState = item["CustomErrorState"].ToString();
-                            _UserSaveModelDetails.CustomMessage = item["CustomMessage"].ToString();
-                            _UserSaveModel.Add(_UserSaveModelDetails);
+                            //string CustomErrorState = ds.Tables[0].Rows[0]["CustomErrorState"].ToString().Trim();
+                            //string CustomMessage = ds.Tables[0].Rows[0]["CustomMessage"].ToString().Trim();
+                            //if (CustomErrorState == "0")
+                            //{
+                            //    string ToEmail_id = ds.Tables[0].Rows[0]["Email_ID"].ToString().Trim();
+                            //    string New_password = ds.Tables[0].Rows[0]["Passward"].ToString().Trim();
+                            //    string Name = ds.Tables[0].Rows[0]["Agent_Name"].ToString().Trim();
+
+                            //    var myMailMessage = new System.Net.Mail.MailMessage();
+                            //    myMailMessage.From = new System.Net.Mail.MailAddress("<noreply> projectmailtest19@gmail.com");
+                            //    myMailMessage.To.Add(ToEmail_id);// Mail would be sent to this address
+                            //    myMailMessage.IsBodyHtml = true;
+                            //    myMailMessage.Subject = "New Autogenerated Password From HERBONA";
+                            //    myMailMessage.Body = "<span> Dear " + Name + ",<br/><br/></span><span>Thank you for registering ,<br/> </span><span><b>Your Password is :" + New_password + "</b></span>";
+                            //    var smtpServer = new System.Net.Mail.SmtpClient("ftp.gmail.com");
+                            //    smtpServer.Host = ("smtp.gmail.com");
+                            //    smtpServer.Port = 587;
+                            //    smtpServer.Credentials = new System.Net.NetworkCredential("projectmailtest19@gmail.com", "Admin@123#");
+                            //    smtpServer.EnableSsl = true;
+                            //    smtpServer.Send(myMailMessage);
+
+                            //}
+
+
+
+                                UserSaveModelWithEmailDetails __UserSaveModelWithEmail = new UserSaveModelWithEmailDetails();
+                            __UserSaveModelWithEmail.CustomErrorState = item["CustomErrorState"].ToString();
+                            __UserSaveModelWithEmail.CustomMessage = item["CustomMessage"].ToString();
+                            __UserSaveModelWithEmail.ID = item["ID"].ToString();
+                            __UserSaveModelWithEmail.Email_ID = item["Email_ID"].ToString();
+                            __UserSaveModelWithEmail.Passward = item["Passward"].ToString();
+                            __UserSaveModelWithEmail.Agent_Name = item["Agent_Name"].ToString();
+                            _UserSaveModelWithEmailDetails.Add(__UserSaveModelWithEmail);
                         }
                     }
-                    ReturnData["Update"] = serializer.Serialize(_UserSaveModel);
-                    //ReturnData["Update"] = serializer.Serialize("updated successfully.");
+                    ReturnData["Save"] = serializer.Serialize(_UserSaveModelWithEmailDetails);
 
                 }
-             
+
+                if (Type == "Update")
+                {
+                    _UserSaveModelWithEmailDetails.Clear();
+
+                    ht_param.Clear();
+                    ht_param.Add("@ID", ht["ID"]);
+                    ht_param.Add("@Name", ht["Name"].ToString());
+                    if (ht["Gender"].ToString() == "")
+                    {
+                        ht_param.Add("@Gender", DBNull.Value);
+                    }
+                    else
+                    {
+                        ht_param.Add("@Gender", ht["Gender"].ToString());
+                    }
+                    ht_param.Add("@MobileNo", ht["MobileNo"].ToString());
+                    ht_param.Add("@Email", ht["Email"].ToString());
+                    ht_param.Add("@ImageURL", ht["ImageURL"].ToString());
+                    if (ht["country_id"].ToString() == "")
+                    {
+                        ht_param.Add("@country_id", DBNull.Value);
+                    }
+                    else
+                    {
+                        ht_param.Add("@country_id", ht["country_id"].ToString());
+                    }
+
+                    if (ht["state_id"].ToString() == "")
+                    {
+                        ht_param.Add("@state_id", DBNull.Value);
+                    }
+                    else
+                    {
+                        ht_param.Add("@state_id", ht["state_id"].ToString());
+                    }
+                    if (ht["district_id"].ToString() == "")
+                    {
+                        ht_param.Add("@district_id", DBNull.Value);
+                    }
+                    else
+                    {
+                        ht_param.Add("@district_id", ht["district_id"].ToString());
+                    }
+                    ht_param.Add("@addressline", ht["addressline"].ToString());
+                    ht_param.Add("@pincode", ht["pincode"].ToString());
+                    ht_param.Add("@MODE", ht["MODE"].ToString());
+                    ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                    ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                    ht_param.Add("@Login_user_ID", HttpContext.Current.Session["Login_user_ID"].ToString());
+                    ds = db.SysFetchDataInDataSet("[INSERT_Contact_DETAILS_Agent]", ht_param);
+                    if (ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow item in ds.Tables[0].Rows)
+                        {
+                            UserSaveModelWithEmailDetails __UserSaveModelWithEmail = new UserSaveModelWithEmailDetails();
+                            __UserSaveModelWithEmail.CustomErrorState = item["CustomErrorState"].ToString();
+                            __UserSaveModelWithEmail.CustomMessage = item["CustomMessage"].ToString();
+                            __UserSaveModelWithEmail.ID = item["ID"].ToString();
+                            __UserSaveModelWithEmail.Email_ID = item["Email_ID"].ToString();
+                            __UserSaveModelWithEmail.Passward = item["Passward"].ToString();
+                            __UserSaveModelWithEmail.Agent_Name = item["Agent_Name"].ToString();
+                            _UserSaveModelWithEmailDetails.Add(__UserSaveModelWithEmail);
+                        }
+                    }
+                    ReturnData["Update"] = serializer.Serialize(_UserSaveModelWithEmailDetails);
+
+                }
+
 
 
 

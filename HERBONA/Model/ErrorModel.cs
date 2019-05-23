@@ -22,4 +22,13 @@ namespace SmartTrucking.Model
         public string CustomMessage { get; set; }
 
     }
+    public class UserSaveModelWithEmailDetails
+    {
+        public string ID { get; set; }
+        public string CustomErrorState { get; set; }
+        public string CustomMessage { get; set; }
+        public string Email_ID { get; set; }
+        public string Passward { get; set; }
+        public string Agent_Name { get; set; }
+    }
 }

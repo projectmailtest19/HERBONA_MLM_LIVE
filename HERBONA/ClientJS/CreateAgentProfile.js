@@ -9,13 +9,16 @@ var _allowadd, _allowedit, _allowdelete;
 
 $(document).ready(function () {
     var cid = GetParameterValues('cid');
-    
     function GetParameterValues(param) {
-        var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        for (var i = 0; i < url.length; i++) {
-            var urlparam = url[i].split('=');
-            if (urlparam[0] == param) {
-                return urlparam[1];
+        //var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        if (window.location.href.indexOf('?') > 0) {
+            var urlenc = (window.location.href.slice(window.location.href.indexOf('?') + 1));
+            var url = atob(urlenc).split('&');
+            for (var i = 0; i < url.length; i++) {
+                var urlparam = url[i].split('=');
+                if (urlparam[0] == param) {
+                    return urlparam[1];
+                }
             }
         }
     }
@@ -293,6 +296,7 @@ function sendAgentAppication_Form() {
         }
     });
 }
+
 function LoadAjaxContact(ht, obj, Req, url) {
     $('body').pleaseWait();
 
@@ -348,16 +352,6 @@ function LoadAjaxContact(ht, obj, Req, url) {
                     });
                     $("#cmbCountry").val(1).trigger('change');
                 }
-
-                if (Result.d.Role != "" && Result.d.Role != undefined) {
-                    var Role = jQuery.parseJSON(Result.d.Role);
-                    $('#cmbRole').html('');
-                    $('#cmbRole').append($('<option></option>'));
-                    $.each(Role, function (index, item) {
-                        $('#cmbRole').append($('<option></option>').val(item.ID).html(item.Name));
-                    });
-                }
-
                 if (Result.d.State != "" && Result.d.State != undefined) {
                     var State = jQuery.parseJSON(Result.d.State);
                     $('#cmbState').html('');
@@ -423,6 +417,45 @@ function LoadAjaxContact(ht, obj, Req, url) {
                     });
                 }
             }
+            if (obj == "Save") {
+
+
+                if (Result.d.Save != "" && Result.d.Save != undefined) {
+                    var json = jQuery.parseJSON(Result.d.Save)[0];
+
+                    if (json.CustomErrorState == "0") {
+
+                        swal({
+                            title: "",
+                            text: json.CustomMessage,
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#5cb85c",
+                            confirmButtonText: "Ok!",
+                            closeOnConfirm: false,
+                            timer: 2000
+                        });
+                         //function () {
+                             //alert(json.ID);
+                             $("#ID_hidden").val(json.ID);
+                             $("#btnAgentPersonalDetails").text('Update');
+                         //});
+
+                       
+                    }
+                    else if (json.CustomErrorState == "1") {
+                        swal("", "Something went wrong , please try again later !!", "error");
+
+                    }
+                    else if (json.CustomErrorState == "2") {
+                        swal("", json.CustomMessage, "info");
+
+                    }
+                }
+                else {
+                    swal("", "Some problem occurred please try again later", "info");
+                }
+            }
          
             if (obj == "Update") {
                 
@@ -441,10 +474,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
                             confirmButtonText: "Ok!",
                             closeOnConfirm: false,
                             timer: 2000
-                        },
-                    function () {
-                        window.location = 'Contact_Profile.aspx?cid=' + document.getElementById('ID_hidden').value;
-                    });
+                        });
 
 
                     }
@@ -466,7 +496,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
     });
 }
 
-function UpdateContact() {
+function AddNewAgentPresonalDetails() {
 
     if (validationcheck() == true) {
 
@@ -476,34 +506,34 @@ function UpdateContact() {
 
         setTimeout(function () {
             ht = {};
-            ht["ID"] = $("#ID_hidden").val();
-            ht["Name"] = $("#txtName").val();
-            ht["RoleId"] = $("#cmbRole").val();
-            ht["MobileNo"] = $("#txtMobileNo").val();
-            ht["PhoneNo"] = $("#txtPhoneNo").val();
-            ht["Email"] = $("#txtEmail").val();
-            ht["Country"] = $("#cmbCountry :selected").val();
-            ht["State"] = $("#cmbState :selected").val();
-            ht["City"] = $("#txtCity").val();
-         //   ht["Type"] = $("#txtType").val();
-
-            ht["Address"] = $("#txtAddress").val();
-            ht["WebsiteUrl"] = $("#txtWebsite").val();
-            ht["Logo"] = $("#LogoPath").val();
-
             
+            ht["Name"] = $("#txtName").val();
+            ht["Gender"] = $("#cmbGender :selected").val();
+            ht["MobileNo"] = $("#txtMobileNo").val();
+            ht["Email"] = $("#txtEmail").val();
+            ht["ImageURL"] = $("#LogoPath").val();
 
-            //ht["MODE"] = $("#ID_hidden").val() == undefined ? "INSERT" : "UPDATE";
+            ht["country_id"] = $("#cmbCountry :selected").val();
+            ht["state_id"] = $("#cmbState :selected").val();
+            ht["district_id"] = $("#cmbDistrict :selected").val();
 
+            ht["addressline"] = $("#txtAddress").val();
+            ht["pincode"] = $("#txtPinCode").val();
           
-                ht["MODE"] = "UPDATE";
-           
-
         
-                if ($("#btnupdate").text() == "Update") {
+            if ($("#ID_hidden").val() == "") {
+                ht["MODE"] = "INSERT";
+                Req = 'Save';
+                obj = "Save";
+                url = "CreateAgentProfile.aspx/ContactDetails";
+                LoadAjaxContact(ht, obj, Req, url);
+            }
+            else {
+                ht["ID"] = $("#ID_hidden").val();
+                ht["MODE"] = "UPDATE";
                 Req = 'Update';
                 obj = "Update";
-                url = "Contact_Profile.aspx/ContactDetails";
+                url = "CreateAgentProfile.aspx/ContactDetails";
                 LoadAjaxContact(ht, obj, Req, url);
             }
         }, 1000);
@@ -512,24 +542,35 @@ function UpdateContact() {
 
 function validationcheck() {
     if ($('#txtName').val() == "") {
-        popupErrorMsg($("#txtName"), "Contact Name is required.", 5);
-        //alert("name is required.");
-        //$('#txtName').focus();
+        popupErrorMsg($("#txtName"), "Agent Name is required.", 5);
+        return false;
+    }
+    if ($('#cmbGender :selected').val() == "") {
+        popupErrorMsg($("#cmbGender"), "Please Select Gender.", 5);
         return false;
     }
     if ($('#txtEmail').val() == "") {
-        popupErrorMsg($("#txtEmail"), "Email ID is required.", 5);
-        //alert("email is required.");
-        //$('#txtEmail').focus();
+        popupErrorMsg($("#txtEmail"), "Valid Email ID is Required.", 5);
         return false;
     }
 
     var reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!reg.test($("#txtEmail").val())) {
-        alert("enter a valid email.");
-        $('#txtEmail').focus();
+        popupErrorMsg($("#txtEmail"), "Enter a Valid Email ID.", 5);
         return false;
 
+    }
+    if ($('#cmbCountry :selected').val() == "") {
+        popupErrorMsg($("#cmbCountry"), "Please Select Country.", 5);
+        return false;
+    }
+    if ($('#cmbState :selected').val() == "") {
+        popupErrorMsg($("#cmbState"), "Please Select State.", 5);
+        return false;
+    }
+    if ($('#cmbDistrict :selected').val() == "") {
+        popupErrorMsg($("#cmbDistrict"), "Please Select District.", 5);
+        return false;
     }
     return true;
 }
