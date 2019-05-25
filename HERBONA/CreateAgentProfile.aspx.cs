@@ -26,6 +26,7 @@ namespace SmartTrucking
         static List<ErrorModel> _ErrorModel = new List<ErrorModel>();
         static List<ContactModel> _Contactlist = new List<ContactModel>();
         static List<UserSaveModel> _UserSaveModel = new List<UserSaveModel>();
+        static List<UserSaveModelWithID> _UserSaveModelWithID = new List<UserSaveModelWithID>();
         static List<UserSaveModelWithEmailDetails> _UserSaveModelWithEmailDetails = new List<UserSaveModelWithEmailDetails>();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -317,7 +318,71 @@ namespace SmartTrucking
 
                 }
 
+                if (Type == "SaveSponsor")
+                {
+                    _UserSaveModelWithID.Clear();
 
+                    ht_param.Clear();
+                    ht_param.Add("@Contact_id", ht["Contact_id"].ToString());
+                    ht_param.Add("@Sponsor_Account_No", ht["Sponsor_Account_No"].ToString());
+                    ht_param.Add("@Sponsor_Name", ht["Sponsor_Name"].ToString());
+                    ht_param.Add("@Sponsor_MemberID", ht["Sponsor_MemberID"].ToString());
+                    ht_param.Add("@Sponsor_Mobile_Number", ht["Sponsor_Mobile_Number"].ToString());
+                    ht_param.Add("@Placed_Name", ht["Placed_Name"].ToString());
+                    ht_param.Add("@Placed_MemberID", ht["Placed_MemberID"].ToString());
+                    ht_param.Add("@Placed_Team", ht["Placed_Team"].ToString());
+                    ht_param.Add("@MODE", ht["MODE"].ToString());
+                    ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                    ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                    ht_param.Add("@Login_user_ID", HttpContext.Current.Session["Login_user_ID"].ToString());
+                    ds = db.SysFetchDataInDataSet("[INSERT_Agent_Sponsor_Details]", ht_param);
+                    if (ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow item in ds.Tables[0].Rows)
+                        {
+                              UserSaveModelWithID ___UserSaveModelWithIDDetails = new UserSaveModelWithID();
+                            ___UserSaveModelWithIDDetails.CustomErrorState = item["CustomErrorState"].ToString();
+                            ___UserSaveModelWithIDDetails.CustomMessage = item["CustomMessage"].ToString();
+                            ___UserSaveModelWithIDDetails.ID = item["ID"].ToString();
+                            _UserSaveModelWithID.Add(___UserSaveModelWithIDDetails);
+                        }
+                    }
+                    ReturnData["SaveSponsor"] = serializer.Serialize(_UserSaveModelWithID);
+
+                }
+
+                if (Type == "UpdateSponsor")
+                {
+                    _UserSaveModelWithID.Clear();
+
+                    ht_param.Clear();
+                    ht_param.Add("@Contact_id", ht["Contact_id"].ToString());
+                    ht_param.Add("@Sponsor_Account_No", ht["Sponsor_Account_No"].ToString());
+                    ht_param.Add("@Sponsor_Name", ht["Sponsor_Name"].ToString());
+                    ht_param.Add("@Sponsor_MemberID", ht["Sponsor_MemberID"].ToString());
+                    ht_param.Add("@Sponsor_Mobile_Number", ht["Sponsor_Mobile_Number"].ToString());
+                    ht_param.Add("@Placed_Name", ht["Placed_Name"].ToString());
+                    ht_param.Add("@Placed_MemberID", ht["Placed_MemberID"].ToString());
+                    ht_param.Add("@Placed_Team", ht["Placed_Team"].ToString());
+                    ht_param.Add("@MODE", ht["MODE"].ToString());
+                    ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                    ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                    ht_param.Add("@Login_user_ID", HttpContext.Current.Session["Login_user_ID"].ToString());
+                    ds = db.SysFetchDataInDataSet("[INSERT_Agent_Sponsor_Details]", ht_param);
+                    if (ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow item in ds.Tables[0].Rows)
+                        {
+                            UserSaveModelWithID ___UserSaveModelWithIDDetails = new UserSaveModelWithID();
+                            ___UserSaveModelWithIDDetails.CustomErrorState = item["CustomErrorState"].ToString();
+                            ___UserSaveModelWithIDDetails.CustomMessage = item["CustomMessage"].ToString();
+                            ___UserSaveModelWithIDDetails.ID = item["ID"].ToString();
+                            _UserSaveModelWithID.Add(___UserSaveModelWithIDDetails);
+                        }
+                    }
+                    ReturnData["UpdateSponsor"] = serializer.Serialize(_UserSaveModelWithID);
+
+                }
 
 
                 _ErrorModel.Clear();

@@ -5,21 +5,15 @@ var Procedure = "";
 var Action = "";
 var _allowadd, _allowedit, _allowdelete;
 $(document).ready(function () {
-
-
-    // *******************************start permissionm**************************
-    permissionforlist('ContactList.aspx', 'AddContact.aspx', 'btn_create');
-    // *******************************end permissionm**************************
-
     setTimeout(function () {
         GetContactDetails();
-    }, 2000);
+    }, 1000);
 
 });
 function GetContactDetails() {
-    Req = 'ContactList';
+    Req = 'AgentList';
     obj = "Fill";
-    url = "ContactList.aspx/ContactDetails";
+    url = "AgentList.aspx/ContactDetails";
     ht = {};
     LoadAjaxCompany(ht, obj, Req, url);
 }
@@ -47,11 +41,12 @@ function LoadAjaxCompany(ht, obj, Req, url) {
             }
 
             if (obj == "Fill") {
-                var data = jQuery.parseJSON(Result.d.ContactData);
+                var data = jQuery.parseJSON(Result.d.AgentData);
                 var table = '<table id="ContactList" class="table table-bordered table-striped">';
-                table = table + '<thead><tr><th style="display:none">Contact ID</th><th>Status</th><th>Contact Name</th><th>Position</th><th>Phone#</th><th>Email ID</th><th>Address</th><th  class=' + _allowedit + '>Edit</th><th  class=' + _allowedit + '>Profile</th><th  class=' + _allowdelete + '>Delete</th></tr></thead> <tbody>';
+                table = table + '<thead><tr><th style="display:none">Agent ID</th><th>Status</th><th>Agent Name</th><th>Mobile Number</th><th>Email ID</th><th>Gender</th><th>Address</th><th  class=' + _allowedit + '>Edit</th></tr></thead> <tbody>';
                 $.each(data, function (i, item) {
-                    if (item.IsStatus == "1") {
+                    //alert(item.IsAgentActive);
+                    if (item.IsAgentActive == "True") {
                         statusclass = 'btn btn-block btn-success';
                         Text = 'Active';
                     }
@@ -60,16 +55,13 @@ function LoadAjaxCompany(ht, obj, Req, url) {
                         Text = 'Inactive';
                     }
                     table = table + "<tr><td style='display:none' >" + item.ID +
-                        "</td><td>" + "<button class='" + statusclass + "' disabled>" + Text + "</button>" +
+                        "</td><td class='Edit " + _allowedit + "' align='center'><button type='button' class='" + statusclass + "' onclick=UpdateAgentStatus(" + item.ID + ")>" + Text + "</button>" +
                                     "</td><td>" + item.Name +
-                                    "</td><td>" + item.RName +
-                                    "</td><td>" + item.PhoneNo +
+                                    "</td><td>" + item.MobileNo +
                                     "</td><td>" + item.Email +
+                                    "</td><td>" + item.Gender +
                                     "</td><td>" + item.Address +
                                     "<td class='Edit " + _allowedit + "' align='center'> <button type='button' onclick=ContactEdit(" + item.ID + ") class='btn btn-default btn-sm' id='btnedit' > <span class='glyphicon glyphicon-edit'></span> </button></td>" +
-                                    "<td class='Edit " + _allowedit + "' align='center'> <button type='button' onclick=ContactProfileEdit(" + item.ID + ") class='btn btn-default btn-sm' id='btnedit' > <span class='glyphicon glyphicon-edit'></span> </button></td>" +
-                                    //"</td>" +
-                                    "<td class='Edit " + _allowdelete + "' align='center'> <button type='button' onclick=DeleteContact(" + item.ID + ") class='btn btn-default btn-sm' id='btndelete' > <span class='glyphicon glyphicon-trash'></span> </button></td>" +
                                     "</tr>"
                 });
                 document.getElementById("ContactListDiv").innerHTML = table + '</tbody></table>';
@@ -77,12 +69,12 @@ function LoadAjaxCompany(ht, obj, Req, url) {
                     ShortTable('#ContactList');
                 }, 100);
             }
-            if (obj == "Delete") {
+            if (obj == "StatusUpdate") {
                 if (Result.d.CompanyData != "" && Result.d.CompanyData != undefined) {
                     var json = jQuery.parseJSON(Result.d.CompanyData)[0];
 
                     if (json.CustomErrorState == "0") {
-
+                        setTimeout(function () {
                         swal({
                             title: json.CustomMessage,
                             text: "",
@@ -90,9 +82,10 @@ function LoadAjaxCompany(ht, obj, Req, url) {
                             timer: 2000,
                             showConfirmButton: false
                         });
-
+                        }, 100);
+                        //setTimeout(function () {
                         GetContactDetails();
-
+                        //}, 2000);
                     }
                     else if (json.CustomErrorState == "1") {
                         swal("", "Something went wrong , please try again later !!", "error");
@@ -114,18 +107,16 @@ function LoadAjaxCompany(ht, obj, Req, url) {
     });
 }
 function redirect() {
-    window.location = 'AddContact.aspx';
+    window.location = 'CreateAgentProfile.aspx';
 }
 
 function ContactEdit(id) {
-    window.location = 'AddContact.aspx?cid=' + id;
+    var bt = btoa("cid=" + id + "");
+    window.location = 'CreateAgentProfile.aspx?'+ bt;
 }
-function ContactProfileEdit(id) {
-    window.location = 'Contact_Profile.aspx?cid=' + id;
-}
-function DeleteContact(id) {
+function UpdateAgentStatus(id) {
     swal({
-        title: "Are you sure you want to delete?",
+        title: "Are you sure you want to update the status?",
         text: "",
         type: "warning",
         showCancelButton: true,
@@ -134,9 +125,9 @@ function DeleteContact(id) {
         closeOnConfirm: true
     },
 function () {
-    Req = 'Delete';
-    obj = "Delete";
-    url = "ContactList.aspx/ContactDetails";
+    Req = 'StatusUpdate';
+    obj = "StatusUpdate";
+    url = "AgentList.aspx/ContactDetails";
     ht = {};
     ht["ID"] = id;
     LoadAjaxCompany(ht, obj, Req, url);
@@ -144,13 +135,12 @@ function () {
 
 
 }
-
 function ShortTable(Tbl) {
     $(Tbl).DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
-        "ordering": true,
+        "ordering": false,
         "info": true,
         "autoWidth": false,
         dom: 'C<"clear">lfrtip',

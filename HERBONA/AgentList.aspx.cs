@@ -23,7 +23,7 @@ namespace SmartTrucking
         public static JavaScriptSerializer serializer = new JavaScriptSerializer();
         static List<CountryModel> _CountryModel = new List<CountryModel>();
         static List<ErrorModel> _errorDetail = new List<ErrorModel>();
-        static List<ContactModel> ContactModel_list = new List<ContactModel>();
+        static List<AgentListModel> AgentListModel_list = new List<AgentListModel>();
         static List<UserSaveModel> _UserSaveModel = new List<UserSaveModel>();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -48,43 +48,41 @@ namespace SmartTrucking
              
                 if (Type == "Fill")
                 {
-                    _CountryModel.Clear();
+                    AgentListModel_list.Clear();
                     ht_param.Clear();
                     ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
                     ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
-                    ds = db.SysFetchDataInDataSet("[GetContactList]", ht_param);
+                    ds = db.SysFetchDataInDataSet("[GetAgentPersonalDetails]", ht_param);
                     if (ds.Tables.Count > 0)
                     {
-                        ContactModel_list = ds.Tables[0].AsEnumerable()
-                          .Select(row => new ContactModel
+                        AgentListModel_list = ds.Tables[0].AsEnumerable()
+                          .Select(row => new AgentListModel
                           {
                               ID = row["ID"].ToString(),
                               Name = row["Name"].ToString(),
-                              RName = row["RName"].ToString(),
                               MobileNo = row["MobileNo"].ToString(),
-                              PhoneNo = row["PhoneNo"].ToString(),
                               Email = row["Email"].ToString(),
-                              Password = row["Password"].ToString(),
-                              Country = row["Country"].ToString(),
-                              City = row["City"].ToString(),
-                              State = row["State"].ToString(),
-                              Type = row["Type"].ToString(),
+                              Gender = row["Gender"].ToString(),
+                              ImageURL = row["ImageURL"].ToString(),
+                              country_id = row["country_id"].ToString(),
+                              state_id = row["state_id"].ToString(),
+                              district_id = row["district_id"].ToString(),
                               Address = row["Address"].ToString(),
-                              IsActive = row["IsActive"].ToString()
+                              pincode = row["pincode"].ToString(),
+                              IsAgentActive = row["IsAgentActive"].ToString()
                           }).ToList();
                     }
-                    ReturnData["ContactData"] = serializer.Serialize(ContactModel_list);
+                    ReturnData["AgentData"] = serializer.Serialize(AgentListModel_list);
 
                 }
               
               
-                if (Type == "Delete")
+                if (Type == "StatusUpdate")
                 {
                     _UserSaveModel.Clear();
                     ht_param.Clear();
                     ht_param.Add("@ID", ht["ID"]);
-                    ht_param.Add("@MODE", "DELETE");
-                    db.SysAddUpdateDelete("[INSERT_Contact_DETAILS]", ref ht_param);
+                    ds=db.SysFetchDataInDataSet("[UpdateAgentActiveStatus]", ht_param);
                     if (ds.Tables.Count > 0)
                     {
                         foreach (DataRow item in ds.Tables[0].Rows)

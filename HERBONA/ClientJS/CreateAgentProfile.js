@@ -31,8 +31,12 @@ $(document).ready(function () {
         LoadAjaxContact(ht, obj, Req, url);
     }
     else {
+        $("#liSponsor").removeClass('disabledLI');
+        $("#liBank").removeClass('disabledLI');
+        $("#likyc").removeClass('disabledLI');
+        $("#lirank").removeClass('disabledLI');
         $('#ID_hidden').val('' + cid);
-        Req = 'Country@Edit';
+        Req = 'Country';
         obj = "Fill";
         url = "CreateAgentProfile.aspx/ContactDetails";
         ht = {};
@@ -439,6 +443,10 @@ function LoadAjaxContact(ht, obj, Req, url) {
                              //alert(json.ID);
                              $("#ID_hidden").val(json.ID);
                              $("#btnAgentPersonalDetails").text('Update');
+                             $("#liSponsor").removeClass('disabledLI');
+                             $("#liBank").removeClass('disabledLI');
+                             $("#likyc").removeClass('disabledLI');
+                             $("#lirank").removeClass('disabledLI');
                          //});
 
                        
@@ -490,6 +498,81 @@ function LoadAjaxContact(ht, obj, Req, url) {
                 else {
                     swal("", "Some problem occurred please try again later", "info");
                 }              
+            }
+
+            if (obj == "SaveSponsor") {
+
+
+                if (Result.d.SaveSponsor != "" && Result.d.SaveSponsor != undefined) {
+                    var json = jQuery.parseJSON(Result.d.SaveSponsor)[0];
+
+                    if (json.CustomErrorState == "0") {
+
+                        swal({
+                            title: "",
+                            text: json.CustomMessage,
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#5cb85c",
+                            confirmButtonText: "Ok!",
+                            closeOnConfirm: false,
+                            timer: 2000
+                        });
+                        //function () {
+                        //alert(json.ID);
+                        $("#ID_hidden_SponsorDetails").val(json.ID);
+                        $("#btnAgentSponsorDetails").text('Update');
+                        //});
+
+
+                    }
+                    else if (json.CustomErrorState == "1") {
+                        swal("", "Something went wrong , please try again later !!", "error");
+
+                    }
+                    else if (json.CustomErrorState == "2") {
+                        swal("", json.CustomMessage, "info");
+
+                    }
+                }
+                else {
+                    swal("", "Some problem occurred please try again later", "info");
+                }
+            }
+
+            if (obj == "UpdateSponsor") {
+
+
+                if (Result.d.UpdateSponsor != "" && Result.d.UpdateSponsor != undefined) {
+                    var json = jQuery.parseJSON(Result.d.UpdateSponsor)[0];
+
+                    if (json.CustomErrorState == "0") {
+
+                        swal({
+                            title: "",
+                            text: json.CustomMessage,
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#5cb85c",
+                            confirmButtonText: "Ok!",
+                            closeOnConfirm: false,
+                            timer: 2000
+                        });
+
+
+                    }
+                    else if (json.CustomErrorState == "1") {
+                        swal("", "Something went wrong , please try again later !!", "error");
+
+                    }
+                    else if (json.CustomErrorState == "2") {
+                        swal("", json.CustomMessage, "info");
+
+                    }
+                }
+                else {
+                    swal("", "Some problem occurred please try again later", "info");
+                }
             }
             $('body').pleaseWait('stop');
         }
@@ -574,8 +657,55 @@ function validationcheck() {
     }
     return true;
 }
+function AddNewAgentSponsorDetails()
+{
+    if (validationcheck_SponsorDetails() == true) {
+        setTimeout(function () {
+            ht = {};
+
+            ht["Sponsor_Account_No"] = $("#txtSponsor_Account_No").val();
+            ht["Sponsor_Name"] = $("#txtSponsor_Name").val();
+            ht["Sponsor_MemberID"] = $("#txtSponsor_MemberID").val();
+            ht["Sponsor_Mobile_Number"] = $("#txtSponsor_Mobile_Number").val();
+            ht["Placed_Name"] = $("#txtPlaced_Name").val();
+            ht["Placed_MemberID"] = $("#txtPlaced_MemberID").val();
+            ht["Placed_Team"] = $("#txtPlaced_Team").val();
 
 
+            if ($("#ID_hidden").val() == "") {
+                swal("", "Please Fill Agent Personal Details First", "error");   
+            }
+            else {
+                ht["Contact_id"] = $("#ID_hidden").val();
+                if ($("#ID_hidden_SponsorDetails").val() == "") {
+                    ht["MODE"] = "INSERT";
+                    Req = 'SaveSponsor';
+                    obj = "SaveSponsor";
+                    url = "CreateAgentProfile.aspx/ContactDetails";
+                    LoadAjaxContact(ht, obj, Req, url);
+                }
+                else {
+                    ht["MODE"] = "UPDATE";
+                    Req = 'UpdateSponsor';
+                    obj = "UpdateSponsor";
+                    url = "CreateAgentProfile.aspx/ContactDetails";
+                    LoadAjaxContact(ht, obj, Req, url);
+                }
+            }
+        }, 1000);
+    }
+}
+function validationcheck_SponsorDetails() {
+    if ($('#txtSponsor_Account_No').val() == "") {
+        popupErrorMsg($("#txtSponsor_Account_No"), "Sponsor Account Number is Required.", 5);
+        return false;
+    }
+    if ($('#txtSponsor_Name').val() == "") {
+        popupErrorMsg($("#txtSponsor_Name"), "Sponsor Name is Required.", 5);
+        return false;
+    }
+    return true;
+}
 $("#f_Uploadfile").on('change', function () {
     readURL(this);
 });

@@ -45,10 +45,10 @@
                     <ul class="nav nav-tabs">
 
                         <li class="active"><a href="#Personal_Details" data-toggle="tab">Personal Details</a></li>
-                        <li class=""><a href="#Sponsor_Details" data-toggle="tab">Sponsor Details</a></li>
-                        <li class=""><a href="#Bank_Details" data-toggle="tab">Bank Details</a></li>
-                        <li class=""><a href="#KYC_Details" data-toggle="tab">KYC Details</a></li>
-                        <li class=""><a href="#Rank_History" data-toggle="tab">Rank History</a></li>
+                        <li id="liSponsor" class="disabledLI" ><a href="#Sponsor_Details" data-toggle="tab">Sponsor Details</a></li>
+                        <li id="liBank" class="disabledLI"><a href="#Bank_Details" data-toggle="tab">Bank Details</a></li>
+                        <li id="likyc" class="disabledLI"><a href="#KYC_Details" data-toggle="tab">KYC Details</a></li>
+                        <li id="lirank" class="disabledLI"><a href="#Rank_History" data-toggle="tab">Rank History</a></li>
                     </ul>
                     <div class="tab-content">
                         <form class="form-horizontal">
@@ -414,7 +414,7 @@
 
     </section>
     <input type="hidden" id="ID_hidden" class="form-control" />
-
+      <input type="hidden" id="ID_hidden_SponsorDetails" class="form-control" />
     <input type="hidden" id="LogoPath" />
     <input type="hidden" id="OldLogoPath" />
     <script src="ClientJS/CreateAgentProfile.js"></script>

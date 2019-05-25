@@ -25,7 +25,6 @@ namespace SmartTrucking
         static List<ErrorModel> _errorDetail = new List<ErrorModel>();
         static List<CompanyModel> CompanyModel_list = new List<CompanyModel>();
         static List<UserSaveModel> _UserSaveModel = new List<UserSaveModel>();
-        static List<Cust_TypeModel> _Cust_TypeModel = new List<Cust_TypeModel>();
         static List<AddressModel> _Addresslist = new List<AddressModel>();
         protected void Page_Load(object sender, EventArgs e)
         {
