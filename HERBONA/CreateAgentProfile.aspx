@@ -415,6 +415,7 @@
     </section>
     <input type="hidden" id="ID_hidden" class="form-control" />
       <input type="hidden" id="ID_hidden_SponsorDetails" class="form-control" />
+     <input type="hidden" id="ID_hidden_BankDetails" class="form-control" />
     <input type="hidden" id="LogoPath" />
     <input type="hidden" id="OldLogoPath" />
     <script src="ClientJS/CreateAgentProfile.js"></script>

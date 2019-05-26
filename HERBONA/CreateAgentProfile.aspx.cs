@@ -27,6 +27,8 @@ namespace SmartTrucking
         static List<ContactModel> _Contactlist = new List<ContactModel>();
         static List<UserSaveModel> _UserSaveModel = new List<UserSaveModel>();
         static List<UserSaveModelWithID> _UserSaveModelWithID = new List<UserSaveModelWithID>();
+        static List<AgentAddressProofListModel> _AgentAddressProofListModel = new List<AgentAddressProofListModel>();
+        static List<AgentBankProofListModel> _AgentBankProofListModel = new List<AgentBankProofListModel>();
         static List<UserSaveModelWithEmailDetails> _UserSaveModelWithEmailDetails = new List<UserSaveModelWithEmailDetails>();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -78,7 +80,50 @@ namespace SmartTrucking
                             ReturnData["Country"] = serializer.Serialize(_CountryModel);
                         }
 
-                      
+                        if (Data == "FillAddressProof")
+                        {
+                            _AgentAddressProofListModel.Clear();
+                            ht_param.Clear();
+                            ht_param.Add("@Contact_id", ht["Contact_id"].ToString());
+                            ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                            ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                            ds = db.SysFetchDataInDataSet("[GetAgent_AddressProof_Details]", ht_param);
+
+                            if (ds.Tables.Count > 0)
+                            {
+                                _AgentAddressProofListModel = ds.Tables[0].AsEnumerable()
+                                  .Select(row => new AgentAddressProofListModel
+                                  {
+                                      id = row["id"].ToString(),
+                                      Contact_id = row["Contact_id"].ToString(),
+                                      Address_Proof_Type = row["Address_Proof_Type"].ToString(),
+                                      Address_Proof_URL = row["Address_Proof_URL"].ToString()
+                                  }).ToList();
+                            }
+                            ReturnData["FillAddressProof"] = serializer.Serialize(_AgentAddressProofListModel);
+                        }
+                        if (Data == "FillBankProof")
+                        {
+                            _AgentBankProofListModel.Clear();
+                            ht_param.Clear();
+                            ht_param.Add("@Contact_id", ht["Contact_id"].ToString());
+                            ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                            ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                            ds = db.SysFetchDataInDataSet("[GetAgent_BankProof_Details]", ht_param);
+
+                            if (ds.Tables.Count > 0)
+                            {
+                                _AgentBankProofListModel = ds.Tables[0].AsEnumerable()
+                                  .Select(row => new AgentBankProofListModel
+                                  {
+                                      id = row["id"].ToString(),
+                                      Contact_id = row["Contact_id"].ToString(),
+                                      Bank_Proof_Type = row["Bank_Proof_Type"].ToString(),
+                                      Bank_Proof_URL = row["Bank_Proof_URL"].ToString()
+                                  }).ToList();
+                            }
+                            ReturnData["FillBankProof"] = serializer.Serialize(_AgentBankProofListModel);
+                        }
 
                         if (Data == "Edit")
                         {
@@ -384,6 +429,86 @@ namespace SmartTrucking
 
                 }
 
+                if (Type == "SaveBank")
+                {
+                    _UserSaveModelWithID.Clear();
+
+                    ht_param.Clear();
+                    ht_param.Add("@Contact_id", ht["Contact_id"].ToString());
+                    ht_param.Add("@Account_Holder_Name", ht["Account_Holder_Name"].ToString());
+                    ht_param.Add("@Account_Number", ht["Account_Number"].ToString());
+                    ht_param.Add("@Bank_Name", ht["Bank_Name"].ToString());
+                    if (ht["Account_Type"].ToString() == "")
+                    {
+                        ht_param.Add("@Account_Type", DBNull.Value);
+                    }
+                    else
+                    {
+                        ht_param.Add("@Account_Type", ht["Account_Type"].ToString());
+                    }
+                    ht_param.Add("@IFSC_Code", ht["IFSC_Code"].ToString());
+                    ht_param.Add("@Branch_Name", ht["Branch_Name"].ToString());
+                    ht_param.Add("@Pan_No", ht["Pan_No"].ToString());
+                    ht_param.Add("@MODE", ht["MODE"].ToString());
+                    ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                    ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                    ht_param.Add("@Login_user_ID", HttpContext.Current.Session["Login_user_ID"].ToString());
+                    ds = db.SysFetchDataInDataSet("[INSERT_Agent_Bank_Details]", ht_param);
+                    if (ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow item in ds.Tables[0].Rows)
+                        {
+                            UserSaveModelWithID ___UserSaveModelWithIDDetails = new UserSaveModelWithID();
+                            ___UserSaveModelWithIDDetails.CustomErrorState = item["CustomErrorState"].ToString();
+                            ___UserSaveModelWithIDDetails.CustomMessage = item["CustomMessage"].ToString();
+                            ___UserSaveModelWithIDDetails.ID = item["ID"].ToString();
+                            _UserSaveModelWithID.Add(___UserSaveModelWithIDDetails);
+                        }
+                    }
+                    ReturnData["SaveBank"] = serializer.Serialize(_UserSaveModelWithID);
+
+                }
+
+                if (Type == "UpdateBank")
+                {
+                    _UserSaveModelWithID.Clear();
+
+                    ht_param.Clear();
+                    ht_param.Add("@Contact_id", ht["Contact_id"].ToString());
+                    ht_param.Add("@Account_Holder_Name", ht["Account_Holder_Name"].ToString());
+                    ht_param.Add("@Account_Number", ht["Account_Number"].ToString());
+                    ht_param.Add("@Bank_Name", ht["Bank_Name"].ToString());
+                    if (ht["Account_Type"].ToString() == "")
+                    {
+                        ht_param.Add("@Account_Type", DBNull.Value);
+                    }
+                    else
+                    {
+                        ht_param.Add("@Account_Type", ht["Account_Type"].ToString());
+                    }
+                    ht_param.Add("@IFSC_Code", ht["IFSC_Code"].ToString());
+                    ht_param.Add("@Branch_Name", ht["Branch_Name"].ToString());
+                    ht_param.Add("@Pan_No", ht["Pan_No"].ToString());
+                    ht_param.Add("@MODE", ht["MODE"].ToString());
+                    ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                    ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                    ht_param.Add("@Login_user_ID", HttpContext.Current.Session["Login_user_ID"].ToString());
+                    ds = db.SysFetchDataInDataSet("[INSERT_Agent_Bank_Details]", ht_param);
+                    if (ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow item in ds.Tables[0].Rows)
+                        {
+                            UserSaveModelWithID ___UserSaveModelWithIDDetails = new UserSaveModelWithID();
+                            ___UserSaveModelWithIDDetails.CustomErrorState = item["CustomErrorState"].ToString();
+                            ___UserSaveModelWithIDDetails.CustomMessage = item["CustomMessage"].ToString();
+                            ___UserSaveModelWithIDDetails.ID = item["ID"].ToString();
+                            _UserSaveModelWithID.Add(___UserSaveModelWithIDDetails);
+                        }
+                    }
+                    ReturnData["UpdateBank"] = serializer.Serialize(_UserSaveModelWithID);
+
+                }
+
 
                 _ErrorModel.Clear();
                 ErrorModel _error = new ErrorModel();
@@ -407,5 +532,198 @@ namespace SmartTrucking
             }
             return ReturnData;
         }
+
+
+
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static Hashtable SaveAddressProofList(Hashtable ht, string Type, string Req, List<Address_Proof_Model> AddressProofList)
+        {
+            string Data = "";
+            string obj = "";
+
+            Hashtable ht_Blank = new Hashtable();
+            Hashtable ReturnData = new Hashtable();
+            DBFunctions db = new DBFunctions();
+            DataTable dt = new DataTable();
+            DataTable dt_AddressProof = new DataTable();
+
+
+            List<ErrorModel> _ErrorDetails = new List<ErrorModel>();
+
+            ReturnData.Clear();
+            System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            try
+            {
+                if (Type == "SaveAddressProof")
+                {
+                    _UserSaveModelWithID.Clear();
+
+
+                    ht_param.Clear();
+
+                    dt_AddressProof = SaveParameters_AddressProof(AddressProofList);
+                    ht_param.Add("@UDT_Agent_AddressProof_Details", dt_AddressProof);
+                    ht_param.Add("@Contact_id", ht["Contact_id"].ToString());
+                    ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                    ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                    ht_param.Add("@Login_user_ID", HttpContext.Current.Session["Login_user_ID"].ToString());
+                    ds = db.SysFetchDataInDataSet("[INSERT_Agent_AddressProof_Details]", ht_param);
+                    if (ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow item in ds.Tables[0].Rows)
+                        {
+                            UserSaveModelWithID _UserSaveModelIDDetails = new UserSaveModelWithID();
+                            _UserSaveModelIDDetails.CustomErrorState = item["CustomErrorState"].ToString();
+                            _UserSaveModelIDDetails.CustomMessage = item["CustomMessage"].ToString();
+                            _UserSaveModelWithID.Add(_UserSaveModelIDDetails);
+                        }
+                    }
+                    ReturnData["SaveAddressProof"] = serializer.Serialize(_UserSaveModelWithID);
+
+                }
+
+                ErrorModel _error = new ErrorModel();
+                _error.Error = "false";
+                _error.ErrorMessage = "Success";
+                _ErrorDetails.Add(_error);
+                ReturnData["ErrorDetail"] = serializer.Serialize(_ErrorDetails);
+
+                HttpContext.Current.Response.AppendHeader("ResponseHeader", "200");
+            }
+            catch (Exception ex)
+            {
+
+                ErrorModel _error = new ErrorModel();
+                _error.Error = "true";
+                _error.ErrorMessage = "Some problem occurred please try again later";//ex.ToString();
+                _ErrorDetails.Add(_error);
+                ReturnData["ErrorDetail"] = serializer.Serialize(_ErrorDetails);
+
+                HttpContext.Current.Response.AppendHeader("ResponseHeader", "500");
+            }
+
+
+            return ReturnData;
+        }
+        public static DataTable SaveParameters_AddressProof(List<Address_Proof_Model> AddressProofList)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id", typeof(int));
+            dt.Columns.Add("Contact_id", typeof(int));
+            dt.Columns.Add("Address_Proof_Type", typeof(string));
+            dt.Columns.Add("Address_Proof_URL", typeof(string));
+
+            foreach (var item in AddressProofList)
+            {
+                dt.Rows.Add(item.id, item.Contact_id, item.Address_Proof_Type,item.Address_Proof_URL);
+            }
+
+            return dt;
+        }
+        public class Address_Proof_Model
+        {
+            public int id { get; set; }
+            public int Contact_id { get; set; }
+            public string Address_Proof_Type { get; set; }
+            public string Address_Proof_URL { get; set; }
+
+        }
+
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static Hashtable SaveBankProofList(Hashtable ht, string Type, string Req, List<Bank_Proof_Model> BankProofList)
+        {
+            string Data = "";
+            string obj = "";
+
+            Hashtable ht_Blank = new Hashtable();
+            Hashtable ReturnData = new Hashtable();
+            DBFunctions db = new DBFunctions();
+            DataTable dt = new DataTable();
+            DataTable dt_BankProof = new DataTable();
+
+
+            List<ErrorModel> _ErrorDetails = new List<ErrorModel>();
+
+            ReturnData.Clear();
+            System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            try
+            {
+                if (Type == "SaveBankProof")
+                {
+                    _UserSaveModelWithID.Clear();
+
+
+                    ht_param.Clear();
+
+                    dt_BankProof = SaveParameters_BankProof(BankProofList);
+                    ht_param.Add("@UDT_Agent_BankProof_Details", dt_BankProof);
+                    ht_param.Add("@Contact_id", ht["Contact_id"].ToString());
+                    ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                    ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                    ht_param.Add("@Login_user_ID", HttpContext.Current.Session["Login_user_ID"].ToString());
+                    ds = db.SysFetchDataInDataSet("[INSERT_Agent_BankProof_Details]", ht_param);
+                    if (ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow item in ds.Tables[0].Rows)
+                        {
+                            UserSaveModelWithID _UserSaveModelIDDetails = new UserSaveModelWithID();
+                            _UserSaveModelIDDetails.CustomErrorState = item["CustomErrorState"].ToString();
+                            _UserSaveModelIDDetails.CustomMessage = item["CustomMessage"].ToString();
+                            _UserSaveModelWithID.Add(_UserSaveModelIDDetails);
+                        }
+                    }
+                    ReturnData["SaveBankProof"] = serializer.Serialize(_UserSaveModelWithID);
+
+                }
+
+                ErrorModel _error = new ErrorModel();
+                _error.Error = "false";
+                _error.ErrorMessage = "Success";
+                _ErrorDetails.Add(_error);
+                ReturnData["ErrorDetail"] = serializer.Serialize(_ErrorDetails);
+
+                HttpContext.Current.Response.AppendHeader("ResponseHeader", "200");
+            }
+            catch (Exception ex)
+            {
+
+                ErrorModel _error = new ErrorModel();
+                _error.Error = "true";
+                _error.ErrorMessage = "Some problem occurred please try again later";//ex.ToString();
+                _ErrorDetails.Add(_error);
+                ReturnData["ErrorDetail"] = serializer.Serialize(_ErrorDetails);
+
+                HttpContext.Current.Response.AppendHeader("ResponseHeader", "500");
+            }
+
+
+            return ReturnData;
+        }
+        public static DataTable SaveParameters_BankProof(List<Bank_Proof_Model> BankProofList)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id", typeof(int));
+            dt.Columns.Add("Contact_id", typeof(int));
+            dt.Columns.Add("Bank_Proof_Type", typeof(string));
+            dt.Columns.Add("Bank_Proof_URL", typeof(string));
+
+            foreach (var item in BankProofList)
+            {
+                dt.Rows.Add(item.id, item.Contact_id, item.Bank_Proof_Type, item.Bank_Proof_URL);
+            }
+
+            return dt;
+        }
+        public class Bank_Proof_Model
+        {
+            public int id { get; set; }
+            public int Contact_id { get; set; }
+            public string Bank_Proof_Type { get; set; }
+            public string Bank_Proof_URL { get; set; }
+
+        }
+
     }
 }

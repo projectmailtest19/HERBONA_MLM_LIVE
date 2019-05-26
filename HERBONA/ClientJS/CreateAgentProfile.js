@@ -420,6 +420,52 @@ function LoadAjaxContact(ht, obj, Req, url) {
 
                     });
                 }
+                if (Req == 'FillAddressProof') {
+                    if (Result.d.FillAddressProof != "" && Result.d.FillAddressProof != undefined) {
+                        var data = jQuery.parseJSON(Result.d.FillAddressProof);
+                        var table_Doc = "";
+                        $.each(data, function (i, item) {
+
+                            table_Doc = table_Doc + "<tr><td style='display:none' >" + item.id +
+                                         "</td><td>" + item.Address_Proof_Type +
+                                         "</td><td><a href=" + item.Address_Proof_URL + " target='_blank'>Download</a> " +
+                         "</td><td style = 'display:none'>" + item.Address_Proof_URL +
+                          "</td><td class='Edit " + _allowdelete + "' align='center'> <button type='button' onclick=AgentAddressProofDelet(this) class='btn btn-default btn-sm' id='btndelete_AgentAddressProof' > <span class='glyphicon glyphicon-trash'></span> </button></td>" +
+                         "</tr>"
+
+                        });
+
+                        
+
+                        $("#adAddress_ProofListDiv tbody tr").remove()
+                        setTimeout(function () {
+                        $("#adAddress_ProofListDiv tbody").append(table_Doc);
+                        }, 100);
+                    }
+                }
+                if (Req == 'FillBankProof') {
+                    if (Result.d.FillBankProof != "" && Result.d.FillBankProof != undefined) {
+                        var data = jQuery.parseJSON(Result.d.FillBankProof);
+                        var table_Doc = "";
+                        $.each(data, function (i, item) {
+
+                            table_Doc = table_Doc + "<tr><td style='display:none' >" + item.id +
+                                         "</td><td>" + item.Bank_Proof_Type +
+                                         "</td><td><a href=" + item.Bank_Proof_URL + " target='_blank'>Download</a> " +
+                         "</td><td style = 'display:none'>" + item.Bank_Proof_URL +
+                          "</td><td class='Edit " + _allowdelete + "' align='center'> <button type='button' onclick=AgentBankProofDelet(this) class='btn btn-default btn-sm' id='btndelete_AgentAddressProof' > <span class='glyphicon glyphicon-trash'></span> </button></td>" +
+                         "</tr>"
+
+                        });
+
+
+
+                        $("#adBank_ProofListDiv tbody tr").remove()
+                        setTimeout(function () {
+                            $("#adBank_ProofListDiv tbody").append(table_Doc);
+                        }, 100);
+                    }
+                }
             }
             if (obj == "Save") {
 
@@ -545,6 +591,81 @@ function LoadAjaxContact(ht, obj, Req, url) {
 
                 if (Result.d.UpdateSponsor != "" && Result.d.UpdateSponsor != undefined) {
                     var json = jQuery.parseJSON(Result.d.UpdateSponsor)[0];
+
+                    if (json.CustomErrorState == "0") {
+
+                        swal({
+                            title: "",
+                            text: json.CustomMessage,
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#5cb85c",
+                            confirmButtonText: "Ok!",
+                            closeOnConfirm: false,
+                            timer: 2000
+                        });
+
+
+                    }
+                    else if (json.CustomErrorState == "1") {
+                        swal("", "Something went wrong , please try again later !!", "error");
+
+                    }
+                    else if (json.CustomErrorState == "2") {
+                        swal("", json.CustomMessage, "info");
+
+                    }
+                }
+                else {
+                    swal("", "Some problem occurred please try again later", "info");
+                }
+            }
+
+            if (obj == "SaveBank") {
+
+
+                if (Result.d.SaveBank != "" && Result.d.SaveBank != undefined) {
+                    var json = jQuery.parseJSON(Result.d.SaveBank)[0];
+
+                    if (json.CustomErrorState == "0") {
+
+                        swal({
+                            title: "",
+                            text: json.CustomMessage,
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#5cb85c",
+                            confirmButtonText: "Ok!",
+                            closeOnConfirm: false,
+                            timer: 2000
+                        });
+                        //function () {
+                        //alert(json.ID);
+                        $("#ID_hidden_BankDetails").val(json.ID);
+                        $("#btnAgentBankDetails").text('Update');
+                        //});
+
+
+                    }
+                    else if (json.CustomErrorState == "1") {
+                        swal("", "Something went wrong , please try again later !!", "error");
+
+                    }
+                    else if (json.CustomErrorState == "2") {
+                        swal("", json.CustomMessage, "info");
+
+                    }
+                }
+                else {
+                    swal("", "Some problem occurred please try again later", "info");
+                }
+            }
+
+            if (obj == "UpdateBank") {
+
+
+                if (Result.d.UpdateBank != "" && Result.d.UpdateBank != undefined) {
+                    var json = jQuery.parseJSON(Result.d.UpdateBank)[0];
 
                     if (json.CustomErrorState == "0") {
 
@@ -705,6 +826,295 @@ function validationcheck_SponsorDetails() {
         return false;
     }
     return true;
+}
+
+function AddNewAgentAgentBankDetails()
+{
+    if (validationcheck_BankDetails() == true) {
+        setTimeout(function () {
+            ht = {};
+
+            ht["Account_Holder_Name"] = $("#txtAccountHolderName").val();
+            ht["Account_Number"] = $("#txtAccountNumber").val();
+            ht["Bank_Name"] = $("#txtBank_Name").val();
+            ht["Account_Type"] = $("#cmbAccount_Type :selected").val();
+            ht["IFSC_Code"] = $("#txtIFSC_Code").val();
+            ht["Branch_Name"] = $("#txtBranch_Name").val();
+            ht["Pan_No"] = $("#txtPan_No").val();
+
+
+            if ($("#ID_hidden").val() == "") {
+                swal("", "Please Fill Agent Personal Details First", "error");
+            }
+            else {
+                ht["Contact_id"] = $("#ID_hidden").val();
+                if ($("#ID_hidden_BankDetails").val() == "") {
+                    ht["MODE"] = "INSERT";
+                    Req = 'SaveBank';
+                    obj = "SaveBank";
+                    url = "CreateAgentProfile.aspx/ContactDetails";
+                    LoadAjaxContact(ht, obj, Req, url);
+                }
+                else {
+                    ht["MODE"] = "UPDATE";
+                    Req = 'UpdateBank';
+                    obj = "UpdateBank";
+                    url = "CreateAgentProfile.aspx/ContactDetails";
+                    LoadAjaxContact(ht, obj, Req, url);
+                }
+            }
+        }, 1000);
+    }
+}
+function validationcheck_BankDetails() {
+    if ($('#txtAccountHolderName').val() == "") {
+        popupErrorMsg($("#txtAccountHolderName"), "Account Holder Name is Required.", 5);
+        return false;
+    }
+    if ($('#txtAccountNumber').val() == "") {
+        popupErrorMsg($("#txtAccountNumber"), "Account Number is Required.", 5);
+        return false;
+    }
+    if ($('#txtBank_Name').val() == "") {
+        popupErrorMsg($("#txtBank_Name"), "Bank Name is Required.", 5);
+        return false;
+    }
+    if ($('#cmbAccount_Type :selected').val() == "") {
+        popupErrorMsg($("#cmbAccount_Type"), "Account Type is Required.", 5);
+        return false;
+    }
+    if ($('#txtIFSC_Code').val() == "") {
+        popupErrorMsg($("#txtIFSC_Code"), "IFSC Code is Required.", 5);
+        return false;
+    }
+    if ($('#txtBranch_Name').val() == "") {
+        popupErrorMsg($("#txtBranch_Name"), "Branch Name is Required.", 5);
+        return false;
+    }
+    return true;
+}
+function LoadAjaxAddressProoflist(ht, obj, Req, url, AddressProofList) {
+    $('body').pleaseWait();
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: "{ht:" + JSON.stringify(ht) + ",Type :'" + obj + "' ,Req :'" + Req + "'," +
+            " AddressProofList:" + JSON.stringify(AddressProofList) + 
+            "}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (Result) {
+            var json = jQuery.parseJSON(Result.d.ErrorDetail);
+            var sa_error = "";
+            var sa_errrorMsg = "";
+            $.each(json, function (index, K) {
+                sa_error = K.Error;
+                sa_errrorMsg = K.ErrorMessage;
+            });
+            if (sa_error != 'false') {
+                swal("", sa_errrorMsg, "error");
+                $('body').pleaseWait('stop');
+                return 0;
+            }
+
+            if (obj == "SaveAddressProof") {
+                if (Result.d.SaveAddressProof != "" && Result.d.SaveAddressProof != undefined) {
+                    var json = jQuery.parseJSON(Result.d.SaveAddressProof)[0];
+
+                    if (json.CustomErrorState == "0") {
+
+                        swal({
+                            title: "",
+                            text: "Address Proofs Successfully Saved",
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#5cb85c",
+                            confirmButtonText: "Ok!",
+                            closeOnConfirm: false,
+                            timer: 2000
+                        });
+                        //function () {
+                        //alert(json.ID);
+                       FillAddressProofs();
+                        //});
+
+                        //FillAddressProofs();
+                    }
+                    else if (json.CustomErrorState == "1") {
+                        swal("", "Something went wrong , please try again later !!", "error");
+
+                    }
+                    else if (json.CustomErrorState == "2") {
+                        swal("", json.CustomMessage, "info");
+
+                    }
+                }
+                else {
+                    swal("", "Some problem occurred please try again later", "info");
+                }
+
+            }
+
+
+            $('body').pleaseWait('stop');
+        }
+
+    });
+}
+
+function FillAddressProofs()
+{
+    Req = 'FillAddressProof';
+    obj = "Fill";
+    url = "CreateAgentProfile.aspx/ContactDetails";
+    ht = {};
+    ht["Contact_id"] = $("#ID_hidden").val();
+    LoadAjaxContact(ht, obj, Req, url);
+}
+
+function SaveAgentAddressProof()
+{
+    if ($("#ID_hidden").val() == "") {
+        swal("", "Please Fill Agent Personal Details First", "error");
+    }
+    else {
+        //alert($('#adAddress_ProofList tbody tr').html());
+
+        if ($('#adAddress_ProofList tbody tr').html() == undefined) {
+            swal("", "Please Upload Address Proof To Save", "error");
+        }
+        else {
+            var i = 0;
+            AddressProofList = new Array();
+            $('#adAddress_ProofList tbody tr').each(function () {
+                var Address_Proof_Model = {};
+                Address_Proof_Model.id = $(this).find('td:eq(0)').html();
+                Address_Proof_Model.Contact_id = $("#ID_hidden").val();
+                Address_Proof_Model.Address_Proof_Type = $(this).find('td:eq(1)').html();
+                Address_Proof_Model.Address_Proof_URL = $(this).find('td:eq(3)').html();
+                AddressProofList[i++] = Address_Proof_Model;
+            });
+
+            Req = 'SaveAddressProof';
+            obj = "SaveAddressProof";
+            url = "CreateAgentProfile.aspx/SaveAddressProofList";
+            ht = {};
+            ht["Contact_id"] = $("#ID_hidden").val();
+            LoadAjaxAddressProoflist(ht, obj, Req, url, AddressProofList);
+        }
+    }
+}
+
+function LoadAjaxBankProoflist(ht, obj, Req, url, BankProofList) {
+    $('body').pleaseWait();
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: "{ht:" + JSON.stringify(ht) + ",Type :'" + obj + "' ,Req :'" + Req + "'," +
+            " BankProofList:" + JSON.stringify(BankProofList) +
+            "}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (Result) {
+            var json = jQuery.parseJSON(Result.d.ErrorDetail);
+            var sa_error = "";
+            var sa_errrorMsg = "";
+            $.each(json, function (index, K) {
+                sa_error = K.Error;
+                sa_errrorMsg = K.ErrorMessage;
+            });
+            if (sa_error != 'false') {
+                swal("", sa_errrorMsg, "error");
+                $('body').pleaseWait('stop');
+                return 0;
+            }
+
+            if (obj == "SaveBankProof") {
+                if (Result.d.SaveBankProof != "" && Result.d.SaveBankProof != undefined) {
+                    var json = jQuery.parseJSON(Result.d.SaveBankProof)[0];
+
+                    if (json.CustomErrorState == "0") {
+
+                        swal({
+                            title: "",
+                            text: "Bank Proofs Successfully Saved",
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#5cb85c",
+                            confirmButtonText: "Ok!",
+                            closeOnConfirm: false,
+                            timer: 2000
+                        });
+                        //function () {
+                        //alert(json.ID);
+                        FillBankProofs();
+                        //});
+
+                        //FillAddressProofs();
+                    }
+                    else if (json.CustomErrorState == "1") {
+                        swal("", "Something went wrong , please try again later !!", "error");
+
+                    }
+                    else if (json.CustomErrorState == "2") {
+                        swal("", json.CustomMessage, "info");
+
+                    }
+                }
+                else {
+                    swal("", "Some problem occurred please try again later", "info");
+                }
+
+            }
+
+
+            $('body').pleaseWait('stop');
+        }
+
+    });
+}
+
+function FillBankProofs() {
+    Req = 'FillBankProof';
+    obj = "Fill";
+    url = "CreateAgentProfile.aspx/ContactDetails";
+    ht = {};
+    ht["Contact_id"] = $("#ID_hidden").val();
+    LoadAjaxContact(ht, obj, Req, url);
+}
+
+function SaveAgentBankProof() {
+    if ($("#ID_hidden").val() == "") {
+        swal("", "Please Fill Agent Personal Details First", "error");
+    }
+    else {
+        //alert($('#adAddress_ProofList tbody tr').html());
+
+        if ($('#Bank_ProofList tbody tr').html() == undefined) {
+            swal("", "Please Upload Bank Proof To Save", "error");
+        }
+        else {
+            var i = 0;
+            BankProofList = new Array();
+            $('#Bank_ProofList tbody tr').each(function () {
+                var Bank_Proof_Model = {};
+                Bank_Proof_Model.id = $(this).find('td:eq(0)').html();
+                Bank_Proof_Model.Contact_id = $("#ID_hidden").val();
+                Bank_Proof_Model.Bank_Proof_Type = $(this).find('td:eq(1)').html();
+                Bank_Proof_Model.Bank_Proof_URL = $(this).find('td:eq(3)').html();
+                BankProofList[i++] = Bank_Proof_Model;
+            });
+
+            Req = 'SaveBankProof';
+            obj = "SaveBankProof";
+            url = "CreateAgentProfile.aspx/SaveBankProofList";
+            ht = {};
+            ht["Contact_id"] = $("#ID_hidden").val();
+            LoadAjaxBankProoflist(ht, obj, Req, url, BankProofList);
+        }
+    }
 }
 $("#f_Uploadfile").on('change', function () {
     readURL(this);

@@ -20,4 +20,19 @@ namespace SmartTrucking.Model
         public string pincode { get; set; }
         public string IsAgentActive { get; set; }
     }
+
+    public class AgentAddressProofListModel
+    {
+        public string id { get; set; }
+        public string Contact_id { get; set; }
+        public string Address_Proof_Type { get; set; }
+        public string Address_Proof_URL { get; set; }
+    }
+    public class AgentBankProofListModel
+    {
+        public string id { get; set; }
+        public string Contact_id { get; set; }
+        public string Bank_Proof_Type { get; set; }
+        public string Bank_Proof_URL { get; set; }
+    }
 }
