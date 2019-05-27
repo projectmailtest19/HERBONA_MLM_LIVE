@@ -35,4 +35,41 @@ namespace SmartTrucking.Model
         public string Bank_Proof_Type { get; set; }
         public string Bank_Proof_URL { get; set; }
     }
+
+    public class AgentSponsorModel
+    {
+        public string id { get; set; }
+        public string Contact_id { get; set; }
+        public string Sponsor_Account_No { get; set; }
+        public string Sponsor_Name { get; set; }
+        public string Sponsor_MemberID { get; set; }
+        public string Sponsor_Mobile_Number { get; set; }
+        public string Placed_Name { get; set; }
+        public string Placed_MemberID { get; set; }
+        public string Placed_Team { get; set; }
+    }
+    public class AgentBankDetailsModel
+    {
+        public string id { get; set; }
+        public string Contact_id { get; set; }
+        public string Account_Holder_Name { get; set; }
+        public string Account_Number { get; set; }
+        public string Bank_Name { get; set; }
+        public string Account_Type { get; set; }
+        public string IFSC_Code { get; set; }
+        public string Branch_Name { get; set; }
+        public string Pan_No { get; set; }
+    }
+    public class AgentPANListModel
+    {
+        public string id { get; set; }
+        public string Contact_id { get; set; }
+        public string PANCard_URL { get; set; }
+    }
+    public class AgentApplicationListModel
+    {
+        public string id { get; set; }
+        public string Contact_id { get; set; }
+        public string AppicationForm_URL { get; set; }
+    }
 }

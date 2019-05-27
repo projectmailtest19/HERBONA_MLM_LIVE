@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SmartTruck.Master" AutoEventWireup="true" CodeBehind="CreateAgentProfile.aspx.cs" Inherits="SmartTrucking.CreateAgentProfile" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SmartTruck.Master" AutoEventWireup="true" CodeBehind="MyProfile.aspx.cs" Inherits="SmartTrucking.MyProfile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -15,7 +15,7 @@
 
         <div class="row">
             <div class="box-header">
-                <h3 class="box-title"><b>Agent Profile</b></h3>
+                <h3 class="box-title"><b>My Profile</b></h3>
             </div>
             <div class="col-md-3">
 
@@ -422,7 +422,7 @@
     <input type="hidden" id="LogoPathApplication" />
     <input type="hidden" id="LogoPath" />
     <input type="hidden" id="OldLogoPath" />
-    <script src="ClientJS/CreateAgentProfile.js"></script>
+    <script src="ClientJS/MyProfile.js"></script>
     <script>
         $(function () {
             $(".select2").select2();

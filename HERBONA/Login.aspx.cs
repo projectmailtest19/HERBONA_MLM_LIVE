@@ -82,6 +82,7 @@ namespace SmartTrucking
                                 ht_param2.Add("BRANCH_NAME", ds.Tables[1].Rows[0]["BRANCH_NAME"].ToString().Trim());
                                 ht_param2.Add("CONTACT_NAME", ds.Tables[1].Rows[0]["CONTACT_NAME"].ToString().Trim());
                                 ht_param2.Add("ROLEID", ds.Tables[1].Rows[0]["ROLEID"].ToString().Trim());
+                                ht_param2.Add("IsAgent", ds.Tables[1].Rows[0]["IsAgent"].ToString().Trim());
                                 //ht_param2.Add("CONTACT_TYPE", ds.Tables[1].Rows[0]["CONTACT_TYPE"].ToString().Trim());
 
 

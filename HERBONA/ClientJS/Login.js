@@ -41,8 +41,14 @@ function LoadAjaxLogin(ht, obj, Req, url) {
                 if (Result.d.Login != "" && Result.d.Login != undefined) {
 
                     var data = jQuery.parseJSON(Result.d.Login);
-
-                    window.location.assign('Home.aspx');
+                  //  alert(data.IsAgent);
+                    if (data.IsAgent == "True") {
+                      
+                        window.location.assign('MyProfile.aspx');
+                    }
+                    else {
+                        window.location.assign('Home.aspx');
+                    }
                     //localStorage.setItem('MENU', data.MENU);
                     localStorage.setItem('COMPANY_ID', data.COMPANY_ID);
                     localStorage.setItem('BRANCH_ID', data.BRANCH_ID);

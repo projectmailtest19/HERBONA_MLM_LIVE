@@ -8,25 +8,12 @@ var AgentAddressproof = "", AgentPanCard = "", AgentBankproof = "", AgentApplica
 var _allowadd, _allowedit, _allowdelete;
 
 $(document).ready(function () {
-    var cid = GetParameterValues('cid');
-    function GetParameterValues(param) {
-        //var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        if (window.location.href.indexOf('?') > 0) {
-            var urlenc = (window.location.href.slice(window.location.href.indexOf('?') + 1));
-            var url = atob(urlenc).split('&');
-            for (var i = 0; i < url.length; i++) {
-                var urlparam = url[i].split('=');
-                if (urlparam[0] == param) {
-                    return urlparam[1];
-                }
-            }
-        }
-    }
+    var cid = localStorage.getItem('CONTACT_ID');
 
     if (cid == undefined) {
         Req = 'Country';
         obj = "Fill";
-        url = "CreateAgentProfile.aspx/ContactDetails";
+        url = "MyProfile.aspx/ContactDetails";
         ht = {};
         LoadAjaxContact(ht, obj, Req, url);
     }
@@ -39,7 +26,7 @@ $(document).ready(function () {
         setTimeout(function () {
             Req = 'Country@FillPersonalDetails@FillSponsorDetails@FillbankDetails@FillAddressProof@FillBankProof@FillPAN@FillApplication';
         obj = "Fill";
-        url = "CreateAgentProfile.aspx/ContactDetails";
+        url = "MyProfile.aspx/ContactDetails";
         ht = {};
         ht["Contact_id"] = cid;
         LoadAjaxContact(ht, obj, Req, url);
@@ -49,7 +36,7 @@ $(document).ready(function () {
 $("#cmbCountry").change(function () {
     Req = 'State';
     obj = "State";
-    url = "CreateAgentProfile.aspx/ContactDetails";
+    url = "MyProfile.aspx/ContactDetails";
     ht = {};
     ht["COUNTRY_ID"] = $("#cmbCountry :selected").val();
     LoadAjaxContact(ht, obj, Req, url);
@@ -57,7 +44,7 @@ $("#cmbCountry").change(function () {
 $("#cmbState").change(function () {
     Req = 'District';
     obj = "District";
-    url = "CreateAgentProfile.aspx/ContactDetails";
+    url = "MyProfile.aspx/ContactDetails";
     ht = {};
     ht["State_ID"] = $("#cmbState :selected").val();
     LoadAjaxContact(ht, obj, Req, url);
@@ -162,14 +149,14 @@ function SaveAgentPANCard()
                     ht["MODE"] = "INSERT";
                     Req = 'SavePAN';
                     obj = "SavePAN";
-                    url = "CreateAgentProfile.aspx/ContactDetails";
+                    url = "MyProfile.aspx/ContactDetails";
                     LoadAjaxContact(ht, obj, Req, url);
                 }
                 else {
                     ht["MODE"] = "UPDATE";
                     Req = 'UpdatePAN';
                     obj = "UpdatePAN";
-                    url = "CreateAgentProfile.aspx/ContactDetails";
+                    url = "MyProfile.aspx/ContactDetails";
                     LoadAjaxContact(ht, obj, Req, url);
                 }
             }
@@ -307,14 +294,14 @@ function SaveAgentAppication_Form() {
                     ht["MODE"] = "INSERT";
                     Req = 'SaveApplication';
                     obj = "SaveApplication";
-                    url = "CreateAgentProfile.aspx/ContactDetails";
+                    url = "MyProfile.aspx/ContactDetails";
                     LoadAjaxContact(ht, obj, Req, url);
                 }
                 else {
                     ht["MODE"] = "UPDATE";
                     Req = 'UpdateApplication';
                     obj = "UpdateApplication";
-                    url = "CreateAgentProfile.aspx/ContactDetails";
+                    url = "MyProfile.aspx/ContactDetails";
                     LoadAjaxContact(ht, obj, Req, url);
                 }
             }
@@ -978,7 +965,7 @@ function AddNewAgentPresonalDetails() {
                 ht["MODE"] = "INSERT";
                 Req = 'Save';
                 obj = "Save";
-                url = "CreateAgentProfile.aspx/ContactDetails";
+                url = "MyProfile.aspx/ContactDetails";
                 LoadAjaxContact(ht, obj, Req, url);
             }
             else {
@@ -986,7 +973,7 @@ function AddNewAgentPresonalDetails() {
                 ht["MODE"] = "UPDATE";
                 Req = 'Update';
                 obj = "Update";
-                url = "CreateAgentProfile.aspx/ContactDetails";
+                url = "MyProfile.aspx/ContactDetails";
                 LoadAjaxContact(ht, obj, Req, url);
             }
         }, 1000);
@@ -1051,14 +1038,14 @@ function AddNewAgentSponsorDetails()
                     ht["MODE"] = "INSERT";
                     Req = 'SaveSponsor';
                     obj = "SaveSponsor";
-                    url = "CreateAgentProfile.aspx/ContactDetails";
+                    url = "MyProfile.aspx/ContactDetails";
                     LoadAjaxContact(ht, obj, Req, url);
                 }
                 else {
                     ht["MODE"] = "UPDATE";
                     Req = 'UpdateSponsor';
                     obj = "UpdateSponsor";
-                    url = "CreateAgentProfile.aspx/ContactDetails";
+                    url = "MyProfile.aspx/ContactDetails";
                     LoadAjaxContact(ht, obj, Req, url);
                 }
             }
@@ -1101,14 +1088,14 @@ function AddNewAgentAgentBankDetails()
                     ht["MODE"] = "INSERT";
                     Req = 'SaveBank';
                     obj = "SaveBank";
-                    url = "CreateAgentProfile.aspx/ContactDetails";
+                    url = "MyProfile.aspx/ContactDetails";
                     LoadAjaxContact(ht, obj, Req, url);
                 }
                 else {
                     ht["MODE"] = "UPDATE";
                     Req = 'UpdateBank';
                     obj = "UpdateBank";
-                    url = "CreateAgentProfile.aspx/ContactDetails";
+                    url = "MyProfile.aspx/ContactDetails";
                     LoadAjaxContact(ht, obj, Req, url);
                 }
             }
@@ -1216,7 +1203,7 @@ function FillAddressProofs()
 {
     Req = 'FillAddressProof';
     obj = "Fill";
-    url = "CreateAgentProfile.aspx/ContactDetails";
+    url = "MyProfile.aspx/ContactDetails";
     ht = {};
     ht["Contact_id"] = $("#ID_hidden").val();
     LoadAjaxContact(ht, obj, Req, url);
@@ -1247,7 +1234,7 @@ function SaveAgentAddressProof()
 
             Req = 'SaveAddressProof';
             obj = "SaveAddressProof";
-            url = "CreateAgentProfile.aspx/SaveAddressProofList";
+            url = "MyProfile.aspx/SaveAddressProofList";
             ht = {};
             ht["Contact_id"] = $("#ID_hidden").val();
             LoadAjaxAddressProoflist(ht, obj, Req, url, AddressProofList);
@@ -1328,7 +1315,7 @@ function LoadAjaxBankProoflist(ht, obj, Req, url, BankProofList) {
 function FillBankProofs() {
     Req = 'FillBankProof';
     obj = "Fill";
-    url = "CreateAgentProfile.aspx/ContactDetails";
+    url = "MyProfile.aspx/ContactDetails";
     ht = {};
     ht["Contact_id"] = $("#ID_hidden").val();
     LoadAjaxContact(ht, obj, Req, url);
@@ -1358,7 +1345,7 @@ function SaveAgentBankProof() {
 
             Req = 'SaveBankProof';
             obj = "SaveBankProof";
-            url = "CreateAgentProfile.aspx/SaveBankProofList";
+            url = "MyProfile.aspx/SaveBankProofList";
             ht = {};
             ht["Contact_id"] = $("#ID_hidden").val();
             LoadAjaxBankProoflist(ht, obj, Req, url, BankProofList);

@@ -127,6 +127,7 @@
     <Content Include="ClientJS\CompanyProfile.js" />
     <Content Include="ClientJS\AgentList.js" />
     <Content Include="ClientJS\ContactList.js" />
+    <Content Include="ClientJS\MyProfile.js" />
     <Content Include="ClientJS\CreateAgentProfile.js" />
     <Content Include="ClientJS\ContactProfile.js" />
     <Content Include="ClientJS\CreateAddress.js" />
@@ -172,6 +173,7 @@
     <Content Include="ContactLogo\CONPHOTO_7.jpg" />
     <Content Include="ContactLogo\CONPHOTO_8.png" />
     <Content Include="ContactLogo\CONPHOTO_9.png" />
+    <Content Include="MyProfile.aspx" />
     <Content Include="CreateAgentProfile.aspx" />
     <Content Include="CreateCustomerDetails.aspx" />
     <Content Include="CustomerDetailsList.aspx" />
@@ -1251,6 +1253,13 @@
     </Compile>
     <Compile Include="ContactList.aspx.designer.cs">
       <DependentUpon>ContactList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyProfile.aspx.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyProfile.aspx.designer.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreateAgentProfile.aspx.cs">
       <DependentUpon>CreateAgentProfile.aspx</DependentUpon>

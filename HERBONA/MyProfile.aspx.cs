@@ -13,7 +13,7 @@ using System.Web.UI.WebControls;
 namespace SmartTrucking
 {
    
-    public partial class CreateAgentProfile : System.Web.UI.Page
+    public partial class MyProfile : System.Web.UI.Page
     {
         public static DBFunctions db = new DBFunctions();
         public static Hashtable ReturnData = new Hashtable();
