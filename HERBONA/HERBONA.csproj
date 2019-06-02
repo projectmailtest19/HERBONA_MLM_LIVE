@@ -117,11 +117,15 @@
     <Content Include="BranchLogo\BRANPHOTO_7.jpg" />
     <Content Include="BranchLogo\CONPHOTO_1.jpg" />
     <Content Include="BranchLogo\CONPHOTO_2.jpg" />
+    <Content Include="ClientJS\CreateGst.js" />
+    <Content Include="CreateGst.aspx" />
+    <Content Include="gst_list.aspx" />
     <Content Include="ClientCss\Custom.css" />
     <Content Include="ClientJS\AddContact.js" />
     <Content Include="ClientJS\AddressList.js" />
     <Content Include="ClientJS\BranchList.js" />
     <Content Include="ClientJS\BranchProfile.js" />
+    <Content Include="ClientJS\gst_list.js" />
     <Content Include="ClientJS\Changepassword.js" />
     <Content Include="ClientJS\CompanyList.js" />
     <Content Include="ClientJS\CompanyProfile.js" />
@@ -1219,6 +1223,20 @@
     <Compile Include="Branch_Profile.aspx.designer.cs">
       <DependentUpon>Branch_Profile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreateGst.aspx.cs">
+      <DependentUpon>CreateGst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateGst.aspx.designer.cs">
+      <DependentUpon>CreateGst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="gst_list.aspx.cs">
+      <DependentUpon>gst_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gst_list.aspx.designer.cs">
+      <DependentUpon>gst_list.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1254,6 +1272,7 @@
     <Compile Include="ContactList.aspx.designer.cs">
       <DependentUpon>ContactList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\gst.cs" />
     <Compile Include="MyProfile.aspx.cs">
       <DependentUpon>MyProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
