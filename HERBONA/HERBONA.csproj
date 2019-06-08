@@ -117,8 +117,16 @@
     <Content Include="BranchLogo\BRANPHOTO_7.jpg" />
     <Content Include="BranchLogo\CONPHOTO_1.jpg" />
     <Content Include="BranchLogo\CONPHOTO_2.jpg" />
+    <Content Include="ClientJS\CreateRankReward.js" />
+    <Content Include="ClientJS\CreateVacationTour.js" />
     <Content Include="ClientJS\CreateGst.js" />
+    <Content Include="ClientJS\RankReward_List.js" />
+    <Content Include="ClientJS\VacationTour_List.js" />
+    <Content Include="CreateRankReward.aspx" />
+    <Content Include="CreateVacationTour.aspx" />
     <Content Include="CreateGst.aspx" />
+    <Content Include="RankReward_List.aspx" />
+    <Content Include="VacationTour_List.aspx" />
     <Content Include="gst_list.aspx" />
     <Content Include="ClientCss\Custom.css" />
     <Content Include="ClientJS\AddContact.js" />
@@ -1223,12 +1231,42 @@
     <Compile Include="Branch_Profile.aspx.designer.cs">
       <DependentUpon>Branch_Profile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreateRankReward.aspx.cs">
+      <DependentUpon>CreateRankReward.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateRankReward.aspx.designer.cs">
+      <DependentUpon>CreateRankReward.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateVacationTour.aspx.cs">
+      <DependentUpon>CreateVacationTour.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateVacationTour.aspx.designer.cs">
+      <DependentUpon>CreateVacationTour.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreateGst.aspx.cs">
       <DependentUpon>CreateGst.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CreateGst.aspx.designer.cs">
       <DependentUpon>CreateGst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RankReward.cs" />
+    <Compile Include="Model\VacationTour.cs" />
+    <Compile Include="RankReward_List.aspx.cs">
+      <DependentUpon>RankReward_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RankReward_List.aspx.designer.cs">
+      <DependentUpon>RankReward_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VacationTour_List.aspx.cs">
+      <DependentUpon>VacationTour_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VacationTour_List.aspx.designer.cs">
+      <DependentUpon>VacationTour_List.aspx</DependentUpon>
     </Compile>
     <Compile Include="gst_list.aspx.cs">
       <DependentUpon>gst_list.aspx</DependentUpon>
