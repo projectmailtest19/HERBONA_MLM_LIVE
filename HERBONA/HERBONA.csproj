@@ -117,15 +117,23 @@
     <Content Include="BranchLogo\BRANPHOTO_7.jpg" />
     <Content Include="BranchLogo\CONPHOTO_1.jpg" />
     <Content Include="BranchLogo\CONPHOTO_2.jpg" />
+    <Content Include="ClientJS\CreatePaymentMode.js" />
     <Content Include="ClientJS\CreateRankReward.js" />
+    <Content Include="ClientJS\CreateItemCategory.js" />
     <Content Include="ClientJS\CreateVacationTour.js" />
     <Content Include="ClientJS\CreateGst.js" />
+    <Content Include="ClientJS\PaymentMode_List.js" />
     <Content Include="ClientJS\RankReward_List.js" />
+    <Content Include="ClientJS\ItemCategory_List.js" />
     <Content Include="ClientJS\VacationTour_List.js" />
+    <Content Include="CreatePaymentMode.aspx" />
     <Content Include="CreateRankReward.aspx" />
+    <Content Include="CreateItemCategory.aspx" />
     <Content Include="CreateVacationTour.aspx" />
     <Content Include="CreateGst.aspx" />
+    <Content Include="PaymentMode_List.aspx" />
     <Content Include="RankReward_List.aspx" />
+    <Content Include="ItemCategory_List.aspx" />
     <Content Include="VacationTour_List.aspx" />
     <Content Include="gst_list.aspx" />
     <Content Include="ClientCss\Custom.css" />
@@ -1231,12 +1239,26 @@
     <Compile Include="Branch_Profile.aspx.designer.cs">
       <DependentUpon>Branch_Profile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreatePaymentMode.aspx.cs">
+      <DependentUpon>CreatePaymentMode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreatePaymentMode.aspx.designer.cs">
+      <DependentUpon>CreatePaymentMode.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreateRankReward.aspx.cs">
       <DependentUpon>CreateRankReward.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CreateRankReward.aspx.designer.cs">
       <DependentUpon>CreateRankReward.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateItemCategory.aspx.cs">
+      <DependentUpon>CreateItemCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateItemCategory.aspx.designer.cs">
+      <DependentUpon>CreateItemCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreateVacationTour.aspx.cs">
       <DependentUpon>CreateVacationTour.aspx</DependentUpon>
@@ -1252,7 +1274,16 @@
     <Compile Include="CreateGst.aspx.designer.cs">
       <DependentUpon>CreateGst.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentMode_List.aspx.cs">
+      <DependentUpon>PaymentMode_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentMode_List.aspx.designer.cs">
+      <DependentUpon>PaymentMode_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PaymentMode.cs" />
     <Compile Include="Model\RankReward.cs" />
+    <Compile Include="Model\ItemCategory.cs" />
     <Compile Include="Model\VacationTour.cs" />
     <Compile Include="RankReward_List.aspx.cs">
       <DependentUpon>RankReward_List.aspx</DependentUpon>
@@ -1260,6 +1291,13 @@
     </Compile>
     <Compile Include="RankReward_List.aspx.designer.cs">
       <DependentUpon>RankReward_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItemCategory_List.aspx.cs">
+      <DependentUpon>ItemCategory_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItemCategory_List.aspx.designer.cs">
+      <DependentUpon>ItemCategory_List.aspx</DependentUpon>
     </Compile>
     <Compile Include="VacationTour_List.aspx.cs">
       <DependentUpon>VacationTour_List.aspx</DependentUpon>
