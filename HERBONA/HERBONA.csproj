@@ -117,6 +117,7 @@
     <Content Include="BranchLogo\BRANPHOTO_7.jpg" />
     <Content Include="BranchLogo\CONPHOTO_1.jpg" />
     <Content Include="BranchLogo\CONPHOTO_2.jpg" />
+    <Content Include="ClientJS\CreateShippingCharges.js" />
     <Content Include="ClientJS\CreatePaymentMode.js" />
     <Content Include="ClientJS\CreateRankReward.js" />
     <Content Include="ClientJS\CreateItemCategory.js" />
@@ -125,7 +126,9 @@
     <Content Include="ClientJS\PaymentMode_List.js" />
     <Content Include="ClientJS\RankReward_List.js" />
     <Content Include="ClientJS\ItemCategory_List.js" />
+    <Content Include="ClientJS\ShippingCharges_List.js" />
     <Content Include="ClientJS\VacationTour_List.js" />
+    <Content Include="CreateShippingCharges.aspx" />
     <Content Include="CreatePaymentMode.aspx" />
     <Content Include="CreateRankReward.aspx" />
     <Content Include="CreateItemCategory.aspx" />
@@ -134,6 +137,7 @@
     <Content Include="PaymentMode_List.aspx" />
     <Content Include="RankReward_List.aspx" />
     <Content Include="ItemCategory_List.aspx" />
+    <Content Include="ShippingCharges_List.aspx" />
     <Content Include="VacationTour_List.aspx" />
     <Content Include="gst_list.aspx" />
     <Content Include="ClientCss\Custom.css" />
@@ -1239,6 +1243,13 @@
     <Compile Include="Branch_Profile.aspx.designer.cs">
       <DependentUpon>Branch_Profile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreateShippingCharges.aspx.cs">
+      <DependentUpon>CreateShippingCharges.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateShippingCharges.aspx.designer.cs">
+      <DependentUpon>CreateShippingCharges.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreatePaymentMode.aspx.cs">
       <DependentUpon>CreatePaymentMode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1274,6 +1285,7 @@
     <Compile Include="CreateGst.aspx.designer.cs">
       <DependentUpon>CreateGst.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\ShippingCharges.cs" />
     <Compile Include="PaymentMode_List.aspx.cs">
       <DependentUpon>PaymentMode_List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1298,6 +1310,13 @@
     </Compile>
     <Compile Include="ItemCategory_List.aspx.designer.cs">
       <DependentUpon>ItemCategory_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShippingCharges_List.aspx.cs">
+      <DependentUpon>ShippingCharges_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShippingCharges_List.aspx.designer.cs">
+      <DependentUpon>ShippingCharges_List.aspx</DependentUpon>
     </Compile>
     <Compile Include="VacationTour_List.aspx.cs">
       <DependentUpon>VacationTour_List.aspx</DependentUpon>
