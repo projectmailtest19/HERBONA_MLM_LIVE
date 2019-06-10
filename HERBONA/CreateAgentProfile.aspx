@@ -143,7 +143,7 @@
                                     <label for="inputName" class="col-sm-3 control-label">Sponsor Account No.<span class="reqstar">*</span></label>
 
                                     <div class="col-sm-9">
-                                        <input id="txtSponsor_Account_No" class="form-control" type="text" placeholder="Sponsor Account No." />
+                                        <input id="txtSponsor_Account_No" class="form-control" type="text" placeholder="Sponsor Account No." disabled/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -164,7 +164,7 @@
                                     <label for="inputemail" class="col-sm-3 control-label">Sponsor Mobile Number</label>
 
                                     <div class="col-sm-9">
-                                        <input id="txtSponsor_Mobile_Number" class="form-control" type="text" placeholder="Sponsor Mobile Number" />
+                                        <input id="txtSponsor_Mobile_Number" class="form-control" type="text" placeholder="Sponsor Mobile Number" disabled/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -178,14 +178,14 @@
                                     <label for="inputState" class="col-sm-3 control-label">Placed MemberID</label>
 
                                     <div class="col-sm-9">
-                                        <input id="txtPlaced_MemberID" class="form-control" type="text" placeholder="Placed MemberID" />
+                                        <input id="txtPlaced_MemberID" class="form-control" type="text" placeholder="Placed MemberID" disabled/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputState" class="col-sm-3 control-label">Placed Team</label>
 
                                     <div class="col-sm-9">
-                                        <input id="txtPlaced_Team" class="form-control" type="text" placeholder="Placed Team" />
+                                        <input id="txtPlaced_Team" class="form-control" type="text" placeholder="Placed Team" disabled/>
                                     </div>
                                 </div>
                                 <div class="form-group">
