@@ -117,11 +117,37 @@
     <Content Include="BranchLogo\BRANPHOTO_7.jpg" />
     <Content Include="BranchLogo\CONPHOTO_1.jpg" />
     <Content Include="BranchLogo\CONPHOTO_2.jpg" />
+    <Content Include="ClientJS\CreateShippingCharges.js" />
+    <Content Include="ClientJS\CreatePaymentMode.js" />
+    <Content Include="ClientJS\CreateRankReward.js" />
+    <Content Include="ClientJS\CreateItemCategory.js" />
+    <Content Include="ClientJS\CreateVacationTour.js" />
+    <Content Include="ClientJS\CreateGst.js" />
+    <Content Include="ClientJS\PaymentMode_List.js" />
+    <Content Include="ClientJS\RankReward_List.js" />
+    <Content Include="ClientJS\ItemCategory_List.js" />
+    <Content Include="ClientJS\ShippingCharges_List.js" />
+    <Content Include="ClientJS\Wallet_List.js" />
+    <Content Include="ClientJS\VacationTour_List.js" />
+    <Content Include="CreateShippingCharges.aspx" />
+    <Content Include="CreatePaymentMode.aspx" />
+    <Content Include="CreateRankReward.aspx" />
+    <Content Include="CreateItemCategory.aspx" />
+    <Content Include="CreateVacationTour.aspx" />
+    <Content Include="CreateGst.aspx" />
+    <Content Include="PaymentMode_List.aspx" />
+    <Content Include="RankReward_List.aspx" />
+    <Content Include="ItemCategory_List.aspx" />
+    <Content Include="ShippingCharges_List.aspx" />
+    <Content Include="Wallet_List.aspx" />
+    <Content Include="VacationTour_List.aspx" />
+    <Content Include="gst_list.aspx" />
     <Content Include="ClientCss\Custom.css" />
     <Content Include="ClientJS\AddContact.js" />
     <Content Include="ClientJS\AddressList.js" />
     <Content Include="ClientJS\BranchList.js" />
     <Content Include="ClientJS\BranchProfile.js" />
+    <Content Include="ClientJS\gst_list.js" />
     <Content Include="ClientJS\Changepassword.js" />
     <Content Include="ClientJS\CompanyList.js" />
     <Content Include="ClientJS\CompanyProfile.js" />
@@ -1219,6 +1245,103 @@
     <Compile Include="Branch_Profile.aspx.designer.cs">
       <DependentUpon>Branch_Profile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreateShippingCharges.aspx.cs">
+      <DependentUpon>CreateShippingCharges.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateShippingCharges.aspx.designer.cs">
+      <DependentUpon>CreateShippingCharges.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreatePaymentMode.aspx.cs">
+      <DependentUpon>CreatePaymentMode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreatePaymentMode.aspx.designer.cs">
+      <DependentUpon>CreatePaymentMode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateRankReward.aspx.cs">
+      <DependentUpon>CreateRankReward.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateRankReward.aspx.designer.cs">
+      <DependentUpon>CreateRankReward.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateItemCategory.aspx.cs">
+      <DependentUpon>CreateItemCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateItemCategory.aspx.designer.cs">
+      <DependentUpon>CreateItemCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateVacationTour.aspx.cs">
+      <DependentUpon>CreateVacationTour.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateVacationTour.aspx.designer.cs">
+      <DependentUpon>CreateVacationTour.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateGst.aspx.cs">
+      <DependentUpon>CreateGst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateGst.aspx.designer.cs">
+      <DependentUpon>CreateGst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ShippingCharges.cs" />
+    <Compile Include="Model\Wallet.cs" />
+    <Compile Include="PaymentMode_List.aspx.cs">
+      <DependentUpon>PaymentMode_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentMode_List.aspx.designer.cs">
+      <DependentUpon>PaymentMode_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PaymentMode.cs" />
+    <Compile Include="Model\RankReward.cs" />
+    <Compile Include="Model\ItemCategory.cs" />
+    <Compile Include="Model\VacationTour.cs" />
+    <Compile Include="RankReward_List.aspx.cs">
+      <DependentUpon>RankReward_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RankReward_List.aspx.designer.cs">
+      <DependentUpon>RankReward_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItemCategory_List.aspx.cs">
+      <DependentUpon>ItemCategory_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItemCategory_List.aspx.designer.cs">
+      <DependentUpon>ItemCategory_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShippingCharges_List.aspx.cs">
+      <DependentUpon>ShippingCharges_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShippingCharges_List.aspx.designer.cs">
+      <DependentUpon>ShippingCharges_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Wallet_List.aspx.cs">
+      <DependentUpon>Wallet_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Wallet_List.aspx.designer.cs">
+      <DependentUpon>Wallet_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VacationTour_List.aspx.cs">
+      <DependentUpon>VacationTour_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VacationTour_List.aspx.designer.cs">
+      <DependentUpon>VacationTour_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="gst_list.aspx.cs">
+      <DependentUpon>gst_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gst_list.aspx.designer.cs">
+      <DependentUpon>gst_list.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1254,6 +1377,7 @@
     <Compile Include="ContactList.aspx.designer.cs">
       <DependentUpon>ContactList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\gst.cs" />
     <Compile Include="MyProfile.aspx.cs">
       <DependentUpon>MyProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
