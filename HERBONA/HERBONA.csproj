@@ -121,24 +121,28 @@
     <Content Include="ClientJS\CreatePaymentMode.js" />
     <Content Include="ClientJS\CreateRankReward.js" />
     <Content Include="ClientJS\CreateItemCategory.js" />
+    <Content Include="ClientJS\CreateItemDetails.js" />
     <Content Include="ClientJS\CreateVacationTour.js" />
     <Content Include="ClientJS\CreateGst.js" />
     <Content Include="ClientJS\PaymentMode_List.js" />
     <Content Include="ClientJS\RankReward_List.js" />
     <Content Include="ClientJS\ItemCategory_List.js" />
     <Content Include="ClientJS\ShippingCharges_List.js" />
+    <Content Include="ClientJS\ItemDetails_List.js" />
     <Content Include="ClientJS\Wallet_List.js" />
     <Content Include="ClientJS\VacationTour_List.js" />
     <Content Include="CreateShippingCharges.aspx" />
     <Content Include="CreatePaymentMode.aspx" />
     <Content Include="CreateRankReward.aspx" />
     <Content Include="CreateItemCategory.aspx" />
+    <Content Include="CreateItemDetails.aspx" />
     <Content Include="CreateVacationTour.aspx" />
     <Content Include="CreateGst.aspx" />
     <Content Include="PaymentMode_List.aspx" />
     <Content Include="RankReward_List.aspx" />
     <Content Include="ItemCategory_List.aspx" />
     <Content Include="ShippingCharges_List.aspx" />
+    <Content Include="ItemDetails_List.aspx" />
     <Content Include="Wallet_List.aspx" />
     <Content Include="VacationTour_List.aspx" />
     <Content Include="gst_list.aspx" />
@@ -1207,7 +1211,6 @@
     <Content Include="Forget_Password.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
-    <Content Include="index.html" />
     <Content Include="Login.aspx" />
     <Content Include="Permission.aspx" />
     <Content Include="RoleList.aspx" />
@@ -1275,6 +1278,13 @@
     <Compile Include="CreateItemCategory.aspx.designer.cs">
       <DependentUpon>CreateItemCategory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreateItemDetails.aspx.cs">
+      <DependentUpon>CreateItemDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateItemDetails.aspx.designer.cs">
+      <DependentUpon>CreateItemDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreateVacationTour.aspx.cs">
       <DependentUpon>CreateVacationTour.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1290,6 +1300,7 @@
       <DependentUpon>CreateGst.aspx</DependentUpon>
     </Compile>
     <Compile Include="Model\ShippingCharges.cs" />
+    <Compile Include="Model\ItemDetails.cs" />
     <Compile Include="Model\Wallet.cs" />
     <Compile Include="PaymentMode_List.aspx.cs">
       <DependentUpon>PaymentMode_List.aspx</DependentUpon>
@@ -1322,6 +1333,13 @@
     </Compile>
     <Compile Include="ShippingCharges_List.aspx.designer.cs">
       <DependentUpon>ShippingCharges_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItemDetails_List.aspx.cs">
+      <DependentUpon>ItemDetails_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItemDetails_List.aspx.designer.cs">
+      <DependentUpon>ItemDetails_List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Wallet_List.aspx.cs">
       <DependentUpon>Wallet_List.aspx</DependentUpon>
