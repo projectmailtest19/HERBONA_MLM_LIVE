@@ -11,9 +11,9 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">VACATION TOUR List</h3>
+                        <h3 class="box-title">Shipping Charges List</h3>
                         <div style="float: right;">
-                            <button type="button" class="btn btn-block btn-primary" onclick="redirect()" id="btn_create">CREATE VACATION TOUR</button>
+                            <button type="button" class="btn btn-block btn-primary" onclick="redirect()" id="btn_create">CREATE Shipping Charges</button>
                         </div>
                     </div>                 
                     <div class="box-body" id="LoadListDiv">
