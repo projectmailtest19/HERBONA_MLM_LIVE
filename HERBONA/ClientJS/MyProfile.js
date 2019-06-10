@@ -11,7 +11,7 @@ $(document).ready(function () {
     var cid = localStorage.getItem('CONTACT_ID');
 
     if (cid == undefined) {
-        Req = 'Country';
+        Req = 'Country@Sponsor';
         obj = "Fill";
         url = "MyProfile.aspx/ContactDetails";
         ht = {};
@@ -24,7 +24,7 @@ $(document).ready(function () {
         $("#lirank").removeClass('disabledLI');
         $('#ID_hidden').val('' + cid);
         setTimeout(function () {
-            Req = 'Country@FillPersonalDetails@FillSponsorDetails@FillbankDetails@FillAddressProof@FillBankProof@FillPAN@FillApplication';
+            Req = 'Country@Sponsor@FillPersonalDetails@FillSponsorDetails@FillbankDetails@FillAddressProof@FillBankProof@FillPAN@FillApplication';
         obj = "Fill";
         url = "MyProfile.aspx/ContactDetails";
         ht = {};
@@ -39,6 +39,14 @@ $("#cmbCountry").change(function () {
     url = "MyProfile.aspx/ContactDetails";
     ht = {};
     ht["COUNTRY_ID"] = $("#cmbCountry :selected").val();
+    LoadAjaxContact(ht, obj, Req, url);
+});
+$("#cmbSponsor_Name").change(function () {
+    Req = 'Sponsor_Details';
+    obj = "Sponsor_Details";
+    url = "CreateAgentProfile.aspx/ContactDetails";
+    ht = {};
+    ht["id"] = $("#cmbSponsor_Name :selected").val();
     LoadAjaxContact(ht, obj, Req, url);
 });
 $("#cmbState").change(function () {
@@ -373,6 +381,20 @@ function LoadAjaxContact(ht, obj, Req, url) {
                     });
                 }
             }
+            if (obj == "Sponsor_Details") {
+                $("#txtSponsor_Account_No").val("");
+                $("#txtSponsor_MemberID").val("");
+                $("#txtSponsor_Mobile_Number").val("");
+                if (Result.d.Sponsor_Details != "" && Result.d.Sponsor_Details != undefined) {
+                    var json = jQuery.parseJSON(Result.d.Sponsor_Details);
+                    $.each(json, function (index, item) {
+                        // alert(item.Account_Number);
+                        $("#txtSponsor_Account_No").val(item.Account_Number);
+                        $("#txtSponsor_MemberID").val(item.Placed_MemberID);
+                        $("#txtSponsor_Mobile_Number").val(item.MobileNo);
+                    });
+                }
+            }
             if (obj == "District") {
                 if (Result.d.District != "" && Result.d.District != undefined) {
                     var District = jQuery.parseJSON(Result.d.District);
@@ -394,6 +416,20 @@ function LoadAjaxContact(ht, obj, Req, url) {
                         $('#cmbCountry').append($('<option></option>').val(item.COUNTRY_ID).html(item.Name));
                     });
                     $("#cmbCountry").val(1).trigger('change');
+                }
+                if (Result.d.Sponsor != "" && Result.d.Sponsor != undefined) {
+                    var Sponsor = jQuery.parseJSON(Result.d.Sponsor);
+                    $('#cmbSponsor_Name').html('');
+                    $('#cmbSponsor_Name').append($('<option></option>'));
+                    $.each(Sponsor, function (index, item) {
+                        $('#cmbSponsor_Name').append($('<option></option>').val(item.COUNTRY_ID).html(item.Name));
+                    });
+
+                    $('#cmbSplitSponsor_Name').html('');
+                    $('#cmbSplitSponsor_Name').append($('<option></option>'));
+                    $.each(Sponsor, function (index, item) {
+                        $('#cmbSplitSponsor_Name').append($('<option></option>').val(item.COUNTRY_ID).html(item.Name));
+                    });
                 }
                 if (Result.d.State != "" && Result.d.State != undefined) {
                     var State = jQuery.parseJSON(Result.d.State);
@@ -445,13 +481,15 @@ function LoadAjaxContact(ht, obj, Req, url) {
                             $.each(json, function (index, item) {
 
                                 $("#ID_hidden_SponsorDetails").val(item.id);
-                                $("#txtSponsor_Account_No").val(item.Sponsor_Account_No);
-                                $("#txtSponsor_Name").val(item.Sponsor_Name);
-                                $("#txtSponsor_MemberID").val(item.Sponsor_MemberID);
-                                $("#txtSponsor_Mobile_Number").val(item.Sponsor_Mobile_Number);
+                                //$("#txtSponsor_Account_No").val(item.Sponsor_Account_No);
+                                //$("#txtSponsor_Name").val(item.Sponsor_Name);
+                                //$("#txtSponsor_MemberID").val(item.Sponsor_MemberID);
+                                //$("#txtSponsor_Mobile_Number").val(item.Sponsor_Mobile_Number);
+                                $("#cmbSponsor_Name").val(item.Sponsor_ID).trigger('change');
                                 $("#txtPlaced_Name").val(item.Placed_Name);
                                 $("#txtPlaced_MemberID").val(item.Placed_MemberID);
                                 $("#txtPlaced_Team").val(item.Placed_Team);
+                                $("#cmbSplitSponsor_Name").val(item.SplitSponsor_ID).trigger('change');
 
                             });
                         }
@@ -1020,13 +1058,14 @@ function AddNewAgentSponsorDetails()
         setTimeout(function () {
             ht = {};
 
-            ht["Sponsor_Account_No"] = $("#txtSponsor_Account_No").val();
-            ht["Sponsor_Name"] = $("#txtSponsor_Name").val();
-            ht["Sponsor_MemberID"] = $("#txtSponsor_MemberID").val();
-            ht["Sponsor_Mobile_Number"] = $("#txtSponsor_Mobile_Number").val();
+            //ht["Sponsor_Account_No"] = $("#txtSponsor_Account_No").val();
+            ht["Sponsor_ID"] = $("#cmbSponsor_Name :selected").val();
+            //ht["Sponsor_MemberID"] = $("#txtSponsor_MemberID").val();
+            //ht["Sponsor_Mobile_Number"] = $("#txtSponsor_Mobile_Number").val();
             ht["Placed_Name"] = $("#txtPlaced_Name").val();
-            ht["Placed_MemberID"] = $("#txtPlaced_MemberID").val();
-            ht["Placed_Team"] = $("#txtPlaced_Team").val();
+            //ht["Placed_MemberID"] = $("#txtPlaced_MemberID").val();
+            //ht["Placed_Team"] = $("#txtPlaced_Team").val();
+            ht["SplitSponsor_ID"] = $("#cmbSplitSponsor_Name :selected").val();
 
 
             if ($("#ID_hidden").val() == "") {
@@ -1053,12 +1092,16 @@ function AddNewAgentSponsorDetails()
     }
 }
 function validationcheck_SponsorDetails() {
+    if ($('#cmbSponsor_Name').val() == "") {
+        popupErrorMsg($("#cmbSponsor_Name"), "Please Select Sponsor.", 5);
+        return false;
+    }
     if ($('#txtSponsor_Account_No').val() == "") {
         popupErrorMsg($("#txtSponsor_Account_No"), "Sponsor Account Number is Required.", 5);
         return false;
     }
-    if ($('#txtSponsor_Name').val() == "") {
-        popupErrorMsg($("#txtSponsor_Name"), "Sponsor Name is Required.", 5);
+    if ($('#cmbSplitSponsor_Name').val() == "") {
+        popupErrorMsg($("#cmbSplitSponsor_Name"), "Please Select Split Sponsor.", 5);
         return false;
     }
     return true;

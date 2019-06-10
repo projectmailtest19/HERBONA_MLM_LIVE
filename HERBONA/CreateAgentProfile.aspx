@@ -140,24 +140,26 @@
                         <div class="tab-pane" id="Sponsor_Details">
                             <form class="form-horizontal">
                                 <div class="form-group">
+                                    <label for="inputCountry" class="col-sm-3 control-label">Sponsor Name<span class="reqstar">*</span></label>
+
+                                    <div class="col-sm-9">
+                                        <select id="cmbSponsor_Name" class="form-control select2" style="width: 100%;" data-placeholder="Select Sponsor">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="inputName" class="col-sm-3 control-label">Sponsor Account No.<span class="reqstar">*</span></label>
 
                                     <div class="col-sm-9">
                                         <input id="txtSponsor_Account_No" class="form-control" type="text" placeholder="Sponsor Account No." disabled/>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputCountry" class="col-sm-3 control-label">Sponsor Name<span class="reqstar">*</span></label>
-
-                                    <div class="col-sm-9">
-                                        <input id="txtSponsor_Name" class="form-control" type="text" placeholder="Sponsor Name" />
-                                    </div>
-                                </div>
+                                </div>                              
                                 <div class="form-group">
                                     <label for="inputMob" class="col-sm-3 control-label">Sponsor MemberID</label>
 
                                     <div class="col-sm-9">
-                                        <input id="txtSponsor_MemberID" class="form-control" type="text" placeholder="Sponsor MemberID" />
+                                        <input id="txtSponsor_MemberID" class="form-control" type="text" placeholder="Sponsor MemberID" disabled />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -186,6 +188,15 @@
 
                                     <div class="col-sm-9">
                                         <input id="txtPlaced_Team" class="form-control" type="text" placeholder="Placed Team" disabled/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputCountry" class="col-sm-3 control-label">Split Sponsor Name<span class="reqstar">*</span></label>
+
+                                    <div class="col-sm-9">
+                                        <select id="cmbSplitSponsor_Name" class="form-control select2" style="width: 100%;" data-placeholder="Select Split Sponsor">
+                                            <option></option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
