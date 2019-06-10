@@ -11,7 +11,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">RANK REWARD TOUR List</h3>
+                        <h3 class="box-title">RANK REWARD List</h3>
                         <div style="float: right;">
                             <button type="button" class="btn btn-block btn-primary" onclick="redirect()" id="btn_create">CREATE RANK REWARD</button>
                         </div>
