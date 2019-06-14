@@ -60,6 +60,9 @@ namespace SmartTrucking
                         {
                             _ItemCategoryModel.Clear();
                             ht_param.Clear();
+                            ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                            ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                            ht_param.Add("@login_id", HttpContext.Current.Session["Login_user_ID"].ToString());
                             ds = db.SysFetchDataInDataSet("[GET_ITEM_CATEGORY]", ht_param);
 
                             if (ds.Tables.Count > 0)
@@ -78,6 +81,9 @@ namespace SmartTrucking
                         {
                             _gstModel.Clear();
                             ht_param.Clear();
+                            ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                            ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                            ht_param.Add("@login_id", HttpContext.Current.Session["Login_user_ID"].ToString());
                             ds = db.SysFetchDataInDataSet("[GET_GST]", ht_param);
 
                             if (ds.Tables.Count > 0)
@@ -85,8 +91,8 @@ namespace SmartTrucking
                                 foreach (DataRow item in ds.Tables[0].Rows)
                                 {
                                     gstModel gstModel_Detail = new gstModel();
-                                    gstModel_Detail.ID = item["NAME"].ToString();
-                                    gstModel_Detail.IGST = item["IGST"].ToString();
+                                    gstModel_Detail.ID = item["ID"].ToString();
+                                    gstModel_Detail.IGST = item["IGST_PERCENTAGE"].ToString();
                                     _gstModel.Add(gstModel_Detail);
                                 }
                             }
@@ -128,7 +134,7 @@ namespace SmartTrucking
                                   }).ToList();
                             }
                             
-                            ReturnData["TaxData"] = serializer.Serialize(_gstModel);
+                            ReturnData["TaxData"] = serializer.Serialize(_ItemDetailsModel);
                         
                         }
                     }
@@ -139,11 +145,16 @@ namespace SmartTrucking
                     _UserSaveModel.Clear();
 
                     ht_param.Clear();                   
-                    ht_param.Add("@TOUR_NAME", ht["TOUR_NAME"].ToString());
-                    ht_param.Add("@LEFT_POINT", ht["LEFT_POINT"].ToString());
-                    ht_param.Add("@LEFT_POINT_DETAIL", ht["LEFT_POINT_DETAIL"].ToString());
-                    ht_param.Add("@RIGHT_POINT", ht["RIGHT_POINT"].ToString());
-                    ht_param.Add("@RIGHT_POINT_DETAIL", ht["RIGHT_POINT_DETAIL"].ToString());
+                    ht_param.Add("@CATEGORY_ID", ht["CATEGORY_ID"].ToString());
+                    ht_param.Add("@NAME", ht["NAME"].ToString());
+                    ht_param.Add("@PBO_PRICE", ht["PBO_PRICE"].ToString());
+                    ht_param.Add("@PRODUCT_SVP", ht["PRODUCT_SVP"].ToString());
+                    ht_param.Add("@DISCOUNT_PERCENTAGE", ht["DISCOUNT_PERCENTAGE"].ToString());
+                    ht_param.Add("@DISCOUNT_AMOUNT", ht["DISCOUNT_AMOUNT"].ToString());
+                    ht_param.Add("@CODE", ht["CODE"].ToString());
+                    ht_param.Add("@GST_ID", ht["GST_ID"].ToString());
+                    ht_param.Add("@MRP", ht["MRP"].ToString());
+                    ht_param.Add("@SALE_PRICE", ht["SALE_PRICE"].ToString());
                     ht_param.Add("@IsActive", ht["IsActive"].ToString());
                     ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
                     ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
@@ -169,11 +180,16 @@ namespace SmartTrucking
 
                     ht_param.Clear();
                     ht_param.Add("@ID", ht["ID"]);
-                    ht_param.Add("@TOUR_NAME", ht["TOUR_NAME"].ToString());
-                    ht_param.Add("@LEFT_POINT", ht["LEFT_POINT"].ToString());
-                    ht_param.Add("@LEFT_POINT_DETAIL", ht["LEFT_POINT_DETAIL"].ToString());
-                    ht_param.Add("@RIGHT_POINT", ht["RIGHT_POINT"].ToString());
-                    ht_param.Add("@RIGHT_POINT_DETAIL", ht["RIGHT_POINT_DETAIL"].ToString());
+                    ht_param.Add("@CATEGORY_ID", ht["CATEGORY_ID"].ToString());
+                    ht_param.Add("@NAME", ht["NAME"].ToString());
+                    ht_param.Add("@PBO_PRICE", ht["PBO_PRICE"].ToString());
+                    ht_param.Add("@PRODUCT_SVP", ht["PRODUCT_SVP"].ToString());
+                    ht_param.Add("@DISCOUNT_PERCENTAGE", ht["DISCOUNT_PERCENTAGE"].ToString());
+                    ht_param.Add("@DISCOUNT_AMOUNT", ht["DISCOUNT_AMOUNT"].ToString());
+                    ht_param.Add("@CODE", ht["CODE"].ToString());
+                    ht_param.Add("@GST_ID", ht["GST_ID"].ToString());
+                    ht_param.Add("@MRP", ht["MRP"].ToString());
+                    ht_param.Add("@SALE_PRICE", ht["SALE_PRICE"].ToString());
                     ht_param.Add("@IsActive", ht["IsActive"].ToString());
                     ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
                     ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());

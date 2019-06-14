@@ -124,6 +124,8 @@
     <Content Include="ClientJS\CreateItemDetails.js" />
     <Content Include="ClientJS\CreateVacationTour.js" />
     <Content Include="ClientJS\CreateGst.js" />
+    <Content Include="ClientJS\ItemStockList.js" />
+    <Content Include="ClientJS\ItemStockEntry.js" />
     <Content Include="ClientJS\PaymentMode_List.js" />
     <Content Include="ClientJS\RankReward_List.js" />
     <Content Include="ClientJS\ItemCategory_List.js" />
@@ -138,6 +140,8 @@
     <Content Include="CreateItemDetails.aspx" />
     <Content Include="CreateVacationTour.aspx" />
     <Content Include="CreateGst.aspx" />
+    <Content Include="ItemStockList.aspx" />
+    <Content Include="ItemStockEntry.aspx" />
     <Content Include="PaymentMode_List.aspx" />
     <Content Include="RankReward_List.aspx" />
     <Content Include="ItemCategory_List.aspx" />
@@ -1298,6 +1302,20 @@
     </Compile>
     <Compile Include="CreateGst.aspx.designer.cs">
       <DependentUpon>CreateGst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItemStockList.aspx.cs">
+      <DependentUpon>ItemStockList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItemStockList.aspx.designer.cs">
+      <DependentUpon>ItemStockList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItemStockEntry.aspx.cs">
+      <DependentUpon>ItemStockEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItemStockEntry.aspx.designer.cs">
+      <DependentUpon>ItemStockEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="Model\ShippingCharges.cs" />
     <Compile Include="Model\ItemDetails.cs" />

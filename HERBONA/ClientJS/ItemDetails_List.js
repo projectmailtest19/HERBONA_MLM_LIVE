@@ -50,7 +50,7 @@ function LoadAjaxLoad(ht, obj, Req, url) {
 
                 var table = '<table id="LoadList" class="table table-bordered table-striped">';
                 table = table + '<thead><tr><th style="display:none">ID</th><th>CATEGORY NAME</th><th>ITEM NAME</th><th>ITEM CODE</th><th>PBO PRICE</th>' +
-                    '<th>PRODUCT SVP</th><th>DISCOUNT PERCENTAGE</th><th>DISCOUNT AMOUNT</th><th>MRP</th><th>SALE PRICE</th><th>Status</th><th  class=' + _allowedit + '>Edit</th><th  class=' + _allowdelete + '>Delete</th></tr></thead> <tbody>';
+                    '<th>PRODUCT SVP</th><th style="display:none">DISCOUNT PERCENTAGE</th><th style="display:none">DISCOUNT AMOUNT</th><th>MRP</th><th>SALE PRICE</th><th>Status</th><th  class=' + _allowedit + '>Edit</th><th  class=' + _allowdelete + '>Delete</th></tr></thead> <tbody>';
                 $.each(data, function (i, item) {
 
                     _Status = '';
@@ -74,8 +74,8 @@ function LoadAjaxLoad(ht, obj, Req, url) {
                                     "</td><td>" + item.CODE +
                                     "</td><td>" + item.PBO_PRICE +
                                     "</td><td>" + item.PRODUCT_SVP +
-                                    "</td><td>" + item.DISCOUNT_PERCENTAGE +
-                                    "</td><td>" + item.DISCOUNT_AMOUNT +
+                                    "</td><td style='display:none' >" + item.DISCOUNT_PERCENTAGE +
+                                    "</td><td style='display:none' >" + item.DISCOUNT_AMOUNT +
                                     "</td><td>" + item.MRP +
                                     "</td><td>" + item.SALE_PRICE +
                                     "</td><td><input id=status_" + item.ID + " data=" + item.IsActive + " class='" + _TextClass + "'  onclick=setStatus(" + _Status + "," + item.ID + ") type='button' value='" + _Text + "' />" +

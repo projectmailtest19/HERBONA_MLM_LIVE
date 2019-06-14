@@ -28,9 +28,9 @@ $(document).ready(function () {
     if (id == undefined) {
         Req = 'CATEGORY@GST';
         obj = "Fill";
-        url = "CreateAgentProfile.aspx/ContactDetails";
+        url = "CreateItemDetails.aspx/TaxDetails";
         ht = {};
-        LoadAjaxContact(ht, obj, Req, url);
+        LoadAjaxTax(ht, obj, Req, url);
     }
     else {
         $('#ID_hidden').val('' + id);
@@ -70,20 +70,20 @@ function LoadAjaxTax(ht, obj, Req, url) {
 
             if (obj == "Fill") {
 
-                if (Result.d.Country != "" && Result.d.Country != undefined) {
-                    var Country = jQuery.parseJSON(Result.d.Country);
-                    $('#cmbCountry').html('');
-                    $('#cmbCountry').append($('<option></option>'));
-                    $.each(Country, function (index, item) {
-                        $('#cmbCountry').append($('<option></option>').val(item.COUNTRY_ID).html(item.Name));
+                if (Result.d.CATEGORY != "" && Result.d.CATEGORY != undefined) {
+                    var cmbCATEGORY = jQuery.parseJSON(Result.d.CATEGORY);
+                    $('#cmbCATEGORY').html('');
+                    $('#cmbCATEGORY').append($('<option></option>'));
+                    $.each(cmbCATEGORY, function (index, item) {
+                        $('#cmbCATEGORY').append($('<option></option>').val(item.ID).html(item.NAME));
                     }); 
                 }
-                if (Result.d.Country != "" && Result.d.Country != undefined) {
-                    var Country = jQuery.parseJSON(Result.d.Country);
-                    $('#cmbCountry').html('');
-                    $('#cmbCountry').append($('<option></option>'));
-                    $.each(Country, function (index, item) {
-                        $('#cmbCountry').append($('<option></option>').val(item.COUNTRY_ID).html(item.Name));
+                if (Result.d.GST != "" && Result.d.GST != undefined) {
+                    var cmbGST = jQuery.parseJSON(Result.d.GST);
+                    $('#cmbGST').html('');
+                    $('#cmbGST').append($('<option></option>'));
+                    $.each(cmbGST, function (index, item) {
+                        $('#cmbGST').append($('<option></option>').val(item.ID).html(item.IGST));
                     }); 
                 }
 
@@ -94,18 +94,21 @@ function LoadAjaxTax(ht, obj, Req, url) {
 
                     $.each(json, function (index, item) {
                         $("#ID_hidden").val(item.ID);
-                        $("#txtTOUR_NAME").val(item.TOUR_NAME);
-                        $("#txtLEFT_POINT").val(item.LEFT_POINT);
-                        $("#txtLEFT_POINT_DETAIL").val(item.LEFT_POINT_DETAIL);
-                        $("#txtRIGHT_POINT").val(item.RIGHT_POINT);
-                        $("#txtRIGHT_POINT_DETAIL").val(item.RIGHT_POINT_DETAIL);
+                        $("#txtITEMNAME").val(item.NAME);
+                        $("#txtITEMCODE").val(item.CODE);
+                        $("#txtPBO_PRICE").val(item.PBO_PRICE);
+                        $("#txtPRODUCT_SVP").val(item.PRODUCT_SVP);
+                        $("#txtMRP").val(item.MRP);
+                        $("#txtSALE_PRICE").val(item.SALE_PRICE);
+                        $("#txtDISCOUNT_PERCENTAGE").val(item.DISCOUNT_PERCENTAGE);
+                        $("#txtDISCOUNT_AMOUNT").val(item.DISCOUNT_AMOUNT);
 
                         setTimeout(function () {
-                            $("#cmbState").val(item.state_id).trigger('change');
+                            $("#cmbCATEGORY").val(item.CATEGORY_ID).trigger('change');
                         }, 1000);
 
                         setTimeout(function () {
-                            $("#cmbState").val(item.state_id).trigger('change');
+                            $("#cmbGST").val(item.GST_ID).trigger('change');
                         }, 1000);
                     });
                 }
@@ -197,11 +200,17 @@ function AddNewGst() {
            
             ht = {};
             ht["ID"] = $("#ID_hidden").val();           
-            ht["TOUR_NAME"] = $("#txtTOUR_NAME").val();
-            ht["LEFT_POINT"] = $("#txtLEFT_POINT").val();
-            ht["LEFT_POINT_DETAIL"] = $("#txtLEFT_POINT_DETAIL").val();
-            ht["RIGHT_POINT"] = $("#txtRIGHT_POINT").val();
-            ht["RIGHT_POINT_DETAIL"] = $("#txtRIGHT_POINT_DETAIL").val();
+            ht["CATEGORY_ID"] = $("#cmbCATEGORY").val();
+            ht["NAME"] = $("#txtITEMNAME").val();
+            ht["PBO_PRICE"] = $("#txtPBO_PRICE").val();
+            ht["PRODUCT_SVP"] = $("#txtPRODUCT_SVP").val();
+            ht["DISCOUNT_PERCENTAGE"] = $("#txtDISCOUNT_PERCENTAGE").val();
+            ht["DISCOUNT_AMOUNT"] = $("#txtDISCOUNT_AMOUNT").val();
+            ht["CODE"] = $("#txtITEMCODE").val();
+            ht["GST_ID"] = $("#cmbGST").val();
+            ht["MRP"] = $("#txtMRP").val();
+            ht["SALE_PRICE"] = $("#txtSALE_PRICE").val();
+
             ht["IsActive"] = "1";
 
             if ($("#btnsave").text() == "Save") {
@@ -221,26 +230,15 @@ function AddNewGst() {
 }
 function validationcheck() {
 
-    if ($('#txtTOUR_NAME').val() == "") {
-        popupErrorMsg($("#txtTOUR_NAME"), "TOUR NAME is required.", 5);
+    if ($('#txtITEMNAME').val() == "") {
+        popupErrorMsg($("#txtITEMNAME"), "ITEM NAME is required.", 5);
         return false;
     }
-    if ($('#txtLEFT_POINT').val() == "") {
-        popupErrorMsg($("#txtLEFT_POINT"), "LEFT POINT is required.", 5);
+    if ($('#txtITEMCODE').val() == "") {
+        popupErrorMsg($("#txtITEMCODE"), "ITEM CODE is required.", 5);
         return false;
     }
-    if ($('#txtLEFT_POINT_DETAIL').val() == "") {
-        popupErrorMsg($("#txtLEFT_POINT_DETAIL"), "LEFT POINT DETAIL is required.", 5);
-        return false;
-    }
-    if ($('#txtRIGHT_POINT').val() == "") {
-        popupErrorMsg($("#txtRIGHT_POINT"), "RIGHT POINT is required.", 5);
-        return false;
-    }
-    if ($('#txtRIGHT_POINT_DETAIL').val() == "") {
-        popupErrorMsg($("#txtRIGHT_POINT_DETAIL"), "RIGHT POINT DETAIL is required.", 5);
-        return false;
-    }
+    
 
     return true;
 }
