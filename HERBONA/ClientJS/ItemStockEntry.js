@@ -49,15 +49,16 @@ function LoadAjaxLoad(ht, obj, Req, url) {
                 var data = jQuery.parseJSON(Result.d.LoadData);
 
                 var table = '<table id="LoadList" class="table table-bordered table-striped">';
-                table = table + '<thead><tr><th style="display:none">ID</th><th>CATEGORY NAME</th><th>ITEM NAME</th><th>ITEM CODE</th><th>PBO PRICE</th>' +
-                    '<th>PRODUCT SVP</th><th style="display:none">DISCOUNT PERCENTAGE</th><th style="display:none">DISCOUNT AMOUNT</th><th>MRP</th><th>SALE PRICE</th></tr></thead> <tbody>';
+                table = table + '<thead><tr><th style="display:none">ID</th><th>CATEGORY NAME</th><th>ITEM NAME</th><th>ITEM CODE</th><th>STOCK QTN.</th><th style="display:none">PBO PRICE</th>' +
+                    '<th style="display:none">PRODUCT SVP</th><th style="display:none">DISCOUNT PERCENTAGE</th><th style="display:none">DISCOUNT AMOUNT</th><th>MRP</th><th>SALE PRICE</th></tr></thead> <tbody>';
                 $.each(data, function (i, item) {                    
                     table = table + "<tr><td style='display:none' >" + item.ID +
                                     "</td><td>" + item.CATEGORY_NAME +
                                     "</td><td>" + item.NAME +
                                     "</td><td>" + item.CODE +
-                                    "</td><td>" + item.PBO_PRICE +
-                                    "</td><td>" + item.PRODUCT_SVP +
+                                    "</td><td>                 " +
+                                    "</td><td style='display:none'>" + item.PBO_PRICE +
+                                    "</td><td style='display:none'>" + item.PRODUCT_SVP +
                                     "</td><td style='display:none' >" + item.DISCOUNT_PERCENTAGE +
                                     "</td><td style='display:none' >" + item.DISCOUNT_AMOUNT +
                                     "</td><td>" + item.MRP +
@@ -75,13 +76,20 @@ function LoadAjaxLoad(ht, obj, Req, url) {
     });
 }
 
+function redirect() {
+    window.location = 'ItemStockList.aspx';
+}
+
+function AddNew() {
+
+}
 function ShortTable(Tbl) {
     $(Tbl).DataTable({
-        "paging": true,
+        "paging": false,
         "lengthChange": true,
-        "searching": true,
+        "searching": false,
         "ordering": false,
-        "info": true,
+        "info": false,
         "autoWidth": false,
         dom: 'C<"clear">lfrtip',
         colVis: {

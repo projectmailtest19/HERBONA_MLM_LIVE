@@ -24,6 +24,7 @@ namespace SmartTrucking.Model
         public string IGST_PERCENTAGE { get; set; }
         public string CGST_PERCENTAGE { get; set; }
         public string SGST_PERCENTAGE { get; set; }
+        public string QUANTITY { get; set; }
     }
     public class ItemDetailsModel
     {

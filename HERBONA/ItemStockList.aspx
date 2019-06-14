@@ -13,7 +13,7 @@
                     <div class="box-header">
                         <h3 class="box-title">Item Stock List</h3>
                         <div style="float: right;">
-                            <button type="button" class="btn btn-block btn-primary" onclick="redirect()" id="btn_create">CREATE Item Details</button>
+                            <button type="button" class="btn btn-block btn-primary" onclick="redirect()" id="btn_create">Stock Entry</button>
                         </div>
                     </div>                 
                     <div class="box-body" id="LoadListDiv">

@@ -51,7 +51,7 @@ namespace SmartTrucking
                     ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
                     ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
                     ht_param.Add("@login_id", HttpContext.Current.Session["Login_user_ID"].ToString());
-                    ds = db.SysFetchDataInDataSet("[GET_ITEM_DETAILS]", ht_param);
+                    ds = db.SysFetchDataInDataSet("[GET_ITEMS_STOCK]", ht_param);
                     if (ds.Tables.Count > 0)
                     {
                         _gstlistModel = ds.Tables[0].AsEnumerable()
@@ -73,7 +73,8 @@ namespace SmartTrucking
                               CATEGORY_NAME = row["CATEGORY_NAME"].ToString(),
                               IGST_PERCENTAGE = row["IGST_PERCENTAGE"].ToString(),
                               CGST_PERCENTAGE = row["CGST_PERCENTAGE"].ToString(),
-                              SGST_PERCENTAGE = row["SGST_PERCENTAGE"].ToString() 
+                              SGST_PERCENTAGE = row["SGST_PERCENTAGE"].ToString(),
+                              QUANTITY = row["QUANTITY"].ToString()
                           }).ToList();
                     }
                     ReturnData["LoadData"] = serializer.Serialize(_gstlistModel);

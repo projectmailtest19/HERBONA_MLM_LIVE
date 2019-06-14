@@ -50,18 +50,19 @@ function LoadAjaxLoad(ht, obj, Req, url) {
 
                 var table = '<table id="LoadList" class="table table-bordered table-striped">';
                 table = table + '<thead><tr><th style="display:none">ID</th><th>CATEGORY NAME</th><th>ITEM NAME</th><th>ITEM CODE</th><th>PBO PRICE</th>' +
-                    '<th>PRODUCT SVP</th><th style="display:none">DISCOUNT PERCENTAGE</th><th style="display:none">DISCOUNT AMOUNT</th><th>MRP</th><th>SALE PRICE</th></tr></thead> <tbody>';
+                    '<th style="display:none">PRODUCT SVP</th><th style="display:none">DISCOUNT PERCENTAGE</th><th style="display:none">DISCOUNT AMOUNT</th><th>MRP</th><th>SALE PRICE</th><th>STOCK QTN.</th></tr></thead> <tbody>';
                 $.each(data, function (i, item) {
                     table = table + "<tr><td style='display:none' >" + item.ID +
                                     "</td><td>" + item.CATEGORY_NAME +
                                     "</td><td>" + item.NAME +
                                     "</td><td>" + item.CODE +
                                     "</td><td>" + item.PBO_PRICE +
-                                    "</td><td>" + item.PRODUCT_SVP +
+                                    "</td><td style='display:none'>" + item.PRODUCT_SVP +
                                     "</td><td style='display:none' >" + item.DISCOUNT_PERCENTAGE +
                                     "</td><td style='display:none' >" + item.DISCOUNT_AMOUNT +
                                     "</td><td>" + item.MRP +
                                     "</td><td>" + item.SALE_PRICE +
+                                     "</td><td>" + item.QUANTITY +
                                     "</td></tr>"
                 });
                 document.getElementById("LoadListDiv").innerHTML = table + '</tbody></table>';
@@ -73,6 +74,9 @@ function LoadAjaxLoad(ht, obj, Req, url) {
             $('body').pleaseWait('stop');
         }
     });
+}
+function redirect() {
+    window.location = 'ItemStockEntry.aspx';
 }
 
 function ShortTable(Tbl) {
