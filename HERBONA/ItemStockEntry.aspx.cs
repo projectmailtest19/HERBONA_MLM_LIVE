@@ -104,8 +104,6 @@ namespace SmartTrucking
             }
             return ReturnData;
         }
-
-
         public static DataTable SaveParameters_LoadList(List<LoadList> LoadList)
         {
             DataTable dt = new DataTable();
