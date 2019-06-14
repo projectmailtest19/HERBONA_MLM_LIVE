@@ -12,7 +12,6 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Item Stock Entry</h3>
-
                     </div>
                     <div class="box-body" id="LoadListDiv">
                     </div>

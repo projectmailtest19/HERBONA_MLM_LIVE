@@ -1317,6 +1317,7 @@
     <Compile Include="ItemStockEntry.aspx.designer.cs">
       <DependentUpon>ItemStockEntry.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\LoadList.cs" />
     <Compile Include="Model\ShippingCharges.cs" />
     <Compile Include="Model\ItemDetails.cs" />
     <Compile Include="Model\Wallet.cs" />
