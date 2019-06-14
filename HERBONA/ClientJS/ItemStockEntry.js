@@ -51,7 +51,7 @@ function LoadAjaxLoad(ht, obj, Req, url) {
                 var table = '<table id="LoadList" class="table table-bordered table-striped">';
                 table = table + '<thead><tr><th style="display:none">ID</th><th>CATEGORY NAME</th><th>ITEM NAME</th><th>ITEM CODE</th><th>STOCK QTN.</th><th style="display:none">PBO PRICE</th>' +
                     '<th style="display:none">PRODUCT SVP</th><th style="display:none">DISCOUNT PERCENTAGE</th><th style="display:none">DISCOUNT AMOUNT</th><th>MRP</th><th>SALE PRICE</th></tr></thead> <tbody>';
-                $.each(data, function (i, item) {                    
+                $.each(data, function (i, item) {
                     table = table + "<tr><td style='display:none' >" + item.ID +
                                     "</td><td>" + item.CATEGORY_NAME +
                                     "</td><td>" + item.NAME +
@@ -69,7 +69,7 @@ function LoadAjaxLoad(ht, obj, Req, url) {
                 setTimeout(function () {
                     ShortTable('#LoadList');
                 }, 100);
-            }            
+            }
 
             $('body').pleaseWait('stop');
         }
@@ -86,10 +86,12 @@ function AddNew() {
     var i = 0;
     LoadList = new Array();
     $('#LoadListDiv tbody tr').each(function () {
-        var LoadList_Model = {};       
+        var LoadList_Model = {};
 
-        LoadList_Model.ITEM_ID = $(this).find('td:eq(0)').html();
-        LoadList_Model.QUANTITY = $(this).find('td:eq(4)').find(".cmbQuantity").val();
+        if ($(this).find('td:eq(4)').find(".cmbQuantity").val() != "") {
+            LoadList_Model.ITEM_ID = $(this).find('td:eq(0)').html();
+            LoadList_Model.QUANTITY = $(this).find('td:eq(4)').find(".cmbQuantity").val();
+        }
 
         LoadList[i++] = LoadList_Model;
     });
@@ -122,7 +124,9 @@ function LoadAjaxLoadwithlist(ht, obj, Req, url, LoadList) {
     $.ajax({
         type: "POST",
         url: url,
-        data: "{ht:" + JSON.stringify(ht) + ",Type :'" + obj + "' ,Req :'" + Req + "',LoadList:'" + JSON.stringify(LoadList) + "'}",
+        data: "{ht:" + JSON.stringify(ht) + ",Type :'" + obj + "' ,Req :'" + Req + "'," +
+             " LoadList:" + JSON.stringify(LoadList) +
+             "}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (Result) {
@@ -141,8 +145,8 @@ function LoadAjaxLoadwithlist(ht, obj, Req, url, LoadList) {
             }
 
             if (obj == "SaveCompleteLoad") {
-                if (Result.d.SaveCompleteLoad != "" && Result.d.SaveCompleteLoad != undefined) {
-                    var json = jQuery.parseJSON(Result.d.SaveCompleteLoad)[0];
+                if (Result.d.Save != "" && Result.d.Save != undefined) {
+                    var json = jQuery.parseJSON(Result.d.Save)[0];
 
                     if (json.CustomErrorState == "0") {
 
@@ -156,10 +160,10 @@ function LoadAjaxLoadwithlist(ht, obj, Req, url, LoadList) {
                             closeOnConfirm: false,
                             timer: 2000
                         },
+                   function () {
+                       window.location = 'ItemStockList.aspx';
+                   });
 
-                        function () {
-                            window.location = 'ItemStockList.aspx';
-                        });
                     }
                     else if (json.CustomErrorState == "1") {
                         swal("", "Something went wrong , please try again later !!", "error");
@@ -175,8 +179,6 @@ function LoadAjaxLoadwithlist(ht, obj, Req, url, LoadList) {
                 }
 
             }
-
-
             $('body').pleaseWait('stop');
         }
 

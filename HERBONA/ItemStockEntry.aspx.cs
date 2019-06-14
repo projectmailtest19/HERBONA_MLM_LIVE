@@ -104,6 +104,9 @@ namespace SmartTrucking
             }
             return ReturnData;
         }
+
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public static DataTable SaveParameters_LoadList(List<LoadList> LoadList)
         {
             DataTable dt = new DataTable();
@@ -117,6 +120,9 @@ namespace SmartTrucking
 
             return dt;
         }
+
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public static Hashtable savedetailswithlist(Hashtable ht, string Type, string Req, List<LoadList> LoadList)
         {
             string Data = "";
@@ -148,7 +154,7 @@ namespace SmartTrucking
                     ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
                     ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
                     ht_param.Add("@Login_user_ID", HttpContext.Current.Session["Login_user_ID"].ToString());
-                    ds = db.SysFetchDataInDataSet("[INSERT_DISPATCH_DETAILS]", ht_param);
+                    ds = db.SysFetchDataInDataSet("[SAVE_UPDATE_ITEMS_STOCK]", ht_param);
                     if (ds.Tables.Count > 0)
                     {
                         foreach (DataRow item in ds.Tables[0].Rows)
@@ -159,7 +165,7 @@ namespace SmartTrucking
                             _UserSaveModel.Add(_UserSaveModelDetails);
                         }
                     }
-                    ReturnData["SaveCompleteLoad"] = serializer.Serialize(_UserSaveModel);
+                    ReturnData["Save"] = serializer.Serialize(_UserSaveModel);
 
                 }
 
