@@ -124,6 +124,7 @@
     <Content Include="ClientJS\CreateItemDetails.js" />
     <Content Include="ClientJS\CreateVacationTour.js" />
     <Content Include="ClientJS\CreateGst.js" />
+    <Content Include="ClientJS\OrderEntryList.js" />
     <Content Include="ClientJS\OrderEntry.js" />
     <Content Include="ClientJS\ItemStockList.js" />
     <Content Include="ClientJS\ItemStockEntry.js" />
@@ -141,6 +142,7 @@
     <Content Include="CreateItemDetails.aspx" />
     <Content Include="CreateVacationTour.aspx" />
     <Content Include="CreateGst.aspx" />
+    <Content Include="OrderEntryList.aspx" />
     <Content Include="OrderEntry.aspx" />
     <Content Include="ItemStockList.aspx" />
     <Content Include="ItemStockEntry.aspx" />
@@ -1304,6 +1306,14 @@
     </Compile>
     <Compile Include="CreateGst.aspx.designer.cs">
       <DependentUpon>CreateGst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\OrderEntryList.cs" />
+    <Compile Include="OrderEntryList.aspx.cs">
+      <DependentUpon>OrderEntryList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderEntryList.aspx.designer.cs">
+      <DependentUpon>OrderEntryList.aspx</DependentUpon>
     </Compile>
     <Compile Include="OrderEntry.aspx.cs">
       <DependentUpon>OrderEntry.aspx</DependentUpon>

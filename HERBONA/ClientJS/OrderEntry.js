@@ -90,7 +90,7 @@ function LoadAjaxLoad(ht, obj, Req, url) {
 }
 
 function redirect() {
-    window.location = 'ItemStockList.aspx';
+    window.location = 'OrderEntryList.aspx';
 }
 
 function AddNew() {
@@ -181,7 +181,7 @@ function LoadAjaxLoadwithlist(ht, obj, Req, url, LoadList) {
                             timer: 2000
                         },
                    function () {
-                       window.location = 'ItemStockList.aspx';
+                       window.location = 'OrderEntryList.aspx';
                    });
 
                     }
