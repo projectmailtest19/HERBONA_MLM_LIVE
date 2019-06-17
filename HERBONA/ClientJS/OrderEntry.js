@@ -11,6 +11,8 @@ var _allowadd, _allowedit, _allowdelete;
 
 $(document).ready(function () {
     setTimeout(function () {
+        //$("#btnsave").show();
+        //$("#btnProceed").hide();
         GetLoadDetails();
     }, 2000);
 });
@@ -64,8 +66,8 @@ function LoadAjaxLoad(ht, obj, Req, url) {
                                     "</td><td style='display:none' >" + item.DISCOUNT_AMOUNT +
                                     "</td><td style='display:none'>" + item.MRP +
                                     "</td><td style='display:none'>" + item.SALE_PRICE +
-                                     "</td><td class='cmbPBO_PRICE'>       " +
-                                      "</td><td class='cmbPRODUCT_SVP'>   " +
+                                     "</td><td class='cmbPRODUCT_SVP'>       " +
+                                      "</td><td class='cmbPBO_PRICE'>   " +
                                     "</td></tr>"
                 });
                 document.getElementById("LoadListDiv").innerHTML = table + '</tbody></table>';
@@ -84,6 +86,37 @@ function LoadAjaxLoad(ht, obj, Req, url) {
                 }
             }
 
+            if (obj == "FillGivenOrder") {
+                if (Result.d.FillGivenOrder != "" && Result.d.FillGivenOrder != undefined) {
+                    var data = jQuery.parseJSON(Result.d.FillGivenOrder);
+                    document.getElementById("LoadListDiv").innerHTML = "";
+                    var table = '<table id="LoadList" class="table table-bordered table-striped">';
+                    table = table + '<thead><tr><th style="display:none">ID</th><th  style="display:none">CATEGORY NAME</th><th>ITEM NAME</th><th style="display:none">ITEM CODE</th><th>QTN.</th><th>PBO PRICE</th>' +
+                        '<th>PRODUCT SVP</th><th style="display:none">DISCOUNT PERCENTAGE</th><th style="display:none">DISCOUNT AMOUNT</th><th  style="display:none">MRP</th><th  style="display:none">SALE PRICE</th>' +
+                        '<th>Total SVP</th><th>Total Amount</th></tr></thead> <tbody>';
+                    $.each(data, function (i, item) {
+                        table = table + "<tr><td style='display:none' >" + item.ID +
+                                        "</td><td style='display:none'>" + item.CATEGORY_NAME +
+                                        "</td><td>" + item.NAME +
+                                        "</td><td style='display:none'>" + item.CODE +
+                                        "</td><td>" + item.QUANTITY +
+                                        "</td><td >" + item.PBO_PRICE +
+                                        "</td><td >" + item.PRODUCT_SVP +
+                                        "</td><td style='display:none' >" + item.DISCOUNT_PERCENTAGE +
+                                        "</td><td style='display:none' >" + item.DISCOUNT_AMOUNT +
+                                        "</td><td style='display:none'>" + item.MRP +
+                                        "</td><td style='display:none'>" + item.SALE_PRICE +
+                                         "</td><td>       " + item.Total_SVP +
+                                          "</td><td>   " + item.Total_Amount +
+                                        "</td></tr>"
+                    });
+                    document.getElementById("LoadListDiv").innerHTML = table + '</tbody></table>';
+                    setTimeout(function () {
+                        ShortTable('#LoadList');
+                    }, 100);
+                }
+            }
+
             $('body').pleaseWait('stop');
         }
     });
@@ -92,34 +125,43 @@ function LoadAjaxLoad(ht, obj, Req, url) {
 function redirect() {
     window.location = 'OrderEntryList.aspx';
 }
-
+function validationcheck() {
+    if ($('#cmbSponsor_Name').val() == "") {
+        popupErrorMsg($("#cmbSponsor_Name"), "Please Select Member.", 5);
+        return false;
+    }
+    return true;
+}
 function AddNew() {
-    ht = {};
-    ht["MEMEBER_ID"] = $("#cmbSponsor_Name").val();
-    ht["TOTAL_SVP"] = $("#Total_PRODUCT_SVP").text();
-    ht["TOTAL_AMOUNT"] = $("#Total_PBO_PRICE").text();
-    ht["ORDER_TYPE"] = 'PURCHASE';
+    if (validationcheck() == true) {
+        ht = {};
+        ht["MEMEBER_ID"] = $("#cmbSponsor_Name").val();
+        localStorage.setItem('OrderMember_ID', $("#cmbSponsor_Name").val());
+        ht["TOTAL_SVP"] = $("#Total_PRODUCT_SVP").text();
+        ht["TOTAL_AMOUNT"] = $("#Total_PBO_PRICE").text();
+        ht["ORDER_TYPE"] = 'PURCHASE';
 
-    ht["IsActive"] = "1";
+        ht["IsActive"] = "1";
 
 
-    var i = 0;
-    LoadList = new Array();
-    $('#LoadListDiv tbody tr').each(function () {
-        var LoadList_Model = {};
+        var i = 0;
+        LoadList = new Array();
+        $('#LoadListDiv tbody tr').each(function () {
+            var LoadList_Model = {};
 
-        if ($(this).find('td:eq(4)').find(".cmbQuantity").val() != "") {
-            LoadList_Model.ITEM_ID = $(this).find('td:eq(0)').html();
-            LoadList_Model.QUANTITY = $(this).find('td:eq(4)').find(".cmbQuantity").val();
-        }
+            if ($(this).find('td:eq(4)').find(".cmbQuantity").val() != "") {
+                LoadList_Model.ITEM_ID = $(this).find('td:eq(0)').html();
+                LoadList_Model.QUANTITY = $(this).find('td:eq(4)').find(".cmbQuantity").val();
+            }
 
-        LoadList[i++] = LoadList_Model;
-    });
+            LoadList[i++] = LoadList_Model;
+        });
 
-    Req = 'SaveCompleteLoad';
-    obj = "SaveCompleteLoad";
-    url = "OrderEntry.aspx/savedetailswithlist";
-    LoadAjaxLoadwithlist(ht, obj, Req, url, LoadList);
+        Req = 'SaveCompleteLoad';
+        obj = "SaveCompleteLoad";
+        url = "OrderEntry.aspx/savedetailswithlist";
+        LoadAjaxLoadwithlist(ht, obj, Req, url, LoadList);
+    }
 
 }
 function ShortTable(Tbl) {
@@ -170,19 +212,27 @@ function LoadAjaxLoadwithlist(ht, obj, Req, url, LoadList) {
 
                     if (json.CustomErrorState == "0") {
 
-                        swal({
-                            title: "",
-                            text: json.CustomMessage,
-                            type: "success",
-                            showCancelButton: false,
-                            confirmButtonColor: "#5cb85c",
-                            confirmButtonText: "Ok!",
-                            closeOnConfirm: false,
-                            timer: 2000
-                        },
-                   function () {
-                       window.location = 'OrderEntryList.aspx';
-                   });
+                        //swal({
+                        //    title: "",
+                        //    text: json.CustomMessage,
+                        //    type: "success",
+                        //    showCancelButton: false,
+                        //    confirmButtonColor: "#5cb85c",
+                        //    confirmButtonText: "Ok!",
+                        //    closeOnConfirm: false,
+                        //    timer: 2000
+                        //});
+                        //localStorage.removeItem('Order_ID');
+                        //alert(json.ID);
+                        localStorage.setItem('Order_ID', json.ID);
+                        FilertGiven_Order();
+                        //$("#btnsave").hide();
+                        //$("#btnsave").css('display', 'none');
+                        //$("#btnProceed").show();
+                        $("#ID_Hidden").val('2');
+                   //function () {
+                   //    window.location = 'OrderEntryList.aspx';
+                   //});
 
                     }
                     else if (json.CustomErrorState == "1") {
@@ -235,3 +285,25 @@ function rowCalculateFunction(e) {
     
 
 }
+
+function FilertGiven_Order()
+{
+    Req = 'FillGivenOrder';
+    obj = "FillGivenOrder";
+    url = "OrderEntry.aspx/AllLoadDetails";
+    ht = {};
+    ht["ORDER_ID"] = localStorage.getItem('Order_ID');
+    //alert(localStorage.getItem('Order_ID'));
+    LoadAjaxLoad(ht, obj, Req, url);
+}
+$("#btnsave").click(function () {
+    if ($("#ID_Hidden").val()=='1')
+    {
+        AddNew();
+    }
+    else
+    {
+        //AddOrder();
+        window.location = 'ShippingDetails.aspx';
+    }
+});

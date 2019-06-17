@@ -25,6 +25,8 @@ namespace SmartTrucking.Model
         public string CGST_PERCENTAGE { get; set; }
         public string SGST_PERCENTAGE { get; set; }
         public string QUANTITY { get; set; }
+        public string Total_SVP { get; set; }
+        public string Total_Amount { get; set; }
     }
     public class ItemDetailsModel
     {
@@ -45,5 +47,14 @@ namespace SmartTrucking.Model
         public string IGST_PERCENTAGE { get; set; }
         public string CGST_PERCENTAGE { get; set; }
         public string SGST_PERCENTAGE { get; set; }
+    }
+    public class OrderTotalModel
+    {
+        public string ORDER_DATE { get; set; }
+        public string INVOICE_DATE { get; set; }
+        public string INVOICE_NUMBER { get; set; }
+        public string TOTAL_SVP { get; set; }
+        public string TOTAL_AMOUNT { get; set; }
+        public string ORDER_NUMBER { get; set; }
     }
 }

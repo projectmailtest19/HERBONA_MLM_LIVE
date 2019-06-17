@@ -145,6 +145,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ShippingDetails.aspx" />
     <Content Include="bin\Microsoft.AI.Agent.Intercept.dll" />
     <Content Include="bin\Microsoft.AI.DependencyCollector.dll" />
     <Content Include="bin\Microsoft.AI.PerfCounterCollector.dll" />
@@ -168,6 +169,7 @@
     <Content Include="BranchLogo\BRANPHOTO_7.jpg" />
     <Content Include="BranchLogo\CONPHOTO_1.jpg" />
     <Content Include="BranchLogo\CONPHOTO_2.jpg" />
+    <Content Include="ClientJS\ShippingDetails.js" />
     <Content Include="ClientJS\CreateShippingCharges.js" />
     <Content Include="ClientJS\CreatePaymentMode.js" />
     <Content Include="ClientJS\CreateRankReward.js" />
@@ -1296,6 +1298,13 @@
     </Compile>
     <Compile Include="AddressList.aspx.designer.cs">
       <DependentUpon>AddressList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShippingDetails.aspx.cs">
+      <DependentUpon>ShippingDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShippingDetails.aspx.designer.cs">
+      <DependentUpon>ShippingDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="BranchList.aspx.cs">
       <DependentUpon>BranchList.aspx</DependentUpon>

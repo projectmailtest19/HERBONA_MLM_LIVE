@@ -24,7 +24,9 @@ namespace SmartTrucking
         static List<ErrorModel> _errorDetail = new List<ErrorModel>();
         static List<ItemDetails_ListModel> _gstlistModel = new List<ItemDetails_ListModel>();
         static List<UserSaveModel> _UserSaveModel = new List<UserSaveModel>();
+        static List<UserSaveModelWithID> _UserSaveModelWithID = new List<UserSaveModelWithID>();
         static List<CountryModel> _CountryModel = new List<CountryModel>();
+        static List<OrderTotalModel> _OrderTotalModel = new List<OrderTotalModel>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -110,6 +112,69 @@ namespace SmartTrucking
                     }
                 }
 
+                if (Type == "FillGivenOrder")
+                {
+                    words = null;
+                    words = Req.Split('@');
+                    for (int m = 0; words.Count() > m; m++)
+                    {
+
+                        Data = words[m].ToString();
+                        if (Data == "FillGivenOrder")
+                        {
+                            _gstlistModel.Clear();
+                            _OrderTotalModel.Clear();
+                            ht_param.Clear();
+                            ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                            ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                            ht_param.Add("@login_id", HttpContext.Current.Session["Login_user_ID"].ToString());
+                            ht_param.Add("@ORDER_ID", ht["ORDER_ID"].ToString());
+                            ds = db.SysFetchDataInDataSet("[GET_ITEM_DETAILS_ORDERED]", ht_param);
+                            if (ds.Tables.Count > 0)
+                            {
+                                _gstlistModel = ds.Tables[0].AsEnumerable()
+                                  .Select(row => new ItemDetails_ListModel
+                                  {
+                                      ID = row["ID"].ToString(),
+                                      CATEGORY_ID = row["CATEGORY_ID"].ToString(),
+                                      NAME = row["NAME"].ToString(),
+                                      PBO_PRICE = row["PBO_PRICE"].ToString(),
+                                      PRODUCT_SVP = row["PRODUCT_SVP"].ToString(),
+                                      DISCOUNT_PERCENTAGE = row["DISCOUNT_PERCENTAGE"].ToString(),
+                                      DISCOUNT_AMOUNT = row["DISCOUNT_AMOUNT"].ToString(),
+                                      CODE = row["CODE"].ToString(),
+                                      GST_ID = row["GST_ID"].ToString(),
+                                      MRP = row["MRP"].ToString(),
+                                      SALE_PRICE = row["SALE_PRICE"].ToString(),
+                                      ImageURL = row["ImageURL"].ToString(),
+                                      IsActive = row["IsActive"].ToString(),
+                                      CATEGORY_NAME = row["CATEGORY_NAME"].ToString(),
+                                      IGST_PERCENTAGE = row["IGST_PERCENTAGE"].ToString(),
+                                      CGST_PERCENTAGE = row["CGST_PERCENTAGE"].ToString(),
+                                      SGST_PERCENTAGE = row["SGST_PERCENTAGE"].ToString(),
+                                      QUANTITY = row["QUANTITY"].ToString(),
+                                      Total_SVP = row["Total_SVP"].ToString(),
+                                      Total_Amount = row["Total_Amount"].ToString()
+                                  }).ToList();
+
+                                _OrderTotalModel = ds.Tables[1].AsEnumerable()
+                                  .Select(row => new OrderTotalModel
+                                  {
+                                      ORDER_DATE = row["ORDER_DATE"].ToString(),
+                                      INVOICE_DATE = row["INVOICE_DATE"].ToString(),
+                                      INVOICE_NUMBER = row["INVOICE_NUMBER"].ToString(),
+                                      TOTAL_SVP = row["TOTAL_SVP"].ToString(),
+                                      TOTAL_AMOUNT = row["TOTAL_AMOUNT"].ToString(),
+                                      ORDER_NUMBER = row["ORDER_NUMBER"].ToString()
+                                  }).ToList();
+                            }
+                            ReturnData["FillGivenOrder"] = serializer.Serialize(_gstlistModel);
+                            ReturnData["FillGivenOrderTotalData"] = serializer.Serialize(_OrderTotalModel);
+
+                        }
+                    }
+                }
+
 
 
                 _errorDetail.Clear();
@@ -173,7 +238,7 @@ namespace SmartTrucking
             {
                 if (Type == "SaveCompleteLoad")
                 {
-                    _UserSaveModel.Clear();
+                    _UserSaveModelWithID.Clear();
 
 
                     ht_param.Clear();
@@ -195,13 +260,14 @@ namespace SmartTrucking
                     {
                         foreach (DataRow item in ds.Tables[0].Rows)
                         {
-                            UserSaveModel _UserSaveModelDetails = new UserSaveModel();
-                            _UserSaveModelDetails.CustomErrorState = item["CustomErrorState"].ToString();
-                            _UserSaveModelDetails.CustomMessage = item["CustomMessage"].ToString();
-                            _UserSaveModel.Add(_UserSaveModelDetails);
+                            UserSaveModelWithID _UserSaveModelWithIDDetails = new UserSaveModelWithID();
+                            _UserSaveModelWithIDDetails.ID = item["ID"].ToString();
+                            _UserSaveModelWithIDDetails.CustomErrorState = item["CustomErrorState"].ToString();
+                            _UserSaveModelWithIDDetails.CustomMessage = item["CustomMessage"].ToString();
+                            _UserSaveModelWithID.Add(_UserSaveModelWithIDDetails);
                         }
                     }
-                    ReturnData["Save"] = serializer.Serialize(_UserSaveModel);
+                    ReturnData["Save"] = serializer.Serialize(_UserSaveModelWithID);
 
                 }
 

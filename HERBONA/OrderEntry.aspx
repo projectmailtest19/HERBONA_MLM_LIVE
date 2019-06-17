@@ -18,7 +18,7 @@
                             <label for="inputCountry" class="col-sm-3 control-label">Member Name<span class="reqstar">*</span></label>
 
                             <div class="col-sm-9">
-                                <select id="cmbSponsor_Name" class="form-control select2" style="width: 100%;" data-placeholder="Select Sponsor">
+                                <select id="cmbSponsor_Name" class="form-control select2" style="width: 100%;" data-placeholder="Select Member">
                                     <option></option>
                                 </select>
                             </div>
@@ -52,8 +52,9 @@
             <div class="col-lg-12">
                 <hr />
                 <div class="col-lg-3"></div>
-                <div class="col-lg-3" style="text-align: left">
-                    <button type="button" id="btnsave" class="btn btn-block btn-success" onclick="AddNew()">Save</button>
+                <div class="col-lg-3" style="text-align: center">
+                    <button type="button" id="btnsave" class="btn btn-block btn-info">Proceed</button>
+                    <%-- <button type="button" id="btnProceed" class="btn btn-block btn-info" onclick="AddOrder()" style="display:none">Proceed</button>--%>
                 </div>
                 <div class="col-lg-3" style="text-align: center">
                     <button type="button" id="btnCancel" class="btn btn-block btn-danger" onclick="redirect()">Cancel</button>
@@ -63,4 +64,10 @@
         </div>
     </section>
     <script src="ClientJS/OrderEntry.js"></script>
+    <input type="hidden" id="ID_Hidden" value="1" />
+      <script>
+        $(document).ready(function () {
+            $(".select2").select2();
+        });
+    </script>
 </asp:Content>
