@@ -1448,7 +1448,10 @@ function sendFile() {
     });
 }
 
-
+function GetIDCard()
+{
+    window.open('AgentID_Card.aspx', '_blank');
+}
 
 
 

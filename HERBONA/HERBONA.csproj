@@ -145,6 +145,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AgentID_Card.aspx" />
+    <Content Include="ClientJS\AgentID_Card.js" />
+    <Content Include="ClientJS\OrderProcess.js" />
+    <Content Include="Images\new_Indian_currency.png" />
+    <Content Include="index.html" />
+    <Content Include="OrderProcess.aspx" />
     <Content Include="ShippingDetails.aspx" />
     <Content Include="bin\Microsoft.AI.Agent.Intercept.dll" />
     <Content Include="bin\Microsoft.AI.DependencyCollector.dll" />
@@ -1298,6 +1304,20 @@
     </Compile>
     <Compile Include="AddressList.aspx.designer.cs">
       <DependentUpon>AddressList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgentID_Card.aspx.cs">
+      <DependentUpon>AgentID_Card.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgentID_Card.aspx.designer.cs">
+      <DependentUpon>AgentID_Card.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderProcess.aspx.cs">
+      <DependentUpon>OrderProcess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderProcess.aspx.designer.cs">
+      <DependentUpon>OrderProcess.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShippingDetails.aspx.cs">
       <DependentUpon>ShippingDetails.aspx</DependentUpon>

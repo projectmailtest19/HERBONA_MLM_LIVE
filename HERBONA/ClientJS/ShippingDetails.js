@@ -217,7 +217,9 @@ function LoadAjaxCompany(ht, obj, Req, url) {
                         //setTimeout(function () {
                         
                         //}, 2000);
-                        alert(json.ID);
+                        var bt = btoa("id=" + json.ID + "");
+                        window.location = 'OrderProcess.aspx?' + bt;
+                        //alert(json.ID);
                     }
                     else if (json.CustomErrorState == "1") {
                         swal("", "Something went wrong , please try again later !!", "error");
