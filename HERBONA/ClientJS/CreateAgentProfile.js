@@ -35,6 +35,7 @@ $(document).ready(function () {
         LoadAjaxContact(ht, obj, Req, url);
     }
     else {
+        $("#btnGetIDCard").show();
         $("#liSponsor").removeClass('disabledLI');
         $("#liBank").removeClass('disabledLI');
         $("#likyc").removeClass('disabledLI');
@@ -478,7 +479,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
                             }, 1000);
                             setTimeout(function () {
                                 $("#cmbDistrict").val(item.district_id).trigger('change');
-                            }, 1500);
+                            }, 2000);
                             $("#txtAddress").val(item.Address);
                             $("#txtPinCode").val(item.pincode);
                             $('#selectimg').attr('src', "");
@@ -784,6 +785,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
                         });
                         //function () {
                         //alert(json.ID);
+                        $("#btnGetIDCard").show();
                         $("#ID_hidden_BankDetails").val(json.ID);
                         $("#btnAgentBankDetails").text('Update');
                         //});
@@ -1450,7 +1452,10 @@ function sendFile() {
 
 function GetIDCard()
 {
-    window.open('AgentID_Card.aspx', '_blank');
+    //alert($('#ID_hidden').val());
+    var bt = btoa("cid=" + $('#ID_hidden').val() + "");
+  //  window.location = 'AgentID_Card.aspx?' + bt;
+   window.open('AgentID_Card.aspx?'+ bt, '_blank');
 }
 
 
