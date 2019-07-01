@@ -716,7 +716,14 @@ function LoadAjaxContact(ht, obj, Req, url) {
                         $("#btnAgentSponsorDetails").text('Update');
                         //});
 
-
+                        setTimeout(function () {
+                            Req = 'FillSponsorDetails';
+                            obj = "Fill";
+                            url = "CreateAgentProfile.aspx/ContactDetails";
+                            ht = {};
+                            ht["Contact_id"] = $("#ID_hidden").val();
+                            LoadAjaxContact(ht, obj, Req, url);
+                        }, 2000);
                     }
                     else if (json.CustomErrorState == "1") {
                         swal("", "Something went wrong , please try again later !!", "error");
@@ -1089,6 +1096,11 @@ function AddNewAgentSponsorDetails()
             //ht["Placed_MemberID"] = $("#txtPlaced_MemberID").val();
             //ht["Placed_Team"] = $("#txtPlaced_Team").val();
             ht["SplitSponsor_ID"] = $("#cmbSplitSponsor_Name :selected").val();
+
+            if ($("#cmbSplitSponsor_Name :selected").val() == undefined)
+            {
+                ht["SplitSponsor_ID"] = 0;
+            }
 
             if ($("#ID_hidden").val() == "") {
                 swal("", "Please Fill Agent Personal Details First", "error");   

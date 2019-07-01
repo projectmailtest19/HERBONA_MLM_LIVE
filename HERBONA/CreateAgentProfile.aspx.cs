@@ -90,7 +90,10 @@ namespace SmartTrucking
                             _CountryModel.Clear();
                            
                             ht_param.Clear();
-                            ht_param.Add("@Contact_id", ht["Contact_id"].ToString());
+                            if (ht["Contact_id"] != null)
+                            {
+                                ht_param.Add("@Contact_id", ht["Contact_id"].ToString());
+                            }
                             ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
                             ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
                             ds = db.SysFetchDataInDataSet("[GetAgent_Sponsor_Details]", ht_param);

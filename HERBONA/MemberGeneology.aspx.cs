@@ -18,26 +18,27 @@ namespace HERBONA
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            tvwItems.Nodes.Clear();
-            BindRoots(9999);
-
-
-            string s = ConfigurationSettings.AppSettings["con"];
-            con = new SqlConnection(s);
-
-
-            string sql1 = "select ASSID,NAME from TBL_ASSOCIATEMASTER";
-            da = new SqlDataAdapter(sql1, con);
-            ds = new DataSet();
-            da.Fill(ds, "TBL_ASSOCIATEMASTER");
-            con.Close();
             if (Page.IsPostBack != true)
             {
-                ddlassid.DataSource = ds.Tables["TBL_ASSOCIATEMASTER"];
-                ddlassid.DataTextField = "ASSID";
+                tvwItems.Nodes.Clear();
+                BindRoots(3);
+
+
+                string s = ConfigurationSettings.AppSettings["truckingCon"];
+                con = new SqlConnection(s);
+
+
+                string sql1 = "select ID,NAME from CONTACT";
+                da = new SqlDataAdapter(sql1, con);
+                ds = new DataSet();
+                da.Fill(ds, "CONTACT");
+                con.Close();
+
+                ddlassid.DataSource = ds.Tables["CONTACT"];
+                ddlassid.DataTextField = "ID";
                 ddlassid.DataBind();
 
-                ddlname.DataSource = ds.Tables["TBL_ASSOCIATEMASTER"];
+                ddlname.DataSource = ds.Tables["CONTACT"];
                 ddlname.DataTextField = "NAME";
                 ddlname.DataBind();
             }
@@ -47,7 +48,7 @@ namespace HERBONA
             try
             {
 
-                string str = "SELECT r.ASSID,a.NAME FROM TBL_ASSOCIATEMASTER AS a inner join TBL_RELATIONMASTER AS r on a.ASSID=r.ASSID where r.ASSID=" + assid;
+                string str = "SELECT ID,NAME FROM CONTACT where ID=" + assid;
                 SqlDataReader reader = GetData(str);
                 while (reader.Read())
                 {
@@ -69,7 +70,7 @@ namespace HERBONA
         private void BindChilds(TreeNode node, string parentNodeID)
         {
 
-            string str = "SELECT r.ASSID,a.NAME,r.SIDE FROM TBL_ASSOCIATEMASTER AS a inner join TBL_RELATIONMASTER AS r on a.ASSID=r.ASSID where r.REFERENCE_ID=" + parentNodeID;
+            string str = "SELECT a.ID,a.NAME,r.Placed_Team FROM CONTACT AS a inner join Agent_Sponsor_Details AS r on a.ID=r.Contact_id where r.Sponsor_ID=" + parentNodeID;
             SqlDataReader reader = GetData(str);
             int i = 0;
             while (reader.Read())
@@ -99,7 +100,7 @@ namespace HERBONA
 
         private SqlDataReader GetData(string commandText)
         {
-            string s = ConfigurationSettings.AppSettings["con"];
+            string s = ConfigurationSettings.AppSettings["truckingCon"];
             SqlConnection con = new SqlConnection(s);
             con.Open();
             SqlCommand sqlcmd = new SqlCommand(commandText, con);
@@ -110,13 +111,13 @@ namespace HERBONA
         {
             txt_associateid.Text = ddlassid.SelectedValue.ToString();
             DataTable table = new DataTable();
-            string s = ConfigurationSettings.AppSettings["con"];
+            string s = ConfigurationSettings.AppSettings["truckingCon"];
             con = new SqlConnection(s);
             if (ddlassid.SelectedItem.Text == "All")
             {
                 //session login ID
                 tvwItems.Nodes.Clear();
-                BindRoots(9999);
+                BindRoots(3);
 
             }
             else
@@ -131,21 +132,21 @@ namespace HERBONA
         protected void ddlname_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable table = new DataTable();
-            string s = ConfigurationSettings.AppSettings["con"];
+            string s = ConfigurationSettings.AppSettings["truckingCon"];
             con = new SqlConnection(s);
             if (ddlname.SelectedItem.Text == "All")
             {
                 //session login ID
                 tvwItems.Nodes.Clear();
-                BindRoots(9999);
+                BindRoots(3);
             }
             else
             {
-                string sql = "SELECT ASSID FROM TBL_ASSOCIATEMASTER where NAME='" + ddlname.SelectedItem + "'";
+                string sql = "SELECT ID FROM CONTACT where NAME='" + ddlname.SelectedItem + "'";
                 ds = new DataSet();
                 da = new SqlDataAdapter(sql, con);
-                da.Fill(ds, "TBL_ASSOCIATEMASTER");
-                int i = Int32.Parse(ds.Tables["TBL_ASSOCIATEMASTER"].Rows[0]["ASSID"].ToString());
+                da.Fill(ds, "CONTACT");
+                int i = Int32.Parse(ds.Tables["CONTACT"].Rows[0]["ID"].ToString());
                 tvwItems.Nodes.Clear();
                 BindRoots(i);
 

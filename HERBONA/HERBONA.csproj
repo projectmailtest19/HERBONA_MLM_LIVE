@@ -214,6 +214,17 @@
     <Content Include="ShippingCharges_List.aspx" />
     <Content Include="ItemDetails_List.aspx" />
     <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="TreeImages\0.jpg" />
+    <Content Include="TreeImages\1.jpg" />
+    <Content Include="TreeImages\5.png" />
+    <Content Include="TreeImages\6.png" />
+    <Content Include="TreeImages\backward-48.png" />
+    <Content Include="TreeImages\G.jpg" />
+    <Content Include="TreeImages\level1.png" />
+    <Content Include="TreeImages\Level2.png" />
+    <Content Include="TreeImages\level3.png" />
+    <Content Include="TreeImages\R.jpg" />
+    <Content Include="TreeImages\Treeview_107.jpg" />
     <Content Include="Wallet_List.aspx" />
     <Content Include="VacationTour_List.aspx" />
     <Content Include="gst_list.aspx" />

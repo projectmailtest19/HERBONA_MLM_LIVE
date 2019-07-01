@@ -18,7 +18,7 @@ public class TreeShow
     int status;
 	public TreeShow()
 	{      
-        string s = ConfigurationSettings.AppSettings["con"];
+        string s = ConfigurationSettings.AppSettings["truckingCon"];
         con = new SqlConnection(s);
 	}
     string msg;
@@ -28,23 +28,23 @@ public class TreeShow
         Left = "";
         Right = "";     
         con.Open();
-        string sql = "select ASSID from TBL_RELATIONMASTER where REFERENCE_ID=" + apid + " and SIDE='L'";
+        string sql = "select Contact_id from Agent_Sponsor_Details where Sponsor_ID=" + apid + " and Placed_Team='L'";
         da = new SqlDataAdapter(sql, con);
         ds = new DataSet();
-        da.Fill(ds, "TBL_RELATIONMASTER");        
-        if (ds.Tables["TBL_RELATIONMASTER"].Rows.Count > 0)
+        da.Fill(ds, "Agent_Sponsor_Details");        
+        if (ds.Tables["Agent_Sponsor_Details"].Rows.Count > 0)
         {
-            Left = ds.Tables["TBL_RELATIONMASTER"].Rows[0]["ASSID"].ToString();
+            Left = ds.Tables["Agent_Sponsor_Details"].Rows[0]["Contact_id"].ToString();
         }
         
-        string sql1 = "select ASSID from TBL_RELATIONMASTER where REFERENCE_ID=" + apid + " and SIDE='R'";
+        string sql1 = "select Contact_id from Agent_Sponsor_Details where Sponsor_ID=" + apid + " and Placed_Team='R'";
         da = new SqlDataAdapter(sql1, con);
         ds = new DataSet();
-        da.Fill(ds, "TBL_RELATIONMASTER");
+        da.Fill(ds, "Agent_Sponsor_Details");
         con.Close();
-        if (ds.Tables["TBL_RELATIONMASTER"].Rows.Count > 0)
+        if (ds.Tables["Agent_Sponsor_Details"].Rows.Count > 0)
         {
-            Right = ds.Tables["TBL_RELATIONMASTER"].Rows[0]["ASSID"].ToString();
+            Right = ds.Tables["Agent_Sponsor_Details"].Rows[0]["Contact_id"].ToString();
         }        
 
         con.Close();
@@ -53,7 +53,7 @@ public class TreeShow
     public DataTable fillUserDetail(string apid)
     {
         DataTable ufill = new DataTable();
-        da = new SqlDataAdapter("select * from TBL_RELATIONMASTER where ASSID=" + apid, con);
+        da = new SqlDataAdapter("select * from Agent_Sponsor_Details where Contact_id=" + apid, con);
         da.Fill(ufill);
         return ufill;
 
