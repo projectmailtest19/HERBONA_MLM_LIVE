@@ -88,6 +88,44 @@ namespace SmartTrucking
                         if (Data == "Sponsor")
                         {
                             _CountryModel.Clear();
+                           
+                            ht_param.Clear();
+                            ht_param.Add("@Contact_id", ht["Contact_id"].ToString());
+                            ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                            ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                            ds = db.SysFetchDataInDataSet("[GetAgent_Sponsor_Details]", ht_param);
+                            if (ds.Tables[0].Rows.Count>0)
+                            {
+                                ds.Clear();
+                                ht_param.Clear();                               
+                                ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                                ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                                ds = db.SysFetchDataInDataSet("[GetALLSponsor]", ht_param);                               
+                            }
+                            else
+                            {
+                                ds.Clear();
+                                ht_param.Clear();                             
+                                ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
+                                ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
+                                ds = db.SysFetchDataInDataSet("[GetALLSponsor_FreeSide]", ht_param);
+                            }
+
+                            if (ds.Tables.Count > 0)
+                            {
+                                foreach (DataRow item in ds.Tables[0].Rows)
+                                {
+                                    CountryModel CountryModel_Detail = new CountryModel();
+                                    CountryModel_Detail.Name = item["NAME"].ToString();
+                                    CountryModel_Detail.COUNTRY_ID = Convert.ToInt32(item["ID"].ToString());
+                                    _CountryModel.Add(CountryModel_Detail);
+                                }
+                            }
+                            ReturnData["Sponsor"] = serializer.Serialize(_CountryModel);
+                        }
+                        if (Data == "SplitSponsor")
+                        {
+                            _CountryModel.Clear();
                             ht_param.Clear();
                             ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
                             ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
@@ -103,7 +141,7 @@ namespace SmartTrucking
                                     _CountryModel.Add(CountryModel_Detail);
                                 }
                             }
-                            ReturnData["Sponsor"] = serializer.Serialize(_CountryModel);
+                            ReturnData["SplitSponsor"] = serializer.Serialize(_CountryModel);
                         }
 
                         if (Data == "FillAddressProof")

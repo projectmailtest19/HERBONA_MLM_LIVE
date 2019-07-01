@@ -149,7 +149,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputName" class="col-sm-3 control-label">Sponsor Account No.<span class="reqstar">*</span></label>
+                                    <label for="inputName" class="col-sm-3 control-label">Sponsor Account No.</label>
 
                                     <div class="col-sm-9">
                                         <input id="txtSponsor_Account_No" class="form-control" type="text" placeholder="Sponsor Account No." disabled/>
@@ -169,13 +169,7 @@
                                         <input id="txtSponsor_Mobile_Number" class="form-control" type="text" placeholder="Sponsor Mobile Number" disabled/>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputCountry" class="col-sm-3 control-label">Placed Name</label>
-
-                                    <div class="col-sm-9">
-                                        <input id="txtPlaced_Name" class="form-control" type="text" placeholder="Placed Name" />
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group">
                                     <label for="inputState" class="col-sm-3 control-label">Placed MemberID</label>
 
@@ -183,15 +177,9 @@
                                         <input id="txtPlaced_MemberID" class="form-control" type="text" placeholder="Placed MemberID" disabled/>
                                     </div>
                                 </div>
+                                
                                 <div class="form-group">
-                                    <label for="inputState" class="col-sm-3 control-label">Placed Team</label>
-
-                                    <div class="col-sm-9">
-                                        <input id="txtPlaced_Team" class="form-control" type="text" placeholder="Placed Team" disabled/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputCountry" class="col-sm-3 control-label">Split Sponsor Name<span class="reqstar">*</span></label>
+                                    <label for="inputCountry" class="col-sm-3 control-label">Split Sponsor Name</label>
 
                                     <div class="col-sm-9">
                                         <select id="cmbSplitSponsor_Name" class="form-control select2" style="width: 100%;" data-placeholder="Select Split Sponsor">
@@ -202,6 +190,22 @@
                                 <div class="form-group">
                                     <div class="col-sm-offset-3 col-sm-9">
                                         <button type="button" id="btnAgentSponsorDetails" class="btn btn-success" onclick="AddNewAgentSponsorDetails()">Save</button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group"  style="visibility:hidden">
+                                    <label for="inputState" class="col-sm-3 control-label">Placed Team</label>
+
+                                    <div class="col-sm-9">
+                                        <input id="txtPlaced_Team" class="form-control" type="text" placeholder="Placed Team" disabled/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="visibility:hidden">
+                                    <label for="inputCountry" class="col-sm-3 control-label">Placed Name</label>
+
+                                    <div class="col-sm-9">
+                                        <input id="txtPlaced_Name" class="form-control" type="text" placeholder="Placed Name" />
                                     </div>
                                 </div>
                             </form>

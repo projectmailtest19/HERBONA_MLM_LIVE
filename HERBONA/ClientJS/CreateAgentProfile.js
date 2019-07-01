@@ -28,7 +28,7 @@ $(document).ready(function () {
         //$("#liBank").removeClass('disabledLI');
         //$("#likyc").removeClass('disabledLI');
         //$("#lirank").removeClass('disabledLI');
-        Req = 'Country@Sponsor';
+        Req = 'Country@Sponsor@SplitSponsor';
         obj = "Fill";
         url = "CreateAgentProfile.aspx/ContactDetails";
         ht = {};
@@ -42,7 +42,7 @@ $(document).ready(function () {
         $("#lirank").removeClass('disabledLI');
         $('#ID_hidden').val('' + cid);
         setTimeout(function () {
-            Req = 'Country@Sponsor@FillPersonalDetails@FillSponsorDetails@FillbankDetails@FillAddressProof@FillBankProof@FillPAN@FillApplication';
+            Req = 'Country@Sponsor@SplitSponsor@FillPersonalDetails@FillSponsorDetails@FillbankDetails@FillAddressProof@FillBankProof@FillPAN@FillApplication';
         obj = "Fill";
         url = "CreateAgentProfile.aspx/ContactDetails";
         ht = {};
@@ -444,11 +444,13 @@ function LoadAjaxContact(ht, obj, Req, url) {
                     $('#cmbSponsor_Name').append($('<option></option>'));
                     $.each(Sponsor, function (index, item) {
                         $('#cmbSponsor_Name').append($('<option></option>').val(item.COUNTRY_ID).html(item.Name));
-                    });
-
+                    });                    
+                }
+                if (Result.d.SplitSponsor != "" && Result.d.SplitSponsor != undefined) {
+                    var SplitSponsor = jQuery.parseJSON(Result.d.SplitSponsor);
                     $('#cmbSplitSponsor_Name').html('');
                     $('#cmbSplitSponsor_Name').append($('<option></option>'));
-                    $.each(Sponsor, function (index, item) {
+                    $.each(SplitSponsor, function (index, item) {
                         $('#cmbSplitSponsor_Name').append($('<option></option>').val(item.COUNTRY_ID).html(item.Name));
                     });
                 }
@@ -1116,14 +1118,7 @@ function validationcheck_SponsorDetails() {
         popupErrorMsg($("#cmbSponsor_Name"), "Please Select Sponsor.", 5);
         return false;
     }
-    if ($('#txtSponsor_Account_No').val() == "") {
-        popupErrorMsg($("#txtSponsor_Account_No"), "Sponsor Account Number is Required.", 5);
-        return false;
-    }
-    if ($('#cmbSplitSponsor_Name').val() == "") {
-        popupErrorMsg($("#cmbSplitSponsor_Name"), "Please Select Split Sponsor.", 5);
-        return false;
-    }
+    
     return true;
 }
 
