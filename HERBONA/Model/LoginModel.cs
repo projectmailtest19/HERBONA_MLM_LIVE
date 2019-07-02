@@ -71,3 +71,21 @@ public class loanpayment
     public string STATUS { get; set; }
     public string msg { get; set; }
 }
+public class DashboardDataModel
+{
+
+    public string personal_purchase_invoice { get; set; }
+    public string next_due_date_repurchase { get; set; }
+    public string current_payschedule_purchase { get; set; }
+    public string total_ftb { get; set; }
+    public string total_tlb { get; set; }
+    public string total_dplx { get; set; }
+    public string total_rab { get; set; }
+    public string car_travel_fund { get; set; }
+    public string house_fund { get; set; }
+    public string leadership_bonus { get; set; }
+    public string elite_ranking_bonus { get; set; }
+    public string retail_profit { get; set; }
+    public string current_rank_tittle { get; set; }
+    public string no_of_directs { get; set; }
+}

@@ -126,8 +126,8 @@
                             <img src="dist/img/Trucking_Logo.jpg" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>ELD Backoffice</p>
-                            <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+                            <p>HERBONA</p>
+                            <a href="home.aspx"><i class="fa fa-circle text-success"></i>DashBoard</a>
                         </div>
                     </div>
                     <ul class="sidebar-menu" id="dynamic_menu">

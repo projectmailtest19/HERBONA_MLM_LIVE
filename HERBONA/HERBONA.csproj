@@ -148,6 +148,7 @@
     <Content Include="AgentID_Card.aspx" />
     <Content Include="ClientCss\Idcard.css" />
     <Content Include="ClientJS\AgentID_Card.js" />
+    <Content Include="ClientJS\Home.js" />
     <Content Include="ClientJS\OrderProcess.js" />
     <Content Include="Images\new_Indian_currency.png" />
     <Content Include="index.html" />
