@@ -89,4 +89,20 @@ namespace SmartTrucking.Model
         public string Contact_id { get; set; }
         public string AppicationForm_URL { get; set; }
     }
+    public class AgentRankHistoryModel
+    {
+        public string Sno { get; set; }
+        public string Account_No { get; set; }
+        public string Name { get; set; }
+        public string Registration_Date { get; set; }
+        public string Designation { get; set; }
+        public string Designation_Date { get; set; }
+    }
+    public class NoOfDirectsModel
+    {
+        public string PBO_Account_No { get; set; }
+        public string Name { get; set; }
+        public string DOA { get; set; }
+        public string Position { get; set; }
+    }
 }

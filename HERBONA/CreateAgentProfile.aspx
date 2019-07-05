@@ -31,7 +31,7 @@
                             <input type="file" id="f_Uploadfile" />
                         </div>
 
-                        <button type="button" id="btnGetIDCard" class="btn btn-primary btn-block" onclick="GetIDCard()" style="margin-top: 50px; display:none;">Get Your ID Card</button>
+                        <button type="button" id="btnGetIDCard" class="btn btn-primary btn-block" onclick="GetIDCard()" style="margin-top: 50px; display: none;">Get Your ID Card</button>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -45,7 +45,7 @@
                     <ul class="nav nav-tabs">
 
                         <li class="active"><a href="#Personal_Details" data-toggle="tab">Personal Details</a></li>
-                        <li id="liSponsor" class="disabledLI" ><a href="#Sponsor_Details" data-toggle="tab">Sponsor Details</a></li>
+                        <li id="liSponsor" class="disabledLI"><a href="#Sponsor_Details" data-toggle="tab">Sponsor Details</a></li>
                         <li id="liBank" class="disabledLI"><a href="#Bank_Details" data-toggle="tab">Bank Details</a></li>
                         <li id="likyc" class="disabledLI"><a href="#KYC_Details" data-toggle="tab">KYC Details</a></li>
                         <li id="lirank" class="disabledLI"><a href="#Rank_History" data-toggle="tab">Rank History</a></li>
@@ -152,9 +152,9 @@
                                     <label for="inputName" class="col-sm-3 control-label">Sponsor Account No.</label>
 
                                     <div class="col-sm-9">
-                                        <input id="txtSponsor_Account_No" class="form-control" type="text" placeholder="Sponsor Account No." disabled/>
+                                        <input id="txtSponsor_Account_No" class="form-control" type="text" placeholder="Sponsor Account No." disabled />
                                     </div>
-                                </div>                              
+                                </div>
                                 <div class="form-group">
                                     <label for="inputMob" class="col-sm-3 control-label">Sponsor MemberID</label>
 
@@ -166,18 +166,18 @@
                                     <label for="inputemail" class="col-sm-3 control-label">Sponsor Mobile Number</label>
 
                                     <div class="col-sm-9">
-                                        <input id="txtSponsor_Mobile_Number" class="form-control" type="text" placeholder="Sponsor Mobile Number" disabled/>
+                                        <input id="txtSponsor_Mobile_Number" class="form-control" type="text" placeholder="Sponsor Mobile Number" disabled />
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="inputState" class="col-sm-3 control-label">Placed MemberID</label>
 
                                     <div class="col-sm-9">
-                                        <input id="txtPlaced_MemberID" class="form-control" type="text" placeholder="Placed MemberID" disabled/>
+                                        <input id="txtPlaced_MemberID" class="form-control" type="text" placeholder="Placed MemberID" disabled />
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="inputCountry" class="col-sm-3 control-label">Split Sponsor Name</label>
 
@@ -193,15 +193,15 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group"  style="visibility:hidden">
+                                <div class="form-group" style="visibility: hidden">
                                     <label for="inputState" class="col-sm-3 control-label">Placed Team</label>
 
                                     <div class="col-sm-9">
-                                        <input id="txtPlaced_Team" class="form-control" type="text" placeholder="Placed Team" disabled/>
+                                        <input id="txtPlaced_Team" class="form-control" type="text" placeholder="Placed Team" disabled />
                                     </div>
                                 </div>
 
-                                <div class="form-group" style="visibility:hidden">
+                                <div class="form-group" style="visibility: hidden">
                                     <label for="inputCountry" class="col-sm-3 control-label">Placed Name</label>
 
                                     <div class="col-sm-9">
@@ -411,7 +411,10 @@
                             <form class="form-horizontal">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                       
+                                        <!-- /.box-header -->
+                                        <div class="box-body" id="RankHistoryListDiv">
+                                        </div>
+                                        <!-- /.box-body -->
                                     </div>
                                 </div>
                             </form>
@@ -429,9 +432,9 @@
 
     </section>
     <input type="hidden" id="ID_hidden" class="form-control" />
-      <input type="hidden" id="ID_hidden_SponsorDetails" class="form-control" />
-     <input type="hidden" id="ID_hidden_BankDetails" class="form-control" />
-     <input type="hidden" id="ID_hidden_PANCardDetails" class="form-control" />
+    <input type="hidden" id="ID_hidden_SponsorDetails" class="form-control" />
+    <input type="hidden" id="ID_hidden_BankDetails" class="form-control" />
+    <input type="hidden" id="ID_hidden_PANCardDetails" class="form-control" />
     <input type="hidden" id="LogoPathPAN" />
     <input type="hidden" id="ID_hidden_ApplicationCardDetails" class="form-control" />
     <input type="hidden" id="LogoPathApplication" />

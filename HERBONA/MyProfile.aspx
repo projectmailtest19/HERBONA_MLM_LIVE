@@ -31,7 +31,7 @@
                             <input type="file" id="f_Uploadfile" />
                         </div>
 
-                        <button type="button" id="btnGetIDCard" class="btn btn-primary btn-block" onclick="GetIDCard()" style="margin-top: 50px;">Get Your ID Card</button>
+                        <button type="button" id="btnGetIDCard" class="btn btn-primary btn-block" onclick="GetIDCard()" style="margin-top: 50px; display: none;">Get Your ID Card</button>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -408,7 +408,10 @@
                             <form class="form-horizontal">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                       
+                                       <!-- /.box-header -->
+                                        <div class="box-body" id="RankHistoryListDiv">
+                                        </div>
+                                        <!-- /.box-body -->
                                     </div>
                                 </div>
                             </form>

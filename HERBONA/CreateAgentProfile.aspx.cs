@@ -36,6 +36,7 @@ namespace SmartTrucking
         static List<AgentPANListModel> _AgentPANListModel = new List<AgentPANListModel>();
         static List<AgentApplicationListModel> _AgentApplicationListModel = new List<AgentApplicationListModel>();
         static List<Sponsor_Details_Model> _Sponsor_Details_Model = new List<Sponsor_Details_Model>();
+        static List<AgentRankHistoryModel> _AgentRankHistoryModel = new List<AgentRankHistoryModel>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (HttpContext.Current.Session["Company_ID"] == null || HttpContext.Current.Session["Company_ID"] == "")
@@ -168,6 +169,30 @@ namespace SmartTrucking
                                   }).ToList();
                             }
                             ReturnData["FillAddressProof"] = serializer.Serialize(_AgentAddressProofListModel);
+                        }
+                        if (Data == "FillRankHistory")
+                        {
+                            _AgentRankHistoryModel.Clear();
+                            ht_param.Clear();
+                            ht_param.Add("@login_id", ht["Contact_id"].ToString());
+                            ht_param.Add("@company_id", HttpContext.Current.Session["Company_ID"].ToString());
+                            ht_param.Add("@branch_id", HttpContext.Current.Session["Branch_ID"].ToString());
+                            ds = db.SysFetchDataInDataSet("[Get_Rank_History]", ht_param);
+
+                            if (ds.Tables.Count > 0)
+                            {
+                                _AgentRankHistoryModel = ds.Tables[0].AsEnumerable()
+                                  .Select(row => new AgentRankHistoryModel
+                                  {
+                                      Sno = row["Sno"].ToString(),
+                                      Account_No = row["Account_No"].ToString(),
+                                      Name = row["Name"].ToString(),
+                                      Registration_Date = row["Registration_Date"].ToString(),
+                                      Designation = row["Designation"].ToString(),
+                                      Designation_Date = row["Designation_Date"].ToString()
+                                  }).ToList();
+                            }
+                            ReturnData["FillRankHistory"] = serializer.Serialize(_AgentRankHistoryModel);
                         }
                         if (Data == "FillBankProof")
                         {

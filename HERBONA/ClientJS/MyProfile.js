@@ -18,13 +18,14 @@ $(document).ready(function () {
         LoadAjaxContact(ht, obj, Req, url);
     }
     else {
+        $("#btnGetIDCard").show();
         $("#liSponsor").removeClass('disabledLI');
         $("#liBank").removeClass('disabledLI');
         $("#likyc").removeClass('disabledLI');
         $("#lirank").removeClass('disabledLI');
         $('#ID_hidden').val('' + cid);
         setTimeout(function () {
-            Req = 'Country@Sponsor@FillPersonalDetails@FillSponsorDetails@FillbankDetails@FillAddressProof@FillBankProof@FillPAN@FillApplication';
+            Req = 'Country@Sponsor@FillPersonalDetails@FillSponsorDetails@FillbankDetails@FillAddressProof@FillBankProof@FillPAN@FillApplication@FillRankHistory';
         obj = "Fill";
         url = "MyProfile.aspx/ContactDetails";
         ht = {};
@@ -407,7 +408,24 @@ function LoadAjaxContact(ht, obj, Req, url) {
             }
             if (obj == "Fill") {
 
-               
+                if (Result.d.FillRankHistory != "" && Result.d.FillRankHistory != undefined) {
+                    var data = jQuery.parseJSON(Result.d.FillRankHistory);
+                    var table = '<table id="RankHistoryList" class="table table-bordered table-striped">';
+                    table = table + '<thead><tr><th>Sno</th><th>AccountNo</th><th>Name</th><th>Registration Date</th><th>Designation</th><th>Designation Date</th></tr></thead> <tbody>';
+                    $.each(data, function (i, item) {
+                        table = table + "<tr><td>" + item.Sno +
+                                        "</td><td>" + item.Account_No +
+                                        "</td><td>" + item.Name +
+                                        "</td><td>" + item.Registration_Date +
+                                        "</td><td>" + item.Designation +
+                                        "</td><td>" + item.Designation_Date +
+                                        "</td></tr>"
+                    });
+                    document.getElementById("RankHistoryListDiv").innerHTML = table + '</tbody></table>';
+                    setTimeout(function () {
+                        ShortTable('#RankHistoryList');
+                    }, 100);
+                }
                 if (Result.d.Country != "" && Result.d.Country != undefined) {
                     var Country = jQuery.parseJSON(Result.d.Country);
                     $('#cmbCountry').html('');
@@ -765,6 +783,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
                         });
                         //function () {
                         //alert(json.ID);
+                        $("#btnGetIDCard").show();
                         $("#ID_hidden_BankDetails").val(json.ID);
                         $("#btnAgentBankDetails").text('Update');
                         //});
@@ -1431,7 +1450,26 @@ function sendFile() {
 }
 
 
-
+function GetIDCard() {
+    //alert($('#ID_hidden').val());
+    var bt = btoa("cid=" + $('#ID_hidden').val() + "");
+    //  window.location = 'AgentID_Card.aspx?' + bt;
+    window.open('AgentID_Card.aspx?' + bt, '_blank');
+}
+function ShortTable(Tbl) {
+    $(Tbl).DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": false,
+        "info": true,
+        "autoWidth": false,
+        dom: 'C<"clear">lfrtip',
+        colVis: {
+            exclude: [0]
+        }
+    });
+}
 
 
 

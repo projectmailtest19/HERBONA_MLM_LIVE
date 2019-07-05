@@ -146,8 +146,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgentID_Card.aspx" />
+    <Content Include="MyDirects.aspx" />
     <Content Include="ClientCss\Idcard.css" />
     <Content Include="ClientJS\AgentID_Card.js" />
+    <Content Include="ClientJS\MyDirects.js" />
     <Content Include="ClientJS\Home.js" />
     <Content Include="ClientJS\OrderProcess.js" />
     <Content Include="Images\new_Indian_currency.png" />
@@ -1324,6 +1326,13 @@
     </Compile>
     <Compile Include="AgentID_Card.aspx.designer.cs">
       <DependentUpon>AgentID_Card.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyDirects.aspx.cs">
+      <DependentUpon>MyDirects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyDirects.aspx.designer.cs">
+      <DependentUpon>MyDirects.aspx</DependentUpon>
     </Compile>
     <Compile Include="OrderProcess.aspx.cs">
       <DependentUpon>OrderProcess.aspx</DependentUpon>
