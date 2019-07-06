@@ -102,7 +102,7 @@ namespace SmartTrucking.Model
     {
         public string PBO_Account_No { get; set; }
         public string Name { get; set; }
-        public string DOA { get; set; }
+        public string RegistrationDate { get; set; }
         public string Position { get; set; }
     }
 }

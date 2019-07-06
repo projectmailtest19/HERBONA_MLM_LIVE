@@ -43,11 +43,11 @@ function LoadAjaxCompany(ht, obj, Req, url) {
             if (obj == "Fill") {
                 var data = jQuery.parseJSON(Result.d.AgentData);
                 var table = '<table id="ContactList" class="table table-bordered table-striped">';
-                table = table + '<thead><tr><th>PBO Account No</th><th>Name</th><th>DOA</th><th>Position</th></tr></thead> <tbody>';
+                table = table + '<thead><tr><th>Account No / Member ID</th><th>Name</th><th>Registration Date</th><th>Position</th></tr></thead> <tbody>';
                 $.each(data, function (i, item) {
                     table = table + "<tr><td>" + item.PBO_Account_No +
                                     "</td><td>" + item.Name +
-                                    "</td><td>" + item.DOA +
+                                    "</td><td>" + item.RegistrationDate +
                                     "</td><td>" + item.Position +
                                     "</td></tr>"
                 });

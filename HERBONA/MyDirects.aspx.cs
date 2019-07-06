@@ -61,7 +61,7 @@ namespace SmartTrucking
                           {
                               PBO_Account_No = row["PBO_Account_No"].ToString(),
                               Name = row["Name"].ToString(),
-                              DOA = row["DOA"].ToString(),
+                              RegistrationDate = row["RegistrationDate"].ToString(),
                               Position = row["Position"].ToString()
                           }).ToList();
                     }
