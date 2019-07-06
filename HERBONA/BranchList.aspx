@@ -13,10 +13,10 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Branch List</h3>
-                        <div style="float: right;">     
+                        <%--<div style="float: right;">     
                             <!-- Trigger the modal with a button -->
                             <button type="button" class="btn btn-block btn-primary" onclick="redirect()" id="btn_create">CREATE BRANCH</button>
-                        </div>
+                        </div>--%>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body" id="companyListDiv">

@@ -58,7 +58,7 @@ function LoadAjaxCompany(ht, obj, Req, url) {
             if (obj == "Fill") {
                 var data = jQuery.parseJSON(Result.d.CompanyData);
                 var table = '<table id="companyList" class="table table-bordered table-striped">';
-                table = table + '<thead><tr><th style="display:none">Company ID</th><th>Company Name</th><th>CEO Name</th><th>Phone#</th><th>Email ID</th><th>Address</th><th class=' + _allowedit + '>Edit</th><th class=' + _allowedit + '>Profile</th><th  class=' + _allowdelete + '>Status</th><th>Proceed</th></tr></thead> <tbody>';
+                table = table + '<thead><tr><th style="display:none">Company ID</th><th>Company Name</th><th>CEO Name</th><th>Phone#</th><th>Email ID</th><th>Address</th><th class=' + _allowedit + '>Edit</th><th class=' + _allowedit + '>Profile</th><th  class=' + _allowdelete + '>Status</th><th style="display:none">Proceed</th></tr></thead> <tbody>';
                 $.each(data, function (i, item) {
                     if (item.Status == 1) {
                         statusclass = 'btn-success';
@@ -78,7 +78,7 @@ function LoadAjaxCompany(ht, obj, Req, url) {
                                     "<td class='Edit " + _allowedit + "' align='center'> <button type='button' onclick=CompanyProfileEdit(" + item.ID + ") class='btn btn-default btn-sm' id='btnedit' > <span class='glyphicon glyphicon-edit'></span> </button></td>" +
                                     "</td>" +
                                     "<td class='Edit " + _allowdelete + "' align='center'> <button type='button' onclick=DeleteCompany(" + item.ID + ") class='btn btn-default btn-sm' id='btndelete' > <span class='glyphicon glyphicon-trash'></span> </button></td>" +
-                                    "<td> <input class='btn-success btn ' onclick=Proceed(" + item.ID + ") type='button'  value='Proceed ' /></td></tr>"
+                                    "<td style='display:none'> <input class='btn-success btn ' onclick=Proceed(" + item.ID + ") type='button'  value='Proceed ' /></td></tr>"
                 });
                 document.getElementById("companyListDiv").innerHTML = table + '</tbody></table>';
                 setTimeout(function () {

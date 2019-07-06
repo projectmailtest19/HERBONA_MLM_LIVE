@@ -9,9 +9,9 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Company List</h3>
-                        <div style="float: right;">                           
+                       <%-- <div style="float: right;">                           
                             <button type="button" class="btn btn-block btn-primary" onclick="redirect()" id="btn_create">CREATE COMPANY</button>
-                        </div>
+                        </div>--%>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body" id="companyListDiv">
