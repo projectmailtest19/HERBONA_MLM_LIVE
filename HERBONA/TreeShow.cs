@@ -28,34 +28,34 @@ public class TreeShow
         Left = "";
         Right = "";     
         con.Open();
-        string sql = "select Contact_id from Agent_Sponsor_Details where Sponsor_ID=" + apid + " and Placed_Team='L'";
+        string sql = "select c.[Placed_MemberID] from Agent_Sponsor_Details as c left join Agent_Sponsor_Details as a on c.Sponsor_ID = a.Contact_id where a.[Placed_MemberID] ='" + apid + "' and c.Placed_Team='L'";
         da = new SqlDataAdapter(sql, con);
         ds = new DataSet();
         da.Fill(ds, "Agent_Sponsor_Details");        
         if (ds.Tables["Agent_Sponsor_Details"].Rows.Count > 0)
         {
-            Left = ds.Tables["Agent_Sponsor_Details"].Rows[0]["Contact_id"].ToString();
+            Left = ds.Tables["Agent_Sponsor_Details"].Rows[0]["Placed_MemberID"].ToString();
         }
         
-        string sql1 = "select Contact_id from Agent_Sponsor_Details where Sponsor_ID=" + apid + " and Placed_Team='R'";
+        string sql1 = "select c.[Placed_MemberID] from Agent_Sponsor_Details as c left join Agent_Sponsor_Details as a on c.Sponsor_ID = a.Contact_id where a.[Placed_MemberID] ='" + apid + "' and c.Placed_Team='R'";
         da = new SqlDataAdapter(sql1, con);
         ds = new DataSet();
         da.Fill(ds, "Agent_Sponsor_Details");
         con.Close();
         if (ds.Tables["Agent_Sponsor_Details"].Rows.Count > 0)
         {
-            Right = ds.Tables["Agent_Sponsor_Details"].Rows[0]["Contact_id"].ToString();
+            Right = ds.Tables["Agent_Sponsor_Details"].Rows[0]["Placed_MemberID"].ToString();
         }        
 
         con.Close();
     }
 
-    public DataTable fillUserDetail(string apid)
-    {
-        DataTable ufill = new DataTable();
-        da = new SqlDataAdapter("select * from Agent_Sponsor_Details where Contact_id=" + apid, con);
-        da.Fill(ufill);
-        return ufill;
+    //public DataTable fillUserDetail(string apid)
+    //{
+    //    DataTable ufill = new DataTable();
+    //    da = new SqlDataAdapter("select * from Agent_Sponsor_Details where Contact_id=" + apid, con);
+    //    da.Fill(ufill);
+    //    return ufill;
 
-    }
+    //}
 }

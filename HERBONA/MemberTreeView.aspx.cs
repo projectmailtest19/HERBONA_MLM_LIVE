@@ -25,11 +25,32 @@ namespace HERBONA
         {
             if (!IsPostBack)
             {
-                detail("3");
-                Lb1.Text = "3";
+                //detail("3");
+                //Lb1.Text = "3";
+
+                string str = "SELECT [Placed_MemberID],c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id  where c.ID=" + Convert.ToInt32(HttpContext.Current.Session["Login_user_ID"].ToString());
+                SqlDataReader reader = GetData(str);
+                while (reader.Read())
+                {
+                    string p = reader[0].ToString();
+
+                    detail(p);
+                    Lb1.Text = p;
+                }
+                reader.Close();
+
 
             }
 
+        }
+        private SqlDataReader GetData(string commandText)
+        {
+            string s = ConfigurationSettings.AppSettings["truckingCon"];
+            SqlConnection con = new SqlConnection(s);
+            con.Open();
+            SqlCommand sqlcmd = new SqlCommand(commandText, con);
+            SqlDataReader dr = sqlcmd.ExecuteReader();
+            return dr;
         }
         protected void Lb1_Click(object sender, EventArgs e)
         {
@@ -96,7 +117,7 @@ namespace HERBONA
                 con.Open();
                 Lb1.Text = usr.ToString();
                 //LBL_Name.Text = usr.ToString();
-                string sql0 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + Lb1.Text;
+                string sql0 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + Lb1.Text + "'";
                 da = new SqlDataAdapter(sql0, con);
                 ds = new DataSet();
                 da.Fill(ds, "Agent_Sponsor_Details");
@@ -116,7 +137,7 @@ namespace HERBONA
                 {
                     i1.Src = "../TreeImages/0.jpg";
                 }
-                string sql00 = "select NAME from CONTACT where ID=" + Lb1.Text;
+                string sql00 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + Lb1.Text + "'";
                 da = new SqlDataAdapter(sql00, con);
                 ds = new DataSet();
                 da.Fill(ds, "CONTACT");
@@ -138,7 +159,7 @@ namespace HERBONA
 
 
 
-                    string sql1 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + l2;
+                    string sql1 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + l2 + "'";
                     da = new SqlDataAdapter(sql1, con);
                     ds = new DataSet();
                     da.Fill(ds, "Agent_Sponsor_Details");
@@ -158,7 +179,7 @@ namespace HERBONA
                     {
                         i2.Src = "../TreeImages/0.jpg";
                     }
-                    string sql22 = "select NAME from CONTACT where ID=" + l2;
+                    string sql22 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + l2 + "'";
                     da = new SqlDataAdapter(sql22, con);
                     ds = new DataSet();
                     da.Fill(ds, "CONTACT");
@@ -175,7 +196,7 @@ namespace HERBONA
                     {
                         Lb4L.Visible = true;
                         Lb4L.Text = l4;
-                        string sql4 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + l4;
+                        string sql4 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + l4 + "'";
                         da = new SqlDataAdapter(sql4, con);
                         ds = new DataSet();
                         da.Fill(ds, "Agent_Sponsor_Details");
@@ -195,7 +216,7 @@ namespace HERBONA
                         {
                             i4.Src = "../TreeImages/0.jpg";
                         }
-                        string sql23 = "select NAME from CONTACT where ID=" + l4;
+                        string sql23 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + l4 + "'";
                         da = new SqlDataAdapter(sql23, con);
                         ds = new DataSet();
                         da.Fill(ds, "CONTACT");
@@ -211,7 +232,7 @@ namespace HERBONA
                         {
                             Lb8L.Visible = true;
                             Lb8L.Text = l8;
-                            string sql8 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + l8;
+                            string sql8 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + l8 + "'";
                             da = new SqlDataAdapter(sql8, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -231,7 +252,7 @@ namespace HERBONA
                             {
                                 i8.Src = "../TreeImages/0.jpg";
                             }
-                            string sql24 = "select NAME from CONTACT where ID=" + l8;
+                            string sql24 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + l8 + "'";
                             da = new SqlDataAdapter(sql24, con);
                             ds = new DataSet();
                             da.Fill(ds, "CONTACT");
@@ -245,7 +266,7 @@ namespace HERBONA
                         {
                             Lb9R.Visible = true;
                             Lb9R.Text = r9;
-                            string sql9 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + r9;
+                            string sql9 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + r9 + "'";
                             da = new SqlDataAdapter(sql9, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -265,7 +286,7 @@ namespace HERBONA
                             {
                                 i9.Src = "../TreeImages/0.jpg";
                             }
-                            string sql25 = "select NAME from CONTACT where ID=" + r9;
+                            string sql25 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + r9 + "'";
                             da = new SqlDataAdapter(sql25, con);
                             ds = new DataSet();
                             da.Fill(ds, "CONTACT");
@@ -281,7 +302,7 @@ namespace HERBONA
                     {
                         Lb5R.Visible = true;
                         Lb5R.Text = r5;
-                        string sql5 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + r5;
+                        string sql5 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + r5 + "'";
                         da = new SqlDataAdapter(sql5, con);
                         ds = new DataSet();
                         da.Fill(ds, "Agent_Sponsor_Details");
@@ -301,7 +322,7 @@ namespace HERBONA
                         {
                             i5.Src = "../TreeImages/0.jpg";
                         }
-                        string sql26 = "select NAME from CONTACT where ID=" + r5;
+                        string sql26 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + r5 + "'";
                         da = new SqlDataAdapter(sql26, con);
                         ds = new DataSet();
                         da.Fill(ds, "CONTACT");
@@ -317,7 +338,7 @@ namespace HERBONA
                         {
                             Lb10L.Visible = true;
                             Lb10L.Text = l10;
-                            string sql10 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + l10;
+                            string sql10 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + l10 + "'";
                             da = new SqlDataAdapter(sql10, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -337,7 +358,7 @@ namespace HERBONA
                             {
                                 i10.Src = "../TreeImages/0.jpg";
                             }
-                            string sql27 = "select NAME from CONTACT where ID=" + l10;
+                            string sql27 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + l10 + "'";
                             da = new SqlDataAdapter(sql27, con);
                             ds = new DataSet();
                             da.Fill(ds, "CONTACT");
@@ -352,7 +373,7 @@ namespace HERBONA
                         {
                             Lb11R.Visible = true;
                             Lb11R.Text = r11;
-                            string sql11 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + r11;
+                            string sql11 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + r11 + "'";
                             da = new SqlDataAdapter(sql11, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -372,7 +393,7 @@ namespace HERBONA
                             {
                                 i11.Src = "../TreeImages/0.jpg";
                             }
-                            string sql28 = "select NAME from CONTACT where ID=" + r11;
+                            string sql28 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + r11 + "'";
                             da = new SqlDataAdapter(sql28, con);
                             ds = new DataSet();
                             da.Fill(ds, "CONTACT");
@@ -390,7 +411,7 @@ namespace HERBONA
                     Lb3R.Text = r3;
 
 
-                    string sql3 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + r3;
+                    string sql3 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + r3 + "'";
                     da = new SqlDataAdapter(sql3, con);
                     ds = new DataSet();
                     da.Fill(ds, "Agent_Sponsor_Details");
@@ -410,7 +431,7 @@ namespace HERBONA
                     {
                         i3.Src = "../TreeImages/0.jpg";
                     }
-                    string sql29 = "select NAME from CONTACT where ID=" + r3;
+                    string sql29 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + r3 + "'";
                     da = new SqlDataAdapter(sql29, con);
                     ds = new DataSet();
                     da.Fill(ds, "CONTACT");
@@ -427,7 +448,7 @@ namespace HERBONA
                     {
                         Lb6L.Visible = true;
                         Lb6L.Text = l6;
-                        string sql6 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + l6;
+                        string sql6 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + l6 + "'";
                         da = new SqlDataAdapter(sql6, con);
                         ds = new DataSet();
                         da.Fill(ds, "Agent_Sponsor_Details");
@@ -447,7 +468,7 @@ namespace HERBONA
                         {
                             i6.Src = "../TreeImages/0.jpg";
                         }
-                        string sql30 = "select NAME from CONTACT where ID=" + l6;
+                        string sql30 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + l6 + "'";
                         da = new SqlDataAdapter(sql30, con);
                         ds = new DataSet();
                         da.Fill(ds, "CONTACT");
@@ -465,7 +486,7 @@ namespace HERBONA
                         {
                             Lb12L.Visible = true;
                             Lb12L.Text = l12;
-                            string sql12 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + l12;
+                            string sql12 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + l12 + "'";
                             da = new SqlDataAdapter(sql12, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -485,7 +506,7 @@ namespace HERBONA
                             {
                                 i12.Src = "../TreeImages/0.jpg";
                             }
-                            string sql31 = "select NAME from CONTACT where ID=" + l12;
+                            string sql31 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + l12 + "'";
                             da = new SqlDataAdapter(sql31, con);
                             ds = new DataSet();
                             da.Fill(ds, "CONTACT");
@@ -499,7 +520,7 @@ namespace HERBONA
                         {
                             Lb13R.Visible = true;
                             Lb13R.Text = r13;
-                            string sql13 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + r13;
+                            string sql13 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + r13 + "'";
                             da = new SqlDataAdapter(sql13, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -519,7 +540,7 @@ namespace HERBONA
                             {
                                 i13.Src = "../TreeImages/0.jpg";
                             }
-                            string sql32 = "select NAME from CONTACT where ID=" + r13;
+                            string sql32 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + r13 + "'";
                             da = new SqlDataAdapter(sql32, con);
                             ds = new DataSet();
                             da.Fill(ds, "CONTACT");
@@ -534,7 +555,7 @@ namespace HERBONA
                     {
                         Lb7R.Visible = true;
                         Lb7R.Text = r7;
-                        string sql7 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + r7;
+                        string sql7 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + r7 + "'";
                         da = new SqlDataAdapter(sql7, con);
                         ds = new DataSet();
                         da.Fill(ds, "Agent_Sponsor_Details");
@@ -554,7 +575,7 @@ namespace HERBONA
                         {
                             i7.Src = "../TreeImages/0.jpg";
                         }
-                        string sql33 = "select NAME from CONTACT where ID=" + r7;
+                        string sql33 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + r7 + "'";
                         da = new SqlDataAdapter(sql33, con);
                         ds = new DataSet();
                         da.Fill(ds, "CONTACT");
@@ -571,7 +592,7 @@ namespace HERBONA
                         {
                             Lb14L.Visible = true;
                             Lb14L.Text = l14;
-                            string sql14 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + l14;
+                            string sql14 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + l14 + "'";
                             da = new SqlDataAdapter(sql14, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -591,7 +612,7 @@ namespace HERBONA
                             {
                                 i14.Src = "../TreeImages/0.jpg";
                             }
-                            string sql34 = "select NAME from CONTACT where ID=" + l14;
+                            string sql34 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + l14 + "'";
                             da = new SqlDataAdapter(sql34, con);
                             ds = new DataSet();
                             da.Fill(ds, "CONTACT");
@@ -605,7 +626,7 @@ namespace HERBONA
                         {
                             Lb15R.Visible = true;
                             Lb15R.Text = r15;
-                            string sql15 = "select count(*) from Agent_Sponsor_Details where Sponsor_ID=" + r15;
+                            string sql15 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID] ='" + r15 + "'";
                             da = new SqlDataAdapter(sql15, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -625,7 +646,7 @@ namespace HERBONA
                             {
                                 i15.Src = "../TreeImages/0.jpg";
                             }
-                            string sql35 = "select NAME from CONTACT where ID=" + r15;
+                            string sql35 = "select c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id where a.[Placed_MemberID] ='" + r15 + "'";
                             da = new SqlDataAdapter(sql35, con);
                             ds = new DataSet();
                             da.Fill(ds, "CONTACT");
@@ -663,7 +684,7 @@ namespace HERBONA
 
             string s1 = ConfigurationSettings.AppSettings["truckingCon"];
             con = new SqlConnection(s1);
-            string sql2 = "select ASSID,PAIR,LEFT_CHILD,RIGHT_CHILD from TBL_PAIRMASTER where ASSID='" + Lb1.Text.Trim() + "'";
+            string sql2 = "select [Placed_MemberID],PAIR,LEFT_CHILD,RIGHT_CHILD from TBL_PAIRMASTER as c left join Agent_Sponsor_Details as a on c.ASSID = a.Contact_id where[Placed_MemberID] = '" + Lb1.Text.Trim() + "'";
             da = new SqlDataAdapter(sql2, con);
             ds = new DataSet();
             da.Fill(ds, "TBL_PAIRMASTER");

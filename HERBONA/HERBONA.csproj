@@ -223,6 +223,7 @@
     <Content Include="TreeImages\6.png" />
     <Content Include="TreeImages\backward-48.png" />
     <Content Include="TreeImages\G.jpg" />
+    <Content Include="TreeImages\G1.jpg" />
     <Content Include="TreeImages\level1.png" />
     <Content Include="TreeImages\Level2.png" />
     <Content Include="TreeImages\level3.png" />

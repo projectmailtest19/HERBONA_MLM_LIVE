@@ -30,29 +30,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="childpage">
 
-        <table class="style1">
-            <tr>
-                <td>
-                    <asp:ScriptManager ID="ScriptManager1" runat="server">
-                    </asp:ScriptManager>
-                </td>
-                <td>&nbsp;
-                </td>
-                <td>&nbsp;
-                </td>
-                <td>&nbsp;
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">
-                    <center>
-                        <asp:Label ID="Label1" runat="server" Text="Geneology" Font-Bold="False" Font-Names="Algerian"
-                            Font-Size="25px"></asp:Label>
-                    </center>
-                </td>
-            </tr>
-        </table>
-        <table class="style1">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+
+        <%--<table class="style1" style="visibility: hidden;">
             <tr>
                 <td class="style2">&nbsp;</td>
                 <td class="style415">
@@ -96,7 +77,7 @@
                     </asp:DropDownList>
                 </td>
             </tr>
-        </table>
+        </table>--%>
         <table class="style1">
             <tr>
                 <td class="style3">&nbsp;

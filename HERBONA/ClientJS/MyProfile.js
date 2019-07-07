@@ -411,7 +411,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
                 if (Result.d.FillRankHistory != "" && Result.d.FillRankHistory != undefined) {
                     var data = jQuery.parseJSON(Result.d.FillRankHistory);
                     var table = '<table id="RankHistoryList" class="table table-bordered table-striped">';
-                    table = table + '<thead><tr><th>Sno</th><th>AccountNo</th><th>Name</th><th>Registration Date</th><th>Designation</th><th>Designation Date</th></tr></thead> <tbody>';
+                    table = table + '<thead><tr><th>Sno</th><th>Member ID</th><th>Name</th><th>Registration Date</th><th>Designation</th><th>Designation Date</th></tr></thead> <tbody>';
                     $.each(data, function (i, item) {
                         table = table + "<tr><td>" + item.Sno +
                                         "</td><td>" + item.Account_No +
