@@ -25,4 +25,14 @@ namespace SmartTrucking.Model
         public string REWARDS_DETAIL { get; set; }
         public string IsActive { get; set; }
     }
+    public class Wallet_balanceModel
+    {
+        public string Wallet_Balance { get; set; }
+    }
+    public class Payment_DetailsModel
+    {
+        public string SALES_AMOUNT { get; set; }
+        public string SHIPPING { get; set; }
+        public string NET_AMOUNT { get; set; }
+    }
 }
