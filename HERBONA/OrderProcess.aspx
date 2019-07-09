@@ -93,7 +93,8 @@
                                                 <h2 id="H_Balance_Amount" class="ng-binding"></h2>
                                             </div>
                             <div class="col-md-12 " id="divproceed" style=" text-align:center; display:none;">
-                                                    <button class="btn btn-s-md btn-primary" onclick="finalProceed();" id="btnproceed">Proceed</button>
+                                                  <%--  <button class="btn btn-s-md btn-primary" onclick="finalProceed();" id="btnproceed">Proceed</button>--%>
+                                <button type="button" id="btnproceed" class="btn btn-primary" onclick="finalProceed()">Proceed</button>
                                             </div>
                         </div>
                         <!-- /.box-body -->

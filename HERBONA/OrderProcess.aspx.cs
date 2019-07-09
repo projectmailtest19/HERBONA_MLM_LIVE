@@ -121,6 +121,93 @@ namespace SmartTrucking
             return ReturnData;
         }
 
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static Hashtable SaveOrderPaymentDetailsList(Hashtable ht, string Type, string Req, List<OrderPaymentDetailsList_Model> OrderPaymentDetailsList)
+        {
+            string Data = "";
+            string obj = "";
 
+            Hashtable ht_Blank = new Hashtable();
+            Hashtable ReturnData = new Hashtable();
+            DBFunctions db = new DBFunctions();
+            DataTable dt = new DataTable();
+            DataTable dt_OrderPaymentDetails = new DataTable();
+
+
+            List<ErrorModel> _ErrorDetails = new List<ErrorModel>();
+
+            ReturnData.Clear();
+            System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            try
+            {
+                if (Type == "OrderPaymentDetails")
+                {
+                    _UserSaveModelWithID.Clear();
+
+
+                    ht_param.Clear();
+
+                    dt_OrderPaymentDetails = SaveParameters_OrderPaymentDetailsList(OrderPaymentDetailsList);
+                    ht_param.Add("@UDT_ORDER_PAYMENT_DETAILS", dt_OrderPaymentDetails);
+                    ht_param.Add("@Order_Details_id", ht["Order_Details_id"].ToString());
+                    ds = db.SysFetchDataInDataSet("[SAVE_ORDER_PAYMENT_DETAILS]", ht_param);
+                    if (ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow item in ds.Tables[0].Rows)
+                        {
+                            UserSaveModelWithID _UserSaveModelIDDetails = new UserSaveModelWithID();
+                            _UserSaveModelIDDetails.ID = item["ID"].ToString();
+                            _UserSaveModelIDDetails.CustomErrorState = item["CustomErrorState"].ToString();
+                            _UserSaveModelIDDetails.CustomMessage = item["CustomMessage"].ToString();
+                            _UserSaveModelWithID.Add(_UserSaveModelIDDetails);
+                        }
+                    }
+                    ReturnData["OrderPaymentDetails"] = serializer.Serialize(_UserSaveModelWithID);
+
+                }
+
+                ErrorModel _error = new ErrorModel();
+                _error.Error = "false";
+                _error.ErrorMessage = "Success";
+                _ErrorDetails.Add(_error);
+                ReturnData["ErrorDetail"] = serializer.Serialize(_ErrorDetails);
+
+                HttpContext.Current.Response.AppendHeader("ResponseHeader", "200");
+            }
+            catch (Exception ex)
+            {
+
+                ErrorModel _error = new ErrorModel();
+                _error.Error = "true";
+                _error.ErrorMessage = "Some problem occurred please try again later";//ex.ToString();
+                _ErrorDetails.Add(_error);
+                ReturnData["ErrorDetail"] = serializer.Serialize(_ErrorDetails);
+
+                HttpContext.Current.Response.AppendHeader("ResponseHeader", "500");
+            }
+
+
+            return ReturnData;
+        }
+        public static DataTable SaveParameters_OrderPaymentDetailsList(List<OrderPaymentDetailsList_Model> OrderPaymentDetailsList)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("NAME", typeof(string));
+            dt.Columns.Add("AMOUNT", typeof(decimal));
+
+            foreach (var item in OrderPaymentDetailsList)
+            {
+                dt.Rows.Add(item.NAME, item.AMOUNT);
+            }
+
+            return dt;
+        }
+        public class OrderPaymentDetailsList_Model
+        {
+            public string NAME { get; set; }
+            public decimal AMOUNT { get; set; }
+
+        }
     }
 }

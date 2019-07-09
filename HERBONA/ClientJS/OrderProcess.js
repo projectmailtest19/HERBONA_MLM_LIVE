@@ -24,7 +24,7 @@ $(document).ready(function () {
            
         }
         else {
-            alert(id);
+            //alert(id);
             $('#ID_hidden').val(id);
             Req = 'Wallet_Balance@Payment_Details';
             obj = "Fill";
@@ -177,7 +177,134 @@ function Calculate_Balance()
                 $('#divproceed').hide();
             }
 }
+
+function LoadAjaxOrderPaymentDetailslist(ht, obj, Req, url, OrderPaymentDetailsList) {
+    $('body').pleaseWait();
+    //alert(JSON.stringify(OrderPaymentDetailsList));
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: "{ht:" + JSON.stringify(ht) + ",Type :'" + obj + "' ,Req :'" + Req + "'," +
+            " OrderPaymentDetailsList:" + JSON.stringify(OrderPaymentDetailsList) +
+            "}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (Result) {
+            var json = jQuery.parseJSON(Result.d.ErrorDetail);
+            var sa_error = "";
+            var sa_errrorMsg = "";
+            $.each(json, function (index, K) {
+                sa_error = K.Error;
+                sa_errrorMsg = K.ErrorMessage;
+            });
+            if (sa_error != 'false') {
+                swal("", sa_errrorMsg, "error");
+                $('body').pleaseWait('stop');
+                return 0;
+            }
+
+            if (obj == "OrderPaymentDetails") {
+                if (Result.d.OrderPaymentDetails != "" && Result.d.OrderPaymentDetails != undefined) {
+                    var json = jQuery.parseJSON(Result.d.OrderPaymentDetails)[0];
+
+                    if (json.CustomErrorState == "0") {
+
+                        swal({
+                            title: "",
+                            text: json.CustomMessage,
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#5cb85c",
+                            confirmButtonText: "Ok!",
+                            closeOnConfirm: false,
+                            timer: 2000
+                        },
+                   function () {
+                       window.location = 'Home.aspx';
+                   });
+                    }
+                    else if (json.CustomErrorState == "1") {
+                        swal("", "Something went wrong , please try again later !!", "error");
+
+                    }
+                    else if (json.CustomErrorState == "2") {
+                        swal("", json.CustomMessage, "info");
+
+                    }
+                }
+                else {
+                    swal("", "Some problem occurred please try again later", "info");
+                }
+
+            }
+
+
+            $('body').pleaseWait('stop');
+        }
+
+    });
+}
+
 function finalProceed()
 {
+    if (validationcheck() == true) {
+        setTimeout(function () {
+            
+            var i = 0;
+            OrderPaymentDetailsList = new Array();
+            if ($("#chk_Wallet").is(":checked")) {
+                var OrderPaymentDetailsList_Model = {};
+                OrderPaymentDetailsList_Model.NAME ="Wallet";
+                OrderPaymentDetailsList_Model.AMOUNT = $("#Txt_Wallet_Amount").val();
+                OrderPaymentDetailsList[i++] = OrderPaymentDetailsList_Model;
+            }
 
+            if ($("#chk_Gateway").is(":checked")) {
+                var OrderPaymentDetailsList_Model1 = {};
+                OrderPaymentDetailsList_Model1.NAME = "PaymentGateway";
+                OrderPaymentDetailsList_Model1.AMOUNT = $("#Txt_Gateway_Amount").val();
+                OrderPaymentDetailsList[i++] = OrderPaymentDetailsList_Model1;
+            }
+
+            if ($("#chk_Cash").is(":checked")) {
+                var OrderPaymentDetailsList_Model2 = {};
+                OrderPaymentDetailsList_Model2.NAME = "Cash";
+                OrderPaymentDetailsList_Model2.AMOUNT = $("#txt_Cash_Amount").val();
+                OrderPaymentDetailsList[i++] = OrderPaymentDetailsList_Model2;
+            }
+
+            Req = 'OrderPaymentDetails';
+            obj = "OrderPaymentDetails";
+            url = "OrderProcess.aspx/SaveOrderPaymentDetailsList";
+            ht = {};
+
+            ht["Order_Details_id"] = $('#ID_hidden').val();
+
+            LoadAjaxOrderPaymentDetailslist(ht, obj, Req, url, OrderPaymentDetailsList);
+
+        }, 1000);
+    }
+}
+
+function validationcheck()
+{
+    if ($("#chk_Wallet").is(":checked")) {
+        if ($('#Txt_Wallet_Amount').val() == '0.00') {
+            popupErrorMsg($("#Txt_Wallet_Amount"), "Please put some amount or uncheck the Wallet Checkbox.", 5);
+            return false;
+        }
+    }
+    if ($("#chk_Gateway").is(":checked")) {
+        if ($('#Txt_Gateway_Amount').val() == '0.00') {
+            popupErrorMsg($("#Txt_Gateway_Amount"), "Please put some amount or uncheck the Payment Gateway Checkbox.", 5);
+            return false;
+        }
+    }
+    if ($("#chk_Cash").is(":checked")) {
+        if ($('#txt_Cash_Amount').val() == '0.00') {
+            popupErrorMsg($("#txt_Cash_Amount"), "Please put some amount or uncheck the cash Checkbox.", 5);
+            return false;
+        }
+    }
+    return true;
 }
