@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgentID_Card.aspx" />
+    <Content Include="ClientJS\Signup.js" />
     <Content Include="MyDirects.aspx" />
     <Content Include="ClientCss\Idcard.css" />
     <Content Include="ClientJS\AgentID_Card.js" />
@@ -155,6 +156,7 @@
     <Content Include="Images\new_Indian_currency.png" />
     <Content Include="index.html" />
     <Content Include="OrderProcess.aspx" />
+    <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="ShippingDetails.aspx" />
     <Content Include="bin\Microsoft.AI.Agent.Intercept.dll" />
     <Content Include="bin\Microsoft.AI.DependencyCollector.dll" />
@@ -216,6 +218,7 @@
     <Content Include="ItemCategory_List.aspx" />
     <Content Include="ShippingCharges_List.aspx" />
     <Content Include="ItemDetails_List.aspx" />
+    <Content Include="Signup.aspx" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="TreeImages\0.jpg" />
     <Content Include="TreeImages\1.jpg" />
@@ -1497,6 +1500,13 @@
     </Compile>
     <Compile Include="ItemDetails_List.aspx.designer.cs">
       <DependentUpon>ItemDetails_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Signup.aspx.cs">
+      <DependentUpon>Signup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Signup.aspx.designer.cs">
+      <DependentUpon>Signup.aspx</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="TreeShow.cs" />
