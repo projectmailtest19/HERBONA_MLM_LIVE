@@ -15,7 +15,7 @@
 
         <div class="row">
             <div class="box-header">
-                <h3 class="box-title"><b>Agent Profile</b></h3>
+                <h3 class="box-title"><b>Entrepreneur Profile</b></h3>
             </div>
             <div class="col-md-3">
 
@@ -60,7 +60,7 @@
                                     <label for="inputName" class="col-sm-3 control-label">Name<span class="reqstar">*</span></label>
 
                                     <div class="col-sm-9">
-                                        <input id="txtName" class="form-control" type="text" placeholder="Agent's Name" />
+                                        <input id="txtName" class="form-control" type="text" placeholder="Entrepreneur's Name" />
                                     </div>
                                 </div>
                                 <div class="form-group">

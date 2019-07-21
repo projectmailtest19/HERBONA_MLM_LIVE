@@ -11,10 +11,10 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Agent List</h3>
+                        <h3 class="box-title">Entrepreneur List</h3>
                         <div style="float: right;">
                             <!-- Trigger the modal with a button -->
-                            <button type="button" class="btn btn-block btn-primary" onclick="redirect()" id="btn_create">CREATE AGENT</button>
+                            <button type="button" class="btn btn-block btn-primary" onclick="redirect()" id="btn_create">CREATE ENTREPRENEUR</button>
                         </div>
                     </div>
                     <!-- /.box-header -->

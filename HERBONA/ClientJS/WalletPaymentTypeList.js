@@ -17,7 +17,7 @@ $(document).ready(function () {
 function GetLoadDetails() {
     Req = 'LoadList';
     obj = "Fill";
-    url = "Wallet_List.aspx/AllLoadDetails";
+    url = "WalletPaymentTypeList.aspx/AllLoadDetails";
     ht = {};
     LoadAjaxLoad(ht, obj, Req, url);
 }
@@ -49,7 +49,7 @@ function LoadAjaxLoad(ht, obj, Req, url) {
                 var data = jQuery.parseJSON(Result.d.LoadData);
 
                 var table = '<table id="LoadList" class="table table-bordered table-striped">';
-                table = table + '<thead><tr><th style="display:none">ID</th><th>Entrepreneur Name</th><th>Walet Number</th><th  style="display:none">Status</th><th  class=' + _allowedit + '>Edit</th><th  class=' + _allowdelete + '>Delete</th></tr></thead> <tbody>';
+                table = table + '<thead><tr><th style="display:none">ID</th><th>NAME</th><th>Status</th><th  class=' + _allowedit + '>Edit</th><th  class=' + _allowdelete + '>Delete</th></tr></thead> <tbody>';
                 $.each(data, function (i, item) {
 
                     _Status = '';
@@ -68,10 +68,9 @@ function LoadAjaxLoad(ht, obj, Req, url) {
                     }
 
                     table = table + "<tr><td style='display:none' >" + item.ID +
-                                    "</td><td>" + item.MEMBER_NAME +
-                                    "</td><td>" + item.WALLET_NUMBER +                                
+                                    "</td><td>" + item.NAME +
                                     "</td><td><input id=status_" + item.ID + " data=" + item.IsActive + " class='" + _TextClass + "'  onclick=setStatus(" + _Status + "," + item.ID + ") type='button' value='" + _Text + "' />" +
-                                    "<td style='display:none' class='Edit " + _allowedit + "' align='Left'> <button type='button' onclick=LoadEdit(" + item.ID + ") class='btn btn-default btn-sm' id='btnedit' > <span class='glyphicon glyphicon-edit'></span> </button></td>" +
+                                    "<td class='Edit " + _allowedit + "' align='Left'> <button type='button' onclick=LoadEdit(" + item.ID + ") class='btn btn-default btn-sm' id='btnedit' > <span class='glyphicon glyphicon-edit'></span> </button></td>" +
                                     "</td>" +
                                     "<td class='Edit " + _allowdelete + "' align='Left'> <button type='button' onclick=DeleteLoad(" + _Status + "," + item.ID + ") class='btn btn-default btn-sm' id='btndelete' > <span class='glyphicon glyphicon-trash'></span> </button></td>" +
                                    "</tr>"
@@ -131,7 +130,7 @@ function setStatus(Status, ID) {
  function () {
      Req = 'setStatus';
      obj = "setStatus";
-     url = "Wallet_List.aspx/AllLoadDetails";
+     url = "WalletPaymentTypeList.aspx/AllLoadDetails";
      ht = {};
      ht["ID"] = ID;
      ht["IsActive"] = Status;
@@ -142,13 +141,13 @@ function setStatus(Status, ID) {
     return false;
 }
 function redirect() {
-    window.location = 'CreateVacationTour.aspx';
+    window.location = 'CreateWalletPaymentType.aspx';
 }
 
 
 function LoadEdit(id) {
     var bt = btoa("id=" + id + "");
-    window.location = 'CreateVacationTour.aspx?' + bt;
+    window.location = 'CreateWalletPaymentType.aspx?' + bt;
 }
 
 
@@ -165,7 +164,7 @@ function DeleteLoad(Status, ID) {
 function () {
     Req = 'Delete';
     obj = "Delete";
-    url = "Wallet_List.aspx/AllLoadDetails";
+    url = "WalletPaymentTypeList.aspx/AllLoadDetails";
     ht = {};
     ht["ID"] = ID;
     ht["IsActive"] = Status;

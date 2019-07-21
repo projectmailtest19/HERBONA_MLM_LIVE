@@ -43,7 +43,7 @@ function LoadAjaxCompany(ht, obj, Req, url) {
             if (obj == "Fill") {
                 var data = jQuery.parseJSON(Result.d.AgentData);
                 var table = '<table id="ContactList" class="table table-bordered table-striped">';
-                table = table + '<thead><tr><th style="display:none">Agent ID</th><th>Status</th><th>Agent Name</th><th>Mobile Number</th><th>Email ID</th><th>Gender</th><th>Address</th><th  class=' + _allowedit + '>Edit</th></tr></thead> <tbody>';
+                table = table + '<thead><tr><th style="display:none">Agent ID</th><th>Status</th><th>Entrepreneur Name</th><th>Mobile Number</th><th>Email ID</th><th>Gender</th><th>Address</th><th  class=' + _allowedit + '>Edit</th></tr></thead> <tbody>';
                 $.each(data, function (i, item) {
                     //alert(item.IsAgentActive);
                     if (item.IsAgentActive == "True") {

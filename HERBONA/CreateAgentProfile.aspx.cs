@@ -185,7 +185,7 @@ namespace SmartTrucking
                                   .Select(row => new AgentRankHistoryModel
                                   {
                                       Sno = row["Sno"].ToString(),
-                                      Account_No = row["Account_No"].ToString(),
+                                      Account_No = row["MEMEBER_ID"].ToString(),
                                       Name = row["Name"].ToString(),
                                       Registration_Date = row["Registration_Date"].ToString(),
                                       Designation = row["Designation"].ToString(),

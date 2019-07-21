@@ -15,10 +15,10 @@
                     </div>
                     <div class="col-xs-12">
                         <div class="form-group col-xs-6">
-                            <label for="inputCountry" class="col-sm-3 control-label">Member Name<span class="reqstar">*</span></label>
+                            <label for="inputCountry" class="col-sm-3 control-label">Entrepreneur Name<span class="reqstar">*</span></label>
 
                             <div class="col-sm-9">
-                                <select id="cmbSponsor_Name" class="form-control select2" style="width: 100%;" data-placeholder="Select Member">
+                                <select id="cmbSponsor_Name" class="form-control select2" style="width: 100%;" data-placeholder="Select Entrepreneur">
                                     <option></option>
                                 </select>
                             </div>

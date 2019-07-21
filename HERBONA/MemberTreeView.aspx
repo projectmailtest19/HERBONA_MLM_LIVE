@@ -37,7 +37,7 @@
 
                     <div class="form-group" style="padding-top: 5px;">
                         <div class="col-lg-3">
-                            <asp:Label ID="Label2" runat="server" CssClass="Lbl_Class" Text="Associate Id"></asp:Label>
+                            <asp:Label ID="Label2" runat="server" CssClass="Lbl_Class" Text="Entrepreneur Id"></asp:Label>
                         </div>
                         <div class="col-lg-6">
                             <asp:TextBox ID="TextBox1" runat="server" class="form-control"></asp:TextBox>
