@@ -14,10 +14,11 @@
                         <h3 class="box-title">Order Entry</h3>
                     </div>
                     <div class="col-xs-12">
-                        <div class="form-group col-xs-6">
-                            <label for="inputCountry" class="col-sm-3 control-label">Entrepreneur Name<span class="reqstar">*</span></label>
-
-                            <div class="col-sm-9">
+                        <div class="form-group col-xs-12">
+                            <div class="col-xs-3">
+                                <label for="inputCountry" class="col-sm-12 control-label">Entrepreneur Name<span class="reqstar">*</span></label>
+                            </div>
+                            <div class="col-sm-3">
                                 <select id="cmbSponsor_Name" class="form-control select2" style="width: 100%;" data-placeholder="Select Entrepreneur">
                                     <option></option>
                                 </select>
@@ -65,7 +66,7 @@
     </section>
     <script src="ClientJS/OrderEntry.js"></script>
     <input type="hidden" id="ID_Hidden" value="1" />
-      <script>
+    <script>
         $(document).ready(function () {
             $(".select2").select2();
         });

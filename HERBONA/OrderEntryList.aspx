@@ -16,7 +16,7 @@
                             <button type="button" class="btn btn-block btn-primary" onclick="redirect()" id="btn_create">Stock Entry</button>
                         </div>
                     </div>                 
-                    <div class="box-body" id="LoadListDiv">
+                    <div class="box-body" id="LoadListDiv" style="overflow-x: auto;">
                     </div>                  
                 </div>
             </div>

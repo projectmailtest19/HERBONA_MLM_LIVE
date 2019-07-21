@@ -49,17 +49,20 @@ function LoadAjaxLoad(ht, obj, Req, url) {
                 var data = jQuery.parseJSON(Result.d.LoadData);
 
                 var table = '<table id="LoadList" class="table table-bordered table-striped">';
-                table = table + '<thead><tr><th style="display:none">ID</th><th>Member Id</th><th>Entrepreneur Name</th><th>Order Number</th><th>Order Date</th><th>Invoive Date</th>' +
-                    '<th style="display:none">INVOICE_NUMBER</th><th style="display:none">TOTAL_SVP</th><th style="display:none">TOTAL_AMOUNT</th><th>ORDER_TYPE</th></tr></thead> <tbody>';
+                table = table + '<thead><tr><th style="display:none">ID</th><th>Member Id</th><th>Account No</th><th>Order Date</th><th>Order Number</th><th>Invoive Date</th>' +
+                    '<th>Invoice No</th><th>Payment Status</th><th>Mode Of Payment</th><th>Total SVP</th><th>Total Amount</th><th>Order Type</th></tr></thead> <tbody>';
                 $.each(data, function (i, item) {
+                     
                     table = table + "<tr><td style='display:none' >" + item.ID +
                                     "</td><td>" + item.MEMEBER_ID +
-                                    "</td><td>" + item.MEMEBER_NAME +
-                                    "</td><td>" + item.ORDER_NUMBER +
+                                    "</td><td>" + item.Account_Number +
                                     "</td><td>" + item.ORDER_DATE +
-                                    "</td><td style='display:none'>" + item.INVOICE_DATE +
-                                    "</td><td style='display:none' >" + item.INVOICE_NUMBER +
-                                    "</td><td style='display:none' >" + item.TOTAL_SVP +
+                                    "</td><td>" + item.ORDER_NUMBER +
+                                     "</td><td>" + item.INVOICE_DATE +
+                                       "</td><td>" + item.INVOICE_NUMBER +
+                                       "</td><td>" + item.PAYMENT_STATUS +
+                                       "</td><td>" + item.ModeOfPayment +
+                                       "</td><td>" + item.TOTAL_SVP +
                                     "</td><td>" + item.TOTAL_AMOUNT +
                                     "</td><td>" + item.ORDER_TYPE +
                                     "</td></tr>"
