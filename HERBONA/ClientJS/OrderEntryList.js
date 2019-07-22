@@ -21,6 +21,17 @@ function GetLoadDetails() {
     ht = {};
     LoadAjaxLoad(ht, obj, Req, url);
 }
+
+function Search() {
+    Req = 'Search';
+    obj = "Fill";
+    url = "OrderEntryList.aspx/AllLoadDetails";
+    ht = {};
+    ht["ORDER_NUMBER"] = $("#txtOrderNumber").val();
+    ht["FROM_ORDER_DATE"] = $("#txtdateFrom").val();
+    ht["TO_ORDER_DATE"] = $("#txtdateTo").val();
+    LoadAjaxLoad(ht, obj, Req, url);
+}
 function LoadAjaxLoad(ht, obj, Req, url) {
     $('body').pleaseWait();
 
@@ -47,7 +58,7 @@ function LoadAjaxLoad(ht, obj, Req, url) {
 
             if (obj == "Fill") {
                 var data = jQuery.parseJSON(Result.d.LoadData);
-
+                document.getElementById("LoadListDiv").innerHTML = '';
                 var table = '<table id="LoadList" class="table table-bordered table-striped">';
                 table = table + '<thead><tr><th style="display:none">ID</th><th>Member Id</th><th>Account No</th><th>Order Date</th><th>Order Number</th><th>Invoive Date</th>' +
                     '<th>Invoice No</th><th>Payment Status</th><th>Mode Of Payment</th><th>Total SVP</th><th>Total Amount</th><th>Order Type</th></tr></thead> <tbody>';
