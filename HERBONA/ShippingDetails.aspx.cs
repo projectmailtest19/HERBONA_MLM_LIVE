@@ -26,7 +26,7 @@ namespace SmartTrucking
         static List<ShippingAddressModel> ShippingAddressModel_list = new List<ShippingAddressModel>();
         static List<ShippingMethodModel> ShippingMethodModel_list = new List<ShippingMethodModel>();
         static List<UserSaveModelWithID> _UserSaveModelWithID = new List<UserSaveModelWithID>();
-
+        static List<Wallet_balanceModel> _Wallet_balanceModel = new List<Wallet_balanceModel>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (HttpContext.Current.Session["Company_ID"] == null || HttpContext.Current.Session["Company_ID"] == "")
@@ -63,6 +63,24 @@ namespace SmartTrucking
                         }
                     }
                     ReturnData["Country"] = serializer.Serialize(_CountryModel);
+                }
+
+                if (Type == "Wallet_Balance")
+                {
+                    _Wallet_balanceModel.Clear();
+                    ht_param.Clear();
+                    ht_param.Add("@Member_id", ht["Member_id"].ToString());
+                    ds = db.SysFetchDataInDataSet("[GET_MEMBER_WALLET_BALANCE_FromMemberID]", ht_param);
+
+                    if (ds.Tables.Count > 0)
+                    {
+                        _Wallet_balanceModel = ds.Tables[0].AsEnumerable()
+                          .Select(row => new Wallet_balanceModel
+                          {
+                              Wallet_Balance = row["Wallet_Balance"].ToString()
+                          }).ToList();
+                    }
+                    ReturnData["Wallet_Balance"] = serializer.Serialize(_Wallet_balanceModel);
                 }
                 if (Type == "State")
                 {

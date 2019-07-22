@@ -17,8 +17,8 @@
                                 <div class="col-lg-8">
                                     <label>Purchase Wallet: </label>
                                 </div>
-                                <div class="col-lg-8">
-                                    <label>&#x20b9; 1234</label>
+                                <div id="Div_Wallet_bal" class="col-lg-8">
+                                   <%-- <label id="LBL_Wallet_Balance">&#x20b9; 200.50</label>--%>
                                 </div>
                             </div>
                         </div>

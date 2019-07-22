@@ -31,7 +31,7 @@ function LoadAjaxLogin(ht, obj, Req, url) {
             }
             else if (sa_error == '0') {
 
-                window.location.assign('Login.aspx');
+                window.location.assign('Signup.aspx');
 
                 alert(sa_errrorMsg);
             }

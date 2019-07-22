@@ -63,7 +63,7 @@
                                     <label style="color: red" class="ng-binding"></label>--%>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12" style="display:none;">
                                 <div class="col-md-4">
                                     <label>
                                         <input id="chk_Gateway" type="checkbox" class="flat-red" />

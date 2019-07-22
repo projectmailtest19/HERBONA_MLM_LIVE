@@ -40,10 +40,11 @@
                             <div class="active tab-pane" id="Login">
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <input id="txtAccountNumber" class="form-control" type="number" placeholder="Account Number" />
+                                        <input id="txtAccountNumber" class="form-control" type="text" placeholder="Account Number" value="projectmailtest19@gmail.com" />
                                     </div>
-                                    <div class="form-group">
-                                        <input id="txtPassword" class="form-control" type="password" placeholder="Password" />
+                                    <div class="form-group has-feedback">
+                                        <input id="txtPassword" class="form-control" type="password" placeholder="Password" value="123"/>
+                                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                                     </div>
                                 </div>
                                 <div class="row">

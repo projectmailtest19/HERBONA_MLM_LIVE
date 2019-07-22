@@ -9,9 +9,18 @@ $(document).ready(function () {
         GetShippingMethod();
         GetShippingAddress();
         fillCountry();
+        fillWalletBalance();
     }, 1000);
 
 });
+function fillWalletBalance() {
+    Req = 'Wallet_Balance';
+    obj = "Wallet_Balance";
+    url = "ShippingDetails.aspx/ContactDetails";
+    ht = {};
+    ht["Member_id"] = localStorage.getItem('OrderMember_ID');
+    LoadAjaxCompany(ht, obj, Req, url);
+}
 function GetShippingMethod() {
     Req = 'FillShippingMethod';
     obj = "FillShippingMethod";
@@ -80,6 +89,15 @@ function LoadAjaxCompany(ht, obj, Req, url) {
                     $('#cmbState').append($('<option></option>'));
                     $.each(State, function (index, item) {
                         $('#cmbState').append($('<option></option>').val(item.COUNTRY_ID).html(item.Name));
+                    });
+                }
+            }
+            if (obj == "Wallet_Balance") {
+
+                if (Result.d.Wallet_Balance != "" && Result.d.Wallet_Balance != undefined) {
+                    var json = jQuery.parseJSON(Result.d.Wallet_Balance);
+                    $.each(json, function (index, item) {
+                        $("#Div_Wallet_bal").html("<label id='LBL_Wallet_Balance'>&#x20b9; " + parseFloat(item.Wallet_Balance).toFixed(2) + "</label>");
                     });
                 }
             }

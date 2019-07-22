@@ -110,7 +110,7 @@
                                             <a href="#" class="btn btn-default btn-flat" id="ChangePassword">Change Password</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="Login.aspx" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="Signup.aspx" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>

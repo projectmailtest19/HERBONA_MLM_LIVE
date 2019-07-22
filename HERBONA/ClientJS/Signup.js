@@ -155,13 +155,13 @@ function LoadAjaxLogin(ht, obj, Req, url) {
         }
     });
 }
-function Userlogin() {
+function LoginSubmit() {
     if (validationchecklogin() == true) {
 
         setTimeout(function () {
             ht = {};
-            ht["Email"] = $("#txtemail_forlogin").val();
-            ht["Password"] = $("#txtpassword_forlogin").val();
+            ht["Email"] = $("#txtAccountNumber").val();
+            ht["Password"] = $("#txtPassword").val();
             Req = "NormalLogin";
             obj = "Login";
             url = "Login.aspx/LoginDetails";
@@ -171,14 +171,14 @@ function Userlogin() {
 }
 function validationchecklogin() {
 
-    if ($('#txtemail_forlogin').val() == "") {
-        alert("Email ID is required.");
-        $('#txtemail_forlogin').focus();
+    if ($('#txtAccountNumber').val() == "") {
+        alert("Login ID is required.");
+        $('#txtAccountNumber').focus();
         return false;
     }
-    if ($('#txtpassword_forlogin').val() == "") {
+    if ($('#txtPassword').val() == "") {
         alert("Password is required.");
-        $('#txtpassword_forlogin').focus();
+        $('#txtPassword').focus();
         return false;
     }
 
