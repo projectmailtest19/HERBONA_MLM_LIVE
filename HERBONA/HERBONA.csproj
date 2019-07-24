@@ -147,6 +147,8 @@
   <ItemGroup>
     <Content Include="AgentID_Card.aspx" />
     <Content Include="ClientJS\CreateWalletPaymentType.js" />
+    <Content Include="ClientJS\BonusWalletSummary.js" />
+    <Content Include="ClientJS\PurchaseWalletSummary.js" />
     <Content Include="ClientJS\WalletPaymentTypeList.js" />
     <Content Include="ClientJS\Signup.js" />
     <Content Include="CreateWalletPaymentType.aspx" />
@@ -158,6 +160,8 @@
     <Content Include="ClientJS\OrderProcess.js" />
     <Content Include="Images\new_Indian_currency.png" />
     <Content Include="index.html" />
+    <Content Include="BonusWalletSummary.aspx" />
+    <Content Include="PurchaseWalletSummary.aspx" />
     <Content Include="OrderProcess.aspx" />
     <Content Include="WalletPaymentTypeList.aspx" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -1342,12 +1346,27 @@
     <Compile Include="CreateWalletPaymentType.aspx.designer.cs">
       <DependentUpon>CreateWalletPaymentType.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\PurchaseWalletSummaryModel.cs" />
     <Compile Include="MyDirects.aspx.cs">
       <DependentUpon>MyDirects.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MyDirects.aspx.designer.cs">
       <DependentUpon>MyDirects.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BonusWalletSummary.aspx.cs">
+      <DependentUpon>BonusWalletSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BonusWalletSummary.aspx.designer.cs">
+      <DependentUpon>BonusWalletSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseWalletSummary.aspx.cs">
+      <DependentUpon>PurchaseWalletSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PurchaseWalletSummary.aspx.designer.cs">
+      <DependentUpon>PurchaseWalletSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="OrderProcess.aspx.cs">
       <DependentUpon>OrderProcess.aspx</DependentUpon>
