@@ -30,7 +30,7 @@ namespace SmartTrucking
         {
             if (HttpContext.Current.Session["Login_user_ID"] == null || HttpContext.Current.Session["Login_user_ID"] == "")
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("Signup.aspx");
 
             }
         }

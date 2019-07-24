@@ -490,7 +490,7 @@
     <Content Include="Forget_Password.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
-    <Content Include="Login.aspx" />
+    <Content Include="Signup.aspx" />
     <Content Include="obj\Debug\SmartTrucking.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\TempPE\SSRS-Report.App_Code.ACCOUNT_INFORMATION.Designer.cs.dll" />
     <Content Include="obj\Debug\TempPE\SSRS-Report.App_Code.CompanyDetails.Designer.cs.dll" />
