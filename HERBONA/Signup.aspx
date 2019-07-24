@@ -43,7 +43,7 @@
                                         <input id="txtAccountNumber" class="form-control" type="text" placeholder="Account Number" value="projectmailtest19@gmail.com" />
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <input id="txtPassword" class="form-control" type="password" placeholder="Password" value="123"/>
+                                        <input id="txtPassword" class="form-control" type="password" placeholder="Password" value="123" />
                                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                                     </div>
                                     <div id="2Div" style="display: none">
                                         <div id="DivSponsrName" class="form-group text-center text-primary">
-                                            <h4 id="hSponsrName">Sponsor Name: Maniram sharma</h4>
+                                            <h4 id="hSponsrName"></h4>
                                         </div>
                                         <div>
                                             <div class="form-group">
@@ -88,36 +88,18 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <select class="form-control select2" id="SelCountry" style="width: 100%;" data-placeholder="Select Country*">
-                                                    <option value="1" selected="selected">India</option>
-                                                    <option value="2">Bangladesh</option>
-                                                    <option value="3">Bhutan</option>
-                                                    <option value="4">Nepal</option>
+                                                <select class="form-control select2" id="cmbCountry" onchange="StateFill();" style="width: 100%;" data-placeholder="Select Country*" disabled="disabled">
+                                                    <option></option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <select class="form-control select2" id="SelState" style="width: 100%;" data-placeholder="Select State*">
-                                                    <option value="" selected="selected">Select State</option>
-                                                    <option value="1" class="ng-binding ng-scope">ANDAMAN AND NICOBAR ISLANDS
-                                                    </option>
-                                                    <option value="2" class="ng-binding ng-scope">ANDHRA PRADESH
-                                                    </option>
-                                                    <option value="3" class="ng-binding ng-scope">ARUNACHAL PRADESH
-                                                    </option>
-                                                    <option value="4" class="ng-binding ng-scope">ASSAM
-                                                    </option>
-                                                    <option value="5" class="ng-binding ng-scope">BIHAR
-                                                    </option>
-
+                                                <select class="form-control select2" id="cmbState" onchange="DistrictFill();" style="width: 100%;" data-placeholder="Select State*">
+                                                    <option></option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <select class="form-control select2" id="SelDistrict" style="width: 100%;" data-placeholder="Select District*">
-                                                    <option value="" selected="selected">Select District</option>
-                                                    <option value="Kolkata" class="ng-binding ng-scope">Kolkata</option>
-                                                    <option value="North 24 Parganas" class="ng-binding ng-scope">North 24 Parganas</option>
-                                                    <option value="South 24 Parganas" class="ng-binding ng-scope">South 24 Parganas</option>
-                                                    <option value="Birbhum" class="ng-binding ng-scope">Birbhum</option>
+                                                <select class="form-control select2" id="cmbDistrict" style="width: 100%;" data-placeholder="Select District*">
+                                                    <option></option>
                                                 </select>
                                             </div>
 
@@ -125,10 +107,15 @@
                                                 <input id="txtPINCode" class="form-control" type="text" placeholder="PIN Code*" />
                                             </div>
                                             <div class="form-group">
+                                                <select class="form-control select2" id="cmbSponsor_Name" style="width: 100%;" data-placeholder="Select Placed Member*">
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
                                                 <select class="form-control select2" id="position" style="width: 100%;" data-placeholder="Select Team*">
                                                     <option value="" selected="selected">Select Team</option>
-                                                    <option value="Left">Team-A</option>
-                                                    <option value="Right">Team-B</option>
+                                                    <option value="Team-A">Team-A</option>
+                                                    <option value="Team-B">Team-B</option>
                                                 </select>
                                             </div>
                                             <div class="row">
@@ -148,6 +135,82 @@
                 </div>
             </div>
         </div>
+
+
+        <!--SavePopup Modal content -->
+        <div class="modal fade" id="SuccessPopupModel" role="dialog">
+            <div class="modal-dialog" style="width: 25%;">
+
+                <!--Modal content-->
+                <div class="modal-content"  style="background-color:deepskyblue">
+                    <div class="modal-header">
+                        <button type="button" onclick="Pagerefresh();" class="close" data-dismiss="modal">&times;</button>
+                        <div style="text-align: center;">
+                            <h2 class="modal-title">Congratulations!</h2>
+                            <h3 class="modal-title">Your HERBONA Account has been Registered Successfully</h3>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Main content -->
+                        <section class="content">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <div class="form-group">
+                                                    <div class="col-lg-6">
+                                                        <label>Account NUmber:</label>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label id="LblAccountNumber"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="form-group" style="padding-top: 10px;">
+                                                    <div class="col-lg-6">
+                                                        <label>Name:</label>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label id="Lblname"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="form-group" style="padding-top: 10px;">
+                                                    <div class="col-lg-6">
+                                                        <label>Mobile Number:</label>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label id="lblMobNUM"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="form-group" style="padding-top: 10px;">
+                                                    <div class="col-lg-6">
+                                                        <label>Email Address:</label>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label id="lblEmailAddress"></label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+                        <!-- /.content -->
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- End SavePopup  Modal content -->
     </form>
     <!-- /.login-box -->
     <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -207,6 +270,7 @@
     <script src="ClientJS/kmi-isvalid-1.0.0.js"></script>
     <script src="ClientJS/jquery.pleaseWait.js"></script>
     <script src="plugins/iCheck/icheck.min.js"></script>
-
+    <input type="hidden" id="Company_ID_hidden" class="form-control" />
+    <input type="hidden" id="Branch_ID_hidden" class="form-control" />
 </body>
 </html>

@@ -22,6 +22,16 @@ namespace SmartTrucking.Model
         public string CustomMessage { get; set; }
 
     }
+    public class UserSaveModelWithPopupdetails
+    {
+        public string CustomErrorState { get; set; }
+        public string CustomMessage { get; set; }
+        public string Account_Number { get; set; }
+        public string Name { get; set; }
+        public string MobileNo { get; set; }
+        public string Email { get; set; }
+
+    }
     public class UserSaveModelWithEmailDetails
     {
         public string ID { get; set; }
