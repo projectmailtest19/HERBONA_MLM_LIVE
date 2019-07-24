@@ -26,7 +26,9 @@ namespace SmartTrucking
         List<LoginModel> _GetLoginModelList = new List<LoginModel>();
         List<MenuViewModel> _MenuViewModel_list = new List<MenuViewModel>();
         List<ForgotPwdModel> _ForgotPwdModelList = new List<ForgotPwdModel>();
-
+        static List<SoponsorNameModel> _SoponsorNameModel = new List<SoponsorNameModel>();
+        static List<CountryModel> _CountryModel = new List<CountryModel>();
+        static List<UserSaveModelWithPopupdetails> _UserSaveModelWithPopupdetails = new List<UserSaveModelWithPopupdetails>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -44,7 +46,170 @@ namespace SmartTrucking
             ReturnData.Clear();
             try
             {
+                string[] words = null;
+                string Data = Req;
+                if (Type == "Fill")
+                {
+                    words = null;
+                    words = Req.Split('@');
+                    for (int m = 0; words.Count() > m; m++)
+                    {
 
+                        Data = words[m].ToString();
+
+                        if (Data == "Country")
+                        {
+                            _CountryModel.Clear();
+                            ht_param.Clear();
+                            ds = db.SysFetchDataInDataSet("[GetCountryList]", ht_param);
+
+                            if (ds.Tables.Count > 0)
+                            {
+                                foreach (DataRow item in ds.Tables[0].Rows)
+                                {
+                                    CountryModel CountryModel_Detail = new CountryModel();
+                                    CountryModel_Detail.Name = item["NAME"].ToString();
+                                    CountryModel_Detail.COUNTRY_ID = Convert.ToInt32(item["COUNTRY_ID"].ToString());
+                                    _CountryModel.Add(CountryModel_Detail);
+                                }
+                            }
+                            ReturnData["Country"] = serializer.Serialize(_CountryModel);
+                        }
+                        if (Data == "Sponsor")
+                        {
+                            _CountryModel.Clear();
+                            ht_param.Clear();
+                            ht_param.Add("@Company_ID", ht["Company_ID"].ToString());
+                            ht_param.Add("@Branch_ID", ht["Branch_ID"].ToString());
+                            ds = db.SysFetchDataInDataSet("[GetALLSponsor]", ht_param);
+
+                            if (ds.Tables.Count > 0)
+                            {
+                                foreach (DataRow item in ds.Tables[0].Rows)
+                                {
+                                    CountryModel CountryModel_Detail = new CountryModel();
+                                    CountryModel_Detail.Name = item["NAME"].ToString();
+                                    CountryModel_Detail.COUNTRY_ID = Convert.ToInt32(item["ID"].ToString());
+                                    _CountryModel.Add(CountryModel_Detail);
+                                }
+                            }
+                            ReturnData["Sponsor"] = serializer.Serialize(_CountryModel);
+                        }
+                        
+                    }
+                }
+                if (Type == "State")
+                {
+                    _CountryModel.Clear();
+
+                    ht_param.Clear();
+                    ht_param.Add("@COUNTRY_ID", ht["COUNTRY_ID"].ToString());
+                    ds = db.SysFetchDataInDataSet("[GetStateList]", ht_param);
+
+                    if (ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow item in ds.Tables[0].Rows)
+                        {
+                            CountryModel CountryModel_Detail = new CountryModel();
+                            CountryModel_Detail.Name = item["NAME"].ToString();
+                            CountryModel_Detail.COUNTRY_ID = Convert.ToInt32(item["LOCATION_ID"].ToString());
+                            _CountryModel.Add(CountryModel_Detail);
+                        }
+                    }
+                    ReturnData["State"] = serializer.Serialize(_CountryModel);
+                }
+
+                if (Type == "District")
+                {
+                    _CountryModel.Clear();
+
+                    ht_param.Clear();
+                    ht_param.Add("@State_ID", ht["State_ID"].ToString());
+                    ds = db.SysFetchDataInDataSet("[GetDistrictList]", ht_param);
+
+                    if (ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow item in ds.Tables[0].Rows)
+                        {
+                            CountryModel CountryModel_Detail = new CountryModel();
+                            CountryModel_Detail.Name = item["NAME"].ToString();
+                            CountryModel_Detail.COUNTRY_ID = Convert.ToInt32(item["District_ID"].ToString());
+                            _CountryModel.Add(CountryModel_Detail);
+                        }
+                    }
+                    ReturnData["District"] = serializer.Serialize(_CountryModel);
+                }
+
+                if (Type == "Save")
+                {
+                    _UserSaveModelWithPopupdetails.Clear();
+
+                    ht_param.Clear();
+                    ht_param.Add("@Name", ht["Name"].ToString());
+                    ht_param.Add("@DOB", ht["DOB"].ToString());
+                    ht_param.Add("@MobileNo", ht["MobileNo"].ToString());
+                    ht_param.Add("@Email", ht["Email"].ToString());
+                    if (ht["country_id"].ToString() == "")
+                    {
+                        ht_param.Add("@country_id", DBNull.Value);
+                    }
+                    else
+                    {
+                        ht_param.Add("@country_id", ht["country_id"].ToString());
+                    }
+
+                    if (ht["state_id"].ToString() == "")
+                    {
+                        ht_param.Add("@state_id", DBNull.Value);
+                    }
+                    else
+                    {
+                        ht_param.Add("@state_id", ht["state_id"].ToString());
+                    }
+                    if (ht["district_id"].ToString() == "")
+                    {
+                        ht_param.Add("@district_id", DBNull.Value);
+                    }
+                    else
+                    {
+                        ht_param.Add("@district_id", ht["district_id"].ToString());
+                    }
+                    ht_param.Add("@Sponsor_Member_ID", ht["Sponsor_Member_ID"].ToString());
+                    ht_param.Add("@pincode", ht["pincode"].ToString());
+                    if (ht["Placed_ID"].ToString() == "")
+                    {
+                        ht_param.Add("@Placed_ID", DBNull.Value);
+                    }
+                    else
+                    {
+                        ht_param.Add("@Placed_ID", ht["Placed_ID"].ToString());
+                    }
+                    if (ht["Team"].ToString() == "")
+                    {
+                        ht_param.Add("@Team", DBNull.Value);
+                    }
+                    else
+                    {
+                        ht_param.Add("@Team", ht["Team"].ToString());
+                    }
+                    ds = db.SysFetchDataInDataSet("[INSERT_Agent_Quick]", ht_param);
+                    if (ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow item in ds.Tables[0].Rows)
+                        {
+                            UserSaveModelWithPopupdetails ___UserSaveModelWithIDDetails = new UserSaveModelWithPopupdetails();
+                            ___UserSaveModelWithIDDetails.CustomErrorState = item["CustomErrorState"].ToString();
+                            ___UserSaveModelWithIDDetails.CustomMessage = item["CustomMessage"].ToString();
+                            ___UserSaveModelWithIDDetails.Account_Number = item["Account_Number"].ToString();
+                            ___UserSaveModelWithIDDetails.Name = item["Name"].ToString();
+                            ___UserSaveModelWithIDDetails.MobileNo = item["MobileNo"].ToString();
+                            ___UserSaveModelWithIDDetails.Email = item["Email"].ToString();
+                            _UserSaveModelWithPopupdetails.Add(___UserSaveModelWithIDDetails);
+                        }
+                    }
+                    ReturnData["Save"] = serializer.Serialize(_UserSaveModelWithPopupdetails);
+
+                }
                 if (Type == "Login")
                 {
                     if (Req == "NormalLogin")
@@ -174,6 +339,38 @@ namespace SmartTrucking
                         }
                     }
                 }
+
+                if (Type == "Sopnsorname")
+                {
+                    if (Req == "Sopnsorname")
+                    {
+                        _SoponsorNameModel.Clear();
+                        ht_param.Clear();
+                        ht_param.Add("@Placed_MemberID", ht["Placed_MemberID"].ToString());
+                        ds = db.SysFetchDataInDataSet("[get_name_by_MemberID]", ht_param);
+
+                        if (ds.Tables.Count > 0)
+                        {
+                            _SoponsorNameModel = ds.Tables[0].AsEnumerable()
+                              .Select(row => new SoponsorNameModel
+                              {
+                                  name = row["name"].ToString(),
+                                  Company_ID = row["Company_ID"].ToString(),
+                                  Branch_ID = row["Branch_ID"].ToString()
+                              }).ToList();
+                        }
+                        ReturnData["Sopnsor"] = serializer.Serialize(_SoponsorNameModel);
+                    }
+                }
+
+                _ErrorModel.Clear();
+                ErrorModel _error1 = new ErrorModel();
+                _error1.Error = "false";
+                _error1.ErrorMessage = "Success";
+                _ErrorModel.Add(_error1);
+                ReturnData["ErrorDetail"] = serializer.Serialize(_ErrorModel);
+
+                HttpContext.Current.Response.AppendHeader("ResponseHeader", "200");
 
             }
             catch (Exception ex)

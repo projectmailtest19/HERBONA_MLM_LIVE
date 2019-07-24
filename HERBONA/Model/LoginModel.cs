@@ -17,6 +17,12 @@ public class ForgotPwdModel
 {
     public string UserName { get; set; }
 }
+public class SoponsorNameModel
+{
+    public string name { get; set; }
+    public string Company_ID { get; set; }
+    public string Branch_ID { get; set; }
+}
 public class LoanModel
 {
     public LoanModel()
