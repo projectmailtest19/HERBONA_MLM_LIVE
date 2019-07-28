@@ -12,9 +12,9 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Wallet List List</h3>
-                        <div style="float: right;">
+                       <%-- <div style="float: right;">
                             <button type="button" class="btn btn-block btn-primary" onclick="redirect()" id="btn_create">CREATE Wallet List</button>
-                        </div>
+                        </div>--%>
                     </div>                 
                     <div class="box-body" id="LoadListDiv">
                     </div>                  
