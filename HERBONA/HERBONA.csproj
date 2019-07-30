@@ -146,11 +146,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgentID_Card.aspx" />
+    <Content Include="ClientJS\Tickets_Resolved.js" />
+    <Content Include="ClientJS\Tickets_Active.js" />
+    <Content Include="ClientJS\Ticket_Create.js" />
     <Content Include="ClientJS\CreateWalletPaymentType.js" />
     <Content Include="ClientJS\BonusWalletSummary.js" />
     <Content Include="ClientJS\PurchaseWalletSummary.js" />
     <Content Include="ClientJS\WalletPaymentTypeList.js" />
     <Content Include="ClientJS\Signup.js" />
+    <Content Include="Tickets_Resolved.aspx" />
+    <Content Include="Tickets_Active.aspx" />
+    <Content Include="Ticket_Create.aspx" />
     <Content Include="CreateWalletPaymentType.aspx" />
     <Content Include="MyDirects.aspx" />
     <Content Include="ClientCss\Idcard.css" />
@@ -1338,6 +1344,29 @@
     </Compile>
     <Compile Include="AgentID_Card.aspx.designer.cs">
       <DependentUpon>AgentID_Card.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets_Resolved.aspx.cs">
+      <DependentUpon>Tickets_Resolved.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tickets_Resolved.aspx.designer.cs">
+      <DependentUpon>Tickets_Resolved.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets_Active.aspx.cs">
+      <DependentUpon>Tickets_Active.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tickets_Active.aspx.designer.cs">
+      <DependentUpon>Tickets_Active.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ActiveTicket.cs" />
+    <Compile Include="Model\TicketQueryReasonMaster.cs" />
+    <Compile Include="Ticket_Create.aspx.cs">
+      <DependentUpon>Ticket_Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticket_Create.aspx.designer.cs">
+      <DependentUpon>Ticket_Create.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreateWalletPaymentType.aspx.cs">
       <DependentUpon>CreateWalletPaymentType.aspx</DependentUpon>

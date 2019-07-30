@@ -255,6 +255,8 @@ namespace SmartTrucking
                                 HttpContext.Current.Session["Branch_ID"] = ds.Tables[1].Rows[0]["BRANCH_ID"].ToString();
                                 HttpContext.Current.Session["Login_user_ID"] = ds.Tables[1].Rows[0]["CONTACT_ID"].ToString();
                                 HttpContext.Current.Session["ROLEID"] = ds.Tables[1].Rows[0]["ROLEID"].ToString();
+                                HttpContext.Current.Session["IsAgent"] = ds.Tables[1].Rows[0]["IsAgent"].ToString();
+
                                 //HttpContext.Current.Session["CONTACT_TYPE"] = ds.Tables[1].Rows[0]["CONTACT_TYPE"].ToString();
 
 
