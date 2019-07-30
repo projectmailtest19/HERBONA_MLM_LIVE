@@ -20,6 +20,11 @@ namespace SmartTrucking.Model
         public string ORDER_NUMBER { get; set; }
         public string AnsweredBy { get; set; }
         public string AssignedTO { get; set; }
-        public string ActionPendingFrom { get; set; } 
+        public string ActionPendingFrom { get; set; }
+    }
+    public class ActiveTicketCommentModel
+    {
+        public string comments { get; set; }
+        public string Colour { get; set; }
     }
 }

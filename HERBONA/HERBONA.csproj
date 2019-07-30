@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgentID_Card.aspx" />
+    <Content Include="ClientJS\Ticket_Details.js" />
     <Content Include="ClientJS\Tickets_Resolved.js" />
     <Content Include="ClientJS\Tickets_Active.js" />
     <Content Include="ClientJS\Ticket_Create.js" />
@@ -154,6 +155,7 @@
     <Content Include="ClientJS\PurchaseWalletSummary.js" />
     <Content Include="ClientJS\WalletPaymentTypeList.js" />
     <Content Include="ClientJS\Signup.js" />
+    <Content Include="Ticket_Details.aspx" />
     <Content Include="Tickets_Resolved.aspx" />
     <Content Include="Tickets_Active.aspx" />
     <Content Include="Ticket_Create.aspx" />
@@ -1344,6 +1346,13 @@
     </Compile>
     <Compile Include="AgentID_Card.aspx.designer.cs">
       <DependentUpon>AgentID_Card.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticket_Details.aspx.cs">
+      <DependentUpon>Ticket_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticket_Details.aspx.designer.cs">
+      <DependentUpon>Ticket_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tickets_Resolved.aspx.cs">
       <DependentUpon>Tickets_Resolved.aspx</DependentUpon>

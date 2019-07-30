@@ -51,7 +51,8 @@ function LoadAjaxLoad(ht, obj, Req, url) {
                 var table = '<table id="LoadList" class="table table-bordered table-striped">';
                 table = table + '<thead><tr><th>Ticker Number</th><th>Ticket Date</th><th>Ticket Label</th><th>Query Type</th><th>Assigned TO</th>' +
                     '<th>Status</th><th>Answered By</th><th>Action Pending From</th><th  style="display:none">ORDER_NUMBER</th><th  style="display:none">Subject</th>' +
-                    '<th  style="display:none">Attatchments</th><th  style="display:none">EstimatedAmount</th><th  style="display:none">CreditedAmount</th><th  style="display:none">PayScheduleNo</th></tr></thead> <tbody>';
+                   '<th  style="display:none">Attatchments</th><th  style="display:none">EstimatedAmount</th><th  style="display:none">CreditedAmount</th>' +
+                    '<th  style="display:none">PayScheduleNo</th><th>View</th></tr></thead> <tbody>';
                 $.each(data, function (i, item) {
 
                     table = table + "<tr><td>" + item.TickerNumber +
@@ -68,6 +69,7 @@ function LoadAjaxLoad(ht, obj, Req, url) {
                                       "</td><td  style='display:none' >" + item.EstimatedAmount +
                                     "</td><td  style='display:none' >" + item.CreditedAmount +
                                     "</td><td  style='display:none' >" + item.PayScheduleNo +
+                                      "</td><td><a href='Ticket_Details.aspx?" + btoa("id=" + item.TickerNumber + "") + "'>View</a></td>" +
                                     "</tr>"
                 });
                 document.getElementById("LoadListDiv").innerHTML = table + '</tbody></table>';
