@@ -181,7 +181,7 @@
                                     <label for="inputState" class="col-sm-3 control-label">Placed MemberID</label>
 
                                     <div class="col-sm-9">
-                                        <input id="txtPlaced_MemberID" class="form-control" type="text" placeholder="Placed MemberID" disabled/>
+                                        <input id="txtMemberID" class="form-control" type="text" placeholder="Placed MemberID" disabled/>
                                     </div>
                                 </div>
                                 <div class="form-group">

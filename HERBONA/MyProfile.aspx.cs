@@ -226,7 +226,7 @@ namespace SmartTrucking
                                    Contact_id = row["Contact_id"].ToString(),
                                    Sponsor_ID = row["Sponsor_ID"].ToString(),
                                    Placed_Name = row["Placed_Name"].ToString(),
-                                   Placed_MemberID = row["Placed_MemberID"].ToString(),
+                                   MemberID = row["MemberID"].ToString(),
                                    Placed_Team = row["Placed_Team"].ToString(),
                                    SplitSponsor_ID = row["SplitSponsor_ID"].ToString()
                                }).ToList();
@@ -344,7 +344,7 @@ namespace SmartTrucking
                        {
                            MobileNo = row["MobileNo"].ToString(),
                            Account_Number = row["Account_Number"].ToString(),
-                           Placed_MemberID = row["Placed_MemberID"].ToString()
+                           MemberID = row["MemberID"].ToString()
                        }).ToList();
                     }
                     ReturnData["Sponsor_Details"] = serializer.Serialize(_Sponsor_Details_Model);
@@ -544,7 +544,7 @@ namespace SmartTrucking
                     //ht_param.Add("@Sponsor_MemberID", ht["Sponsor_MemberID"].ToString());
                     //ht_param.Add("@Sponsor_Mobile_Number", ht["Sponsor_Mobile_Number"].ToString());
                     ht_param.Add("@Placed_Name", ht["Placed_Name"].ToString());
-                    //ht_param.Add("@Placed_MemberID", ht["Placed_MemberID"].ToString());
+                    //ht_param.Add("@MemberID", ht["MemberID"].ToString());
                     //ht_param.Add("@Placed_Team", ht["Placed_Team"].ToString());
                     ht_param.Add("@SplitSponsor_ID", ht["SplitSponsor_ID"].ToString());
                     ht_param.Add("@MODE", ht["MODE"].ToString());
@@ -578,7 +578,7 @@ namespace SmartTrucking
                     //ht_param.Add("@Sponsor_MemberID", ht["Sponsor_MemberID"].ToString());
                     //ht_param.Add("@Sponsor_Mobile_Number", ht["Sponsor_Mobile_Number"].ToString());
                     ht_param.Add("@Placed_Name", ht["Placed_Name"].ToString());
-                    //ht_param.Add("@Placed_MemberID", ht["Placed_MemberID"].ToString());
+                    //ht_param.Add("@MemberID", ht["MemberID"].ToString());
                     //ht_param.Add("@Placed_Team", ht["Placed_Team"].ToString());
                     ht_param.Add("@SplitSponsor_ID", ht["SplitSponsor_ID"].ToString());
                     ht_param.Add("@MODE", ht["MODE"].ToString());

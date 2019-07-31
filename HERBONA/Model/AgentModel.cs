@@ -19,6 +19,7 @@ namespace SmartTrucking.Model
         public string Address { get; set; }
         public string pincode { get; set; }
         public string IsAgentActive { get; set; }
+        public string DateOfBirth { get; set; }
     }
     public class AgentIDCardModel
     {
@@ -54,7 +55,7 @@ namespace SmartTrucking.Model
         public string Contact_id { get; set; }
         public string Sponsor_ID { get; set; }
         public string Placed_Name { get; set; }
-        public string Placed_MemberID { get; set; }
+        public string MemberID { get; set; }
         public string Placed_Team { get; set; }
         public string SplitSponsor_ID { get; set; }
     }
@@ -62,7 +63,7 @@ namespace SmartTrucking.Model
     {
         public string MobileNo { get; set; }
         public string Account_Number { get; set; }
-        public string Placed_MemberID { get; set; }
+        public string MemberID { get; set; }
     }
 
     public class AgentBankDetailsModel

@@ -409,7 +409,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
                     $.each(json, function (index, item) {
                        // alert(item.Account_Number);
                         $("#txtSponsor_Account_No").val(item.Account_Number);
-                        $("#txtSponsor_MemberID").val(item.Placed_MemberID);
+                        $("#txtSponsor_MemberID").val(item.MemberID);
                         $("#txtSponsor_Mobile_Number").val(item.MobileNo);
                     });
                 }
@@ -503,7 +503,8 @@ function LoadAjaxContact(ht, obj, Req, url) {
                             $("#txtAddress").val(item.Address);
                             $("#txtPinCode").val(item.pincode);
                             $('#selectimg').attr('src', "");
-                            $('#LogoPath').val(item.ImageURL);                   
+                            $('#LogoPath').val(item.ImageURL);
+                            $('#txtDateOfBirth').val(item.DateOfBirth); 
                             $('#selectimg').attr('src', '' + item.ImageURL + '');
                             if (item.ImageURL != "") {
                                 $("#selectimg").show();
@@ -528,7 +529,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
                                 //$("#txtSponsor_Mobile_Number").val(item.Sponsor_Mobile_Number);
                                 $("#cmbSponsor_Name").val(item.Sponsor_ID).trigger('change');
                                 $("#txtPlaced_Name").val(item.Placed_Name);
-                                $("#txtPlaced_MemberID").val(item.Placed_MemberID);
+                                $("#txtMemberID").val(item.MemberID);
                                 $("#txtPlaced_Team").val(item.Placed_Team);
                                 $("#cmbSplitSponsor_Name").val(item.SplitSponsor_ID).trigger('change');
                             });
@@ -1045,6 +1046,7 @@ function AddNewAgentPresonalDetails() {
 
             ht["addressline"] = $("#txtAddress").val();
             ht["pincode"] = $("#txtPinCode").val();
+            ht["DateOfBirth"] = $("#txtDateOfBirth").val();
           
         
             if ($("#ID_hidden").val() == "") {
@@ -1111,7 +1113,7 @@ function AddNewAgentSponsorDetails()
             //ht["Sponsor_MemberID"] = $("#txtSponsor_MemberID").val();
             //ht["Sponsor_Mobile_Number"] = $("#txtSponsor_Mobile_Number").val();
             ht["Placed_Name"] = $("#txtPlaced_Name").val();
-            //ht["Placed_MemberID"] = $("#txtPlaced_MemberID").val();
+            //ht["MemberID"] = $("#txtMemberID").val();
             //ht["Placed_Team"] = $("#txtPlaced_Team").val();
             ht["SplitSponsor_ID"] = $("#cmbSplitSponsor_Name :selected").val();
 

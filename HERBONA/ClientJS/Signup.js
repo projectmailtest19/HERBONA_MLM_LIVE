@@ -113,7 +113,7 @@ function NextSubmit1() {
    
     //setTimeout(function () {
     ht = {};
-    ht["Placed_MemberID"] = $("#txtSponsorAccountNumber").val();
+    ht["MemberID"] = $("#txtSponsorAccountNumber").val();
     Req = "Sopnsorname";
     obj = "Sopnsorname";
     url = "Signup.aspx/LoginDetails";

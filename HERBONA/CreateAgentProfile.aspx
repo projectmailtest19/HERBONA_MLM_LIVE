@@ -88,6 +88,23 @@
                                         <input id="txtEmail" class="form-control" type="email" placeholder="Email ID" />
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="inputDateOfBirth" class="col-sm-3 control-label">Date Of Birth<span class="reqstar">*</span></label>
+
+                                    <div class="col-sm-9">
+
+                                        <div class="input-group date ">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" id="txtDateOfBirth" autocomplete="off">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                </div>
+
+
+
                                 <h4 class="box-title" style="padding-top: 20px; color: cornflowerblue">(ii). Address Details</h4>
                                 <div class="form-group">
                                     <label for="inputCountry" class="col-sm-3 control-label">Country<span class="reqstar">*</span></label>
@@ -174,7 +191,7 @@
                                     <label for="inputState" class="col-sm-3 control-label">Placed MemberID</label>
 
                                     <div class="col-sm-9">
-                                        <input id="txtPlaced_MemberID" class="form-control" type="text" placeholder="Placed MemberID" disabled />
+                                        <input id="txtMemberID" class="form-control" type="text" placeholder="Placed MemberID" disabled />
                                     </div>
                                 </div>
 
@@ -444,8 +461,15 @@
     <script>
         $(function () {
             $(".select2").select2();
+
+            //Date picker
+            $('#txtDateOfBirth').datepicker({
+                autoclose: true
+            });
         });
     </script>
     <!-- /.content -->
 
+    <!-- bootstrap datepicker -->
+    <script src="../../plugins/datepicker/bootstrap-datepicker.js"></script>
 </asp:Content>

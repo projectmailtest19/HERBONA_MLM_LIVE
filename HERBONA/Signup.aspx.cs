@@ -348,7 +348,7 @@ namespace SmartTrucking
                     {
                         _SoponsorNameModel.Clear();
                         ht_param.Clear();
-                        ht_param.Add("@Placed_MemberID", ht["Placed_MemberID"].ToString());
+                        ht_param.Add("@MemberID", ht["MemberID"].ToString());
                         ds = db.SysFetchDataInDataSet("[get_name_by_MemberID]", ht_param);
 
                         if (ds.Tables.Count > 0)

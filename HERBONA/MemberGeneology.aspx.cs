@@ -49,7 +49,7 @@ namespace HERBONA
             try
             {
 
-                string str = "SELECT [Placed_MemberID],c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id  where c.ID=" + assid;
+                string str = "SELECT [MemberID],c.NAME FROM CONTACT as c left join Agent_Sponsor_Details as a on c.id = a.Contact_id  where c.ID=" + assid;
                 SqlDataReader reader = GetData(str);
                 while (reader.Read())
                 {
@@ -71,8 +71,8 @@ namespace HERBONA
         private void BindChilds(TreeNode node, string parentNodeID)
         {
 
-            string str = "SELECT r.[Placed_MemberID],a.NAME,r.Placed_Team FROM CONTACT AS a inner join Agent_Sponsor_Details AS r on a.ID=r.Contact_id " +
-                " inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[Placed_MemberID]='" + parentNodeID + "'";
+            string str = "SELECT r.[MemberID],a.NAME,r.Placed_Team FROM CONTACT AS a inner join Agent_Sponsor_Details AS r on a.ID=r.Contact_id " +
+                " inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID]='" + parentNodeID + "'";
             SqlDataReader reader = GetData(str);
             int i = 0;
             while (reader.Read())
