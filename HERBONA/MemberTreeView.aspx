@@ -73,7 +73,7 @@
                 <td>&nbsp;
                 </td>
                 <td align="left" colspan="5" rowspan="3" valign="top">
-                    <table border="0" cellpadding="0" cellspacing="0" class="Tree" width="280">
+                    <table border="0" cellpadding="0" cellspacing="0" class="Tree" width="280" style="font-size:small;">
                         <tr>
                             <td align="left" class="style5" scope="row" valign="top">Name :
                             </td>
@@ -244,7 +244,7 @@
 
                 <td align="center" colspan="12" valign="top">
                     <div class="col-lg-12">
-                        <div class="col-lg-1" style="margin-left: -50px;"></div>
+                        <div class="col-lg-1" style="margin-left: 0px;"></div>
                         <div class="col-lg-1">
                             <asp:LinkButton ID="Lb4L" runat="server" OnClick="Lb4L_Click"></asp:LinkButton>
                         </div>
@@ -257,7 +257,7 @@
                             <asp:LinkButton ID="Lb6L" runat="server" OnClick="Lb6L_Click"></asp:LinkButton>
                         </div>
                         <div class="col-lg-2"></div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-1" style="margin-left: -50px;">
                             <asp:LinkButton ID="Lb7R" runat="server" OnClick="Lb7R_Click"></asp:LinkButton>
                         </div>
 
@@ -268,7 +268,7 @@
             <tr>
                 <td align="center" colspan="12" valign="top">
                     <div class="col-lg-12">
-                        <div class="col-lg-1" style="margin-left: -50px;"></div>
+                        <div class="col-lg-1" style="margin-left: 0px;"></div>
                         <div class="col-lg-1">
                             <img id="i4" runat="server" alt="" height="31" src="../TreeImages/R.jpg" width="35" />
                         </div>
@@ -281,7 +281,7 @@
                             <img id="i6" runat="server" alt="" height="31" src="../TreeImages/R.jpg" width="35" />
                         </div>
                         <div class="col-lg-2"></div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-1"  style="margin-left: -50px;">
                             <img id="i7" runat="server" alt="" height="31" src="../TreeImages/R.jpg" width="35" />
                         </div>
 
@@ -293,7 +293,7 @@
             <tr>
                 <td align="center" colspan="12" valign="top">
                     <div class="col-lg-12">
-                        <div class="col-lg-1" style="margin-left: -50px;"></div>
+                        <div class="col-lg-1" style="margin-left: 0px;"></div>
                         <div class="col-lg-1">
                             <img height="20" src="../TreeImages/Treeview_107.jpg" width="2" />
                         </div>
@@ -306,7 +306,7 @@
                             <img height="20" src="../TreeImages/Treeview_107.jpg" width="2" />
                         </div>
                         <div class="col-lg-2"></div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-1"  style="margin-left: -50px;">
                             <img height="20" src="../TreeImages/Treeview_107.jpg" width="2" />
                         </div>
 

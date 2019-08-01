@@ -45,7 +45,7 @@ function LoadAjaxCompany(ht, obj, Req, url) {
                 var table = '<table id="ContactList" class="table table-bordered table-striped">';
                 table = table + '<thead><tr><th>Member ID</th><th>Name</th><th>Registration Date</th><th>Position</th></tr></thead> <tbody>';
                 $.each(data, function (i, item) {
-                    table = table + "<tr><td>" + item.PBO_Account_No +
+                    table = table + "<tr><td>" + item.MemberID +
                                     "</td><td>" + item.Name +
                                     "</td><td>" + item.RegistrationDate +
                                     "</td><td>" + item.Position +

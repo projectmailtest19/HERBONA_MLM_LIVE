@@ -53,16 +53,16 @@ namespace SmartTrucking.Model
     {
         public string id { get; set; }
         public string Contact_id { get; set; }
-        public string Sponsor_ID { get; set; }
-        public string Placed_Name { get; set; }
+        public string Placed_Contact_Id { get; set; }
+       
         public string MemberID { get; set; }
         public string Placed_Team { get; set; }
-        public string SplitSponsor_ID { get; set; }
+        public string Sponsor_Contact_Id { get; set; }
     }
     public class Sponsor_Details_Model
     {
         public string MobileNo { get; set; }
-        public string Account_Number { get; set; }
+        public string Name { get; set; }
         public string MemberID { get; set; }
     }
 
@@ -101,7 +101,7 @@ namespace SmartTrucking.Model
     }
     public class NoOfDirectsModel
     {
-        public string PBO_Account_No { get; set; }
+        public string MemberID { get; set; }
         public string Name { get; set; }
         public string RegistrationDate { get; set; }
         public string Position { get; set; }

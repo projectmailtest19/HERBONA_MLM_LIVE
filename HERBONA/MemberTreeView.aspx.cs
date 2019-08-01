@@ -117,7 +117,7 @@ namespace HERBONA
                 con.Open();
                 Lb1.Text = usr.ToString();
                 //LBL_Name.Text = usr.ToString();
-                string sql0 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + Lb1.Text + "'";
+                string sql0 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + Lb1.Text + "'";
                 da = new SqlDataAdapter(sql0, con);
                 ds = new DataSet();
                 da.Fill(ds, "Agent_Sponsor_Details");
@@ -159,7 +159,7 @@ namespace HERBONA
 
 
 
-                    string sql1 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + l2 + "'";
+                    string sql1 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + l2 + "'";
                     da = new SqlDataAdapter(sql1, con);
                     ds = new DataSet();
                     da.Fill(ds, "Agent_Sponsor_Details");
@@ -196,7 +196,7 @@ namespace HERBONA
                     {
                         Lb4L.Visible = true;
                         Lb4L.Text = l4;
-                        string sql4 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + l4 + "'";
+                        string sql4 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + l4 + "'";
                         da = new SqlDataAdapter(sql4, con);
                         ds = new DataSet();
                         da.Fill(ds, "Agent_Sponsor_Details");
@@ -232,7 +232,7 @@ namespace HERBONA
                         {
                             Lb8L.Visible = true;
                             Lb8L.Text = l8;
-                            string sql8 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + l8 + "'";
+                            string sql8 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + l8 + "'";
                             da = new SqlDataAdapter(sql8, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -266,7 +266,7 @@ namespace HERBONA
                         {
                             Lb9R.Visible = true;
                             Lb9R.Text = r9;
-                            string sql9 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + r9 + "'";
+                            string sql9 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + r9 + "'";
                             da = new SqlDataAdapter(sql9, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -302,7 +302,7 @@ namespace HERBONA
                     {
                         Lb5R.Visible = true;
                         Lb5R.Text = r5;
-                        string sql5 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + r5 + "'";
+                        string sql5 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + r5 + "'";
                         da = new SqlDataAdapter(sql5, con);
                         ds = new DataSet();
                         da.Fill(ds, "Agent_Sponsor_Details");
@@ -338,7 +338,7 @@ namespace HERBONA
                         {
                             Lb10L.Visible = true;
                             Lb10L.Text = l10;
-                            string sql10 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + l10 + "'";
+                            string sql10 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + l10 + "'";
                             da = new SqlDataAdapter(sql10, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -373,7 +373,7 @@ namespace HERBONA
                         {
                             Lb11R.Visible = true;
                             Lb11R.Text = r11;
-                            string sql11 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + r11 + "'";
+                            string sql11 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + r11 + "'";
                             da = new SqlDataAdapter(sql11, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -411,7 +411,7 @@ namespace HERBONA
                     Lb3R.Text = r3;
 
 
-                    string sql3 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + r3 + "'";
+                    string sql3 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + r3 + "'";
                     da = new SqlDataAdapter(sql3, con);
                     ds = new DataSet();
                     da.Fill(ds, "Agent_Sponsor_Details");
@@ -448,7 +448,7 @@ namespace HERBONA
                     {
                         Lb6L.Visible = true;
                         Lb6L.Text = l6;
-                        string sql6 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + l6 + "'";
+                        string sql6 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + l6 + "'";
                         da = new SqlDataAdapter(sql6, con);
                         ds = new DataSet();
                         da.Fill(ds, "Agent_Sponsor_Details");
@@ -486,7 +486,7 @@ namespace HERBONA
                         {
                             Lb12L.Visible = true;
                             Lb12L.Text = l12;
-                            string sql12 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + l12 + "'";
+                            string sql12 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + l12 + "'";
                             da = new SqlDataAdapter(sql12, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -520,7 +520,7 @@ namespace HERBONA
                         {
                             Lb13R.Visible = true;
                             Lb13R.Text = r13;
-                            string sql13 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + r13 + "'";
+                            string sql13 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + r13 + "'";
                             da = new SqlDataAdapter(sql13, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -555,7 +555,7 @@ namespace HERBONA
                     {
                         Lb7R.Visible = true;
                         Lb7R.Text = r7;
-                        string sql7 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + r7 + "'";
+                        string sql7 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + r7 + "'";
                         da = new SqlDataAdapter(sql7, con);
                         ds = new DataSet();
                         da.Fill(ds, "Agent_Sponsor_Details");
@@ -592,7 +592,7 @@ namespace HERBONA
                         {
                             Lb14L.Visible = true;
                             Lb14L.Text = l14;
-                            string sql14 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + l14 + "'";
+                            string sql14 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + l14 + "'";
                             da = new SqlDataAdapter(sql14, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");
@@ -626,7 +626,7 @@ namespace HERBONA
                         {
                             Lb15R.Visible = true;
                             Lb15R.Text = r15;
-                            string sql15 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Sponsor_ID = s.Contact_id where s.[MemberID] ='" + r15 + "'";
+                            string sql15 = "select count(*) from Agent_Sponsor_Details as r inner join Agent_Sponsor_Details as s on r.Placed_Contact_Id = s.Contact_id where s.[MemberID] ='" + r15 + "'";
                             da = new SqlDataAdapter(sql15, con);
                             ds = new DataSet();
                             da.Fill(ds, "Agent_Sponsor_Details");

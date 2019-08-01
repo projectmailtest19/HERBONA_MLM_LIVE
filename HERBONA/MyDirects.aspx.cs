@@ -59,7 +59,7 @@ namespace SmartTrucking
                         NoOfDirectsModel_list = ds.Tables[0].AsEnumerable()
                           .Select(row => new NoOfDirectsModel
                           {
-                              PBO_Account_No = row["PBO_Account_No"].ToString(),
+                              MemberID = row["MemberID"].ToString(),
                               Name = row["Name"].ToString(),
                               RegistrationDate = row["RegistrationDate"].ToString(),
                               Position = row["Position"].ToString()

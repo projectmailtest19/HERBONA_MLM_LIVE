@@ -224,11 +224,10 @@ namespace SmartTrucking
                                {
                                    id = row["id"].ToString(),
                                    Contact_id = row["Contact_id"].ToString(),
-                                   Sponsor_ID = row["Sponsor_ID"].ToString(),
-                                   Placed_Name = row["Placed_Name"].ToString(),
+                                   Sponsor_Contact_Id = row["Sponsor_Contact_Id"].ToString(),
                                    MemberID = row["MemberID"].ToString(),
                                    Placed_Team = row["Placed_Team"].ToString(),
-                                   SplitSponsor_ID = row["SplitSponsor_ID"].ToString()
+                                   Placed_Contact_Id = row["Placed_Contact_Id"].ToString()
                                }).ToList();
                             }
                             ReturnData["FillSponsorDetails"] = serializer.Serialize(_AgentSponsorModel);
@@ -343,7 +342,7 @@ namespace SmartTrucking
                        .Select(row => new Sponsor_Details_Model
                        {
                            MobileNo = row["MobileNo"].ToString(),
-                           Account_Number = row["Account_Number"].ToString(),
+                           Name = row["Name"].ToString(),
                            MemberID = row["MemberID"].ToString()
                        }).ToList();
                     }

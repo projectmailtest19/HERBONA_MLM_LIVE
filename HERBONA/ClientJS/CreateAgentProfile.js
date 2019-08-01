@@ -24,11 +24,7 @@ $(document).ready(function () {
     }
 
     if (cid == undefined) {
-        //$("#liSponsor").removeClass('disabledLI');
-        //$("#liBank").removeClass('disabledLI');
-        //$("#likyc").removeClass('disabledLI');
-        //$("#lirank").removeClass('disabledLI');
-        Req = 'Country@Sponsor@SplitSponsor';
+        Req = 'Country@Sponsor@Placed';
         obj = "Fill";
         url = "CreateAgentProfile.aspx/ContactDetails";
         ht = {};
@@ -42,12 +38,12 @@ $(document).ready(function () {
         $("#lirank").removeClass('disabledLI');
         $('#ID_hidden').val('' + cid);
         setTimeout(function () {
-            Req = 'Country@Sponsor@SplitSponsor@FillPersonalDetails@FillSponsorDetails@FillbankDetails@FillAddressProof@FillBankProof@FillPAN@FillApplication@FillRankHistory';
-        obj = "Fill";
-        url = "CreateAgentProfile.aspx/ContactDetails";
-        ht = {};
-        ht["Contact_id"] = cid;
-        LoadAjaxContact(ht, obj, Req, url);
+            Req = 'Country@Sponsor@Placed@FillPersonalDetails@FillSponsorDetails@FillbankDetails@FillAddressProof@FillBankProof@FillPAN@FillApplication@FillRankHistory';
+            obj = "Fill";
+            url = "CreateAgentProfile.aspx/ContactDetails";
+            ht = {};
+            ht["Contact_id"] = cid;
+            LoadAjaxContact(ht, obj, Req, url);
         }, 2000);
     }
 });
@@ -65,6 +61,14 @@ $("#cmbSponsor_Name").change(function () {
     url = "CreateAgentProfile.aspx/ContactDetails";
     ht = {};
     ht["id"] = $("#cmbSponsor_Name :selected").val();
+    LoadAjaxContact(ht, obj, Req, url);
+});
+$("#cmbPlaced_Name").change(function () {
+    Req = 'Placed_Details';
+    obj = "Placed_Details";
+    url = "CreateAgentProfile.aspx/ContactDetails";
+    ht = {};
+    ht["id"] = $("#cmbPlaced_Name :selected").val();
     LoadAjaxContact(ht, obj, Req, url);
 });
 $("#cmbState").change(function () {
@@ -153,14 +157,13 @@ function validationcheckAgentAddressProof() {
     }
     return true;
 }
-function SaveAgentPANCard()
-{
+function SaveAgentPANCard() {
     if (validationcheckAgentPANProof() == true) {
         if ($('#f_UploadPAN_Card')[0].files[0] != undefined) {
             sendAgentPANCard();
             setTimeout(function () {
-            $('#APAN_Link').show();
-            $('#APAN_Link').attr("href", AgentPanCard);
+                $('#APAN_Link').show();
+                $('#APAN_Link').attr("href", AgentPanCard);
             }, 500);
         }
         setTimeout(function () {
@@ -401,19 +404,34 @@ function LoadAjaxContact(ht, obj, Req, url) {
             }
 
             if (obj == "Sponsor_Details") {
-                $("#txtSponsor_Account_No").val("");
+                $("#txtSponsor_Name").val("");
                 $("#txtSponsor_MemberID").val("");
                 $("#txtSponsor_Mobile_Number").val("");
                 if (Result.d.Sponsor_Details != "" && Result.d.Sponsor_Details != undefined) {
                     var json = jQuery.parseJSON(Result.d.Sponsor_Details);
                     $.each(json, function (index, item) {
-                       // alert(item.Account_Number);
-                        $("#txtSponsor_Account_No").val(item.Account_Number);
+                        // alert(item.Account_Number);
+                        $("#txtSponsor_Name").val(item.Name);
                         $("#txtSponsor_MemberID").val(item.MemberID);
                         $("#txtSponsor_Mobile_Number").val(item.MobileNo);
                     });
                 }
             }
+            if (obj == "Placed_Details") {
+                $("#txtPlaced_Name").val("");
+                $("#txtPlaced_MemberID").val("");
+                $("#txtPlaced_Mobile_Number").val("");
+                if (Result.d.Placed_Details != "" && Result.d.Placed_Details != undefined) {
+                    var json = jQuery.parseJSON(Result.d.Placed_Details);
+                    $.each(json, function (index, item) {
+                        // alert(item.Account_Number);
+                        $("#txtPlaced_Name").val(item.Name);
+                        $("#txtPlaced_MemberID").val(item.MemberID);
+                        $("#txtPlaced_Mobile_Number").val(item.MobileNo);
+                    });
+                }
+            }
+
 
             if (obj == "District") {
                 if (Result.d.District != "" && Result.d.District != undefined) {
@@ -425,7 +443,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
                     });
                 }
             }
-           
+
             if (obj == "Fill") {
 
                 if (Result.d.FillRankHistory != "" && Result.d.FillRankHistory != undefined) {
@@ -462,14 +480,14 @@ function LoadAjaxContact(ht, obj, Req, url) {
                     $('#cmbSponsor_Name').append($('<option></option>'));
                     $.each(Sponsor, function (index, item) {
                         $('#cmbSponsor_Name').append($('<option></option>').val(item.COUNTRY_ID).html(item.Name));
-                    });                    
+                    });
                 }
-                if (Result.d.SplitSponsor != "" && Result.d.SplitSponsor != undefined) {
-                    var SplitSponsor = jQuery.parseJSON(Result.d.SplitSponsor);
-                    $('#cmbSplitSponsor_Name').html('');
-                    $('#cmbSplitSponsor_Name').append($('<option></option>'));
-                    $.each(SplitSponsor, function (index, item) {
-                        $('#cmbSplitSponsor_Name').append($('<option></option>').val(item.COUNTRY_ID).html(item.Name));
+                if (Result.d.Placed != "" && Result.d.Placed != undefined) {
+                    var Placed = jQuery.parseJSON(Result.d.Placed);
+                    $('#cmbPlaced_Name').html('');
+                    $('#cmbPlaced_Name').append($('<option></option>'));
+                    $.each(Placed, function (index, item) {
+                        $('#cmbPlaced_Name').append($('<option></option>').val(item.COUNTRY_ID).html(item.Name));
                     });
                 }
                 if (Result.d.State != "" && Result.d.State != undefined) {
@@ -483,153 +501,148 @@ function LoadAjaxContact(ht, obj, Req, url) {
 
                 //EDIT MAPPING
                 //if (Req == 'FillPersonalDetails') {
-                    if (Result.d.FillPersonalDetails != "" && Result.d.FillPersonalDetails != undefined) {
-                        var json = jQuery.parseJSON(Result.d.FillPersonalDetails);
-                        $("#btnAgentPersonalDetails").text("Update");
-                        $.each(json, function (index, item) {
+                if (Result.d.FillPersonalDetails != "" && Result.d.FillPersonalDetails != undefined) {
+                    var json = jQuery.parseJSON(Result.d.FillPersonalDetails);
+                    $("#btnAgentPersonalDetails").text("Update");
+                    $.each(json, function (index, item) {
 
-                            $("#ID_hidden").val(item.ID);
-                            $("#txtName").val(item.Name);
-                            $("#cmbGender").val(item.Gender).trigger('change');
-                            $("#txtMobileNo").val(item.MobileNo);
-                            $("#txtEmail").val(item.Email);
-                            $("#cmbCountry").val(item.country_id).trigger('change');
-                            setTimeout(function () {
-                                $("#cmbState").val(item.state_id).trigger('change');
-                            }, 1000);
-                            setTimeout(function () {
-                                $("#cmbDistrict").val(item.district_id).trigger('change');
-                            }, 2000);
-                            $("#txtAddress").val(item.Address);
-                            $("#txtPinCode").val(item.pincode);
-                            $('#selectimg').attr('src', "");
-                            $('#LogoPath').val(item.ImageURL);
-                            $('#txtDateOfBirth').val(item.DateOfBirth); 
-                            $('#selectimg').attr('src', '' + item.ImageURL + '');
-                            if (item.ImageURL != "") {
-                                $("#selectimg").show();
-                            }
+                        $("#ID_hidden").val(item.ID);
+                        $("#txtName").val(item.Name);
+                        $("#cmbGender").val(item.Gender).trigger('change');
+                        $("#txtMobileNo").val(item.MobileNo);
+                        $("#txtEmail").val(item.Email);
+                        $("#cmbCountry").val(item.country_id).trigger('change');
+                        setTimeout(function () {
+                            $("#cmbState").val(item.state_id).trigger('change');
+                        }, 1000);
+                        setTimeout(function () {
+                            $("#cmbDistrict").val(item.district_id).trigger('change');
+                        }, 2000);
+                        $("#txtAddress").val(item.Address);
+                        $("#txtPinCode").val(item.pincode);
+                        $('#selectimg').attr('src', "");
+                        $('#LogoPath').val(item.ImageURL);
+                        $('#txtDateOfBirth').val(item.DateOfBirth);
+                        $('#selectimg').attr('src', '' + item.ImageURL + '');
+                        if (item.ImageURL != "") {
+                            $("#selectimg").show();
+                        }
 
-                        });
+                    });
                     //}
-                    }
+                }
 
                 //if (Req == 'FillSponsorDetails') {
-                   // alert(jQuery.parseJSON(Result.d.FillSponsorDetails));
-                    if (Result.d.FillSponsorDetails != "" && Result.d.FillSponsorDetails != undefined) {
-                        var json = jQuery.parseJSON(Result.d.FillSponsorDetails);
-                        if (json != "") {
-                            $("#btnAgentSponsorDetails").text("Update");
-                            $.each(json, function (index, item) {
-
-                                $("#ID_hidden_SponsorDetails").val(item.id);
-                                //$("#txtSponsor_Account_No").val(item.Sponsor_Account_No);
-                                //$("#txtSponsor_Name").val(item.Sponsor_Name);
-                                //$("#txtSponsor_MemberID").val(item.Sponsor_MemberID);
-                                //$("#txtSponsor_Mobile_Number").val(item.Sponsor_Mobile_Number);
-                                $("#cmbSponsor_Name").val(item.Sponsor_ID).trigger('change');
-                                $("#txtPlaced_Name").val(item.Placed_Name);
-                                $("#txtMemberID").val(item.MemberID);
-                                $("#txtPlaced_Team").val(item.Placed_Team);
-                                $("#cmbSplitSponsor_Name").val(item.SplitSponsor_ID).trigger('change');
-                            });
-                        }
-                        //}
+                // alert(jQuery.parseJSON(Result.d.FillSponsorDetails));
+                if (Result.d.FillSponsorDetails != "" && Result.d.FillSponsorDetails != undefined) {
+                    var json = jQuery.parseJSON(Result.d.FillSponsorDetails);
+                    if (json != "") {
+                        $("#btnAgentSponsorDetails").text("Update");
+                        $.each(json, function (index, item) {
+                           
+                            $("#ID_hidden_SponsorDetails").val(item.id);
+                            $("#position").val(item.Placed_Team).trigger('change');
+                            $("#cmbSponsor_Name").val(item.Sponsor_Contact_Id).trigger('change');
+                            $("#cmbPlaced_Name").val(item.Placed_Contact_Id).trigger('change');
+                           
+                        });
                     }
-                    if (Result.d.FillbankDetails != "" && Result.d.FillbankDetails != undefined) {
-                        var json = jQuery.parseJSON(Result.d.FillbankDetails);
-                        if (json != "") {
-                            $("#btnAgentBankDetails").text("Update");
-                            $.each(json, function (index, item) {
+                    //}
+                }
+                if (Result.d.FillbankDetails != "" && Result.d.FillbankDetails != undefined) {
+                    var json = jQuery.parseJSON(Result.d.FillbankDetails);
+                    if (json != "") {
+                        $("#btnAgentBankDetails").text("Update");
+                        $.each(json, function (index, item) {
 
-                                $("#ID_hidden_BankDetails").val(item.id);
-                                $("#txtAccountHolderName").val(item.Account_Holder_Name);
-                                $("#txtAccountNumber").val(item.Account_Number);
-                                $("#txtBank_Name").val(item.Bank_Name);
-                                $("#cmbAccount_Type").val(item.Account_Type).trigger('change');
-                                $("#txtIFSC_Code").val(item.IFSC_Code);
-                                $("#txtBranch_Name").val(item.Branch_Name);
-                                $("#txtPan_No").val(item.Pan_No);
-
-                            });
-                        }
-                    }
-                    if (Result.d.FillPAN != "" && Result.d.FillPAN != undefined) {
-                        var json = jQuery.parseJSON(Result.d.FillPAN);
-                        if (json != "") {
-                            $("#btnSavePANCard").text("Update PAN Card");
-                            $.each(json, function (index, item) {
-
-                                $("#ID_hidden_PANCardDetails").val(item.id);
-                               $('#APAN_Link').attr("href", "");
-                               $('#LogoPathPAN').val(item.PANCard_URL);
-                               $('#APAN_Link').attr("href", item.PANCard_URL);
-                                if (item.PANCard_URL != "") {
-                                    $("#APAN_Link").show();
-                                }
-                            });
-                        }
-                    }
-                    if (Result.d.FillApplication != "" && Result.d.FillApplication != undefined) {
-                        var json = jQuery.parseJSON(Result.d.FillApplication);
-                        if (json != "") {
-                            $("#btnSaveAppication_Form").text("Update Application Form");
-                            $.each(json, function (index, item) {
-                                $("#ID_hidden_ApplicationCardDetails").val(item.id);
-                                $('#AAppication_Form_Link').attr("href", "");
-                                $('#LogoPathApplication').val(item.AppicationForm_URL);
-                                $('#AAppication_Form_Link').attr("href", item.AppicationForm_URL);
-                                if (item.AppicationForm_URL != "") {
-                                    $("#AAppication_Form_Link").show();
-                                }
-                            });
-                        }
-                    }
-                //if (Req == 'FillAddressProof') {
-                    if (Result.d.FillAddressProof != "" && Result.d.FillAddressProof != undefined) {
-                        var data = jQuery.parseJSON(Result.d.FillAddressProof);
-                        var table_Doc = "";
-                        $.each(data, function (i, item) {
-
-                            table_Doc = table_Doc + "<tr><td style='display:none' >" + item.id +
-                                         "</td><td>" + item.Address_Proof_Type +
-                                         "</td><td><a href=" + item.Address_Proof_URL + " target='_blank'>Download</a> " +
-                         "</td><td style = 'display:none'>" + item.Address_Proof_URL +
-                          "</td><td class='Edit " + _allowdelete + "' align='center'> <button type='button' onclick=AgentAddressProofDelet(this) class='btn btn-default btn-sm' id='btndelete_AgentAddressProof' > <span class='glyphicon glyphicon-trash'></span> </button></td>" +
-                         "</tr>"
+                            $("#ID_hidden_BankDetails").val(item.id);
+                            $("#txtAccountHolderName").val(item.Account_Holder_Name);
+                            $("#txtAccountNumber").val(item.Account_Number);
+                            $("#txtBank_Name").val(item.Bank_Name);
+                            $("#cmbAccount_Type").val(item.Account_Type).trigger('change');
+                            $("#txtIFSC_Code").val(item.IFSC_Code);
+                            $("#txtBranch_Name").val(item.Branch_Name);
+                            $("#txtPan_No").val(item.Pan_No);
 
                         });
-
-                        
-
-                        $("#adAddress_ProofListDiv tbody tr").remove()
-                        setTimeout(function () {
-                        $("#adAddress_ProofListDiv tbody").append(table_Doc);
-                        }, 100);
                     }
+                }
+                if (Result.d.FillPAN != "" && Result.d.FillPAN != undefined) {
+                    var json = jQuery.parseJSON(Result.d.FillPAN);
+                    if (json != "") {
+                        $("#btnSavePANCard").text("Update PAN Card");
+                        $.each(json, function (index, item) {
+
+                            $("#ID_hidden_PANCardDetails").val(item.id);
+                            $('#APAN_Link').attr("href", "");
+                            $('#LogoPathPAN').val(item.PANCard_URL);
+                            $('#APAN_Link').attr("href", item.PANCard_URL);
+                            if (item.PANCard_URL != "") {
+                                $("#APAN_Link").show();
+                            }
+                        });
+                    }
+                }
+                if (Result.d.FillApplication != "" && Result.d.FillApplication != undefined) {
+                    var json = jQuery.parseJSON(Result.d.FillApplication);
+                    if (json != "") {
+                        $("#btnSaveAppication_Form").text("Update Application Form");
+                        $.each(json, function (index, item) {
+                            $("#ID_hidden_ApplicationCardDetails").val(item.id);
+                            $('#AAppication_Form_Link').attr("href", "");
+                            $('#LogoPathApplication').val(item.AppicationForm_URL);
+                            $('#AAppication_Form_Link').attr("href", item.AppicationForm_URL);
+                            if (item.AppicationForm_URL != "") {
+                                $("#AAppication_Form_Link").show();
+                            }
+                        });
+                    }
+                }
+                //if (Req == 'FillAddressProof') {
+                if (Result.d.FillAddressProof != "" && Result.d.FillAddressProof != undefined) {
+                    var data = jQuery.parseJSON(Result.d.FillAddressProof);
+                    var table_Doc = "";
+                    $.each(data, function (i, item) {
+
+                        table_Doc = table_Doc + "<tr><td style='display:none' >" + item.id +
+                                     "</td><td>" + item.Address_Proof_Type +
+                                     "</td><td><a href=" + item.Address_Proof_URL + " target='_blank'>Download</a> " +
+                     "</td><td style = 'display:none'>" + item.Address_Proof_URL +
+                      "</td><td class='Edit " + _allowdelete + "' align='center'> <button type='button' onclick=AgentAddressProofDelet(this) class='btn btn-default btn-sm' id='btndelete_AgentAddressProof' > <span class='glyphicon glyphicon-trash'></span> </button></td>" +
+                     "</tr>"
+
+                    });
+
+
+
+                    $("#adAddress_ProofListDiv tbody tr").remove()
+                    setTimeout(function () {
+                        $("#adAddress_ProofListDiv tbody").append(table_Doc);
+                    }, 100);
+                }
                 //}
                 //if (Req == 'FillBankProof') {
-                    if (Result.d.FillBankProof != "" && Result.d.FillBankProof != undefined) {
-                        var data = jQuery.parseJSON(Result.d.FillBankProof);
-                        var table_Doc1 = "";
-                        $.each(data, function (i, item) {
+                if (Result.d.FillBankProof != "" && Result.d.FillBankProof != undefined) {
+                    var data = jQuery.parseJSON(Result.d.FillBankProof);
+                    var table_Doc1 = "";
+                    $.each(data, function (i, item) {
 
-                            table_Doc1 = table_Doc1 + "<tr><td style='display:none' >" + item.id +
-                                         "</td><td>" + item.Bank_Proof_Type +
-                                         "</td><td><a href=" + item.Bank_Proof_URL + " target='_blank'>Download</a> " +
-                         "</td><td style = 'display:none'>" + item.Bank_Proof_URL +
-                          "</td><td class='Edit " + _allowdelete + "' align='center'> <button type='button' onclick=AgentBankProofDelet(this) class='btn btn-default btn-sm' id='btndelete_AgentAddressProof' > <span class='glyphicon glyphicon-trash'></span> </button></td>" +
-                         "</tr>"
+                        table_Doc1 = table_Doc1 + "<tr><td style='display:none' >" + item.id +
+                                     "</td><td>" + item.Bank_Proof_Type +
+                                     "</td><td><a href=" + item.Bank_Proof_URL + " target='_blank'>Download</a> " +
+                     "</td><td style = 'display:none'>" + item.Bank_Proof_URL +
+                      "</td><td class='Edit " + _allowdelete + "' align='center'> <button type='button' onclick=AgentBankProofDelet(this) class='btn btn-default btn-sm' id='btndelete_AgentAddressProof' > <span class='glyphicon glyphicon-trash'></span> </button></td>" +
+                     "</tr>"
 
-                        });
+                    });
 
 
 
-                        $("#adBank_ProofListDiv tbody tr").remove()
-                        setTimeout(function () {
-                            $("#adBank_ProofListDiv tbody").append(table_Doc1);
-                        }, 100);
-                    }
+                    $("#adBank_ProofListDiv tbody tr").remove()
+                    setTimeout(function () {
+                        $("#adBank_ProofListDiv tbody").append(table_Doc1);
+                    }, 100);
+                }
                 //}
             }
             if (obj == "Save") {
@@ -650,17 +663,17 @@ function LoadAjaxContact(ht, obj, Req, url) {
                             closeOnConfirm: false,
                             timer: 2000
                         });
-                         //function () {
-                             //alert(json.ID);
-                             $("#ID_hidden").val(json.ID);
-                             $("#btnAgentPersonalDetails").text('Update');
-                             $("#liSponsor").removeClass('disabledLI');
-                             $("#liBank").removeClass('disabledLI');
-                             $("#likyc").removeClass('disabledLI');
-                             $("#lirank").removeClass('disabledLI');
-                         //});
+                        //function () {
+                        //alert(json.ID);
+                        $("#ID_hidden").val(json.ID);
+                        $("#btnAgentPersonalDetails").text('Update');
+                        $("#liSponsor").removeClass('disabledLI');
+                        $("#liBank").removeClass('disabledLI');
+                        $("#likyc").removeClass('disabledLI');
+                        $("#lirank").removeClass('disabledLI');
+                        //});
 
-                       
+
                     }
                     else if (json.CustomErrorState == "1") {
                         swal("", "Something went wrong , please try again later !!", "error");
@@ -675,10 +688,10 @@ function LoadAjaxContact(ht, obj, Req, url) {
                     swal("", "Some problem occurred please try again later", "info");
                 }
             }
-         
+
             if (obj == "Update") {
-                
-                
+
+
                 if (Result.d.Update != "" && Result.d.Update != undefined) {
                     var json = jQuery.parseJSON(Result.d.Update)[0];
 
@@ -708,7 +721,7 @@ function LoadAjaxContact(ht, obj, Req, url) {
                 }
                 else {
                     swal("", "Some problem occurred please try again later", "info");
-                }              
+                }
             }
 
             if (obj == "SaveSponsor") {
@@ -1033,7 +1046,7 @@ function AddNewAgentPresonalDetails() {
 
         setTimeout(function () {
             ht = {};
-            
+
             ht["Name"] = $("#txtName").val();
             ht["Gender"] = $("#cmbGender :selected").val();
             ht["MobileNo"] = $("#txtMobileNo").val();
@@ -1047,8 +1060,8 @@ function AddNewAgentPresonalDetails() {
             ht["addressline"] = $("#txtAddress").val();
             ht["pincode"] = $("#txtPinCode").val();
             ht["DateOfBirth"] = $("#txtDateOfBirth").val();
-          
-        
+
+
             if ($("#ID_hidden").val() == "") {
                 ht["MODE"] = "INSERT";
                 Req = 'Save';
@@ -1102,28 +1115,16 @@ function validationcheck() {
     }
     return true;
 }
-function AddNewAgentSponsorDetails()
-{
+function AddNewAgentSponsorDetails() {
     if (validationcheck_SponsorDetails() == true) {
         setTimeout(function () {
             ht = {};
-
-            //ht["Sponsor_Account_No"] = $("#txtSponsor_Account_No").val();
-            ht["Sponsor_ID"] = $("#cmbSponsor_Name :selected").val();
-            //ht["Sponsor_MemberID"] = $("#txtSponsor_MemberID").val();
-            //ht["Sponsor_Mobile_Number"] = $("#txtSponsor_Mobile_Number").val();
-            ht["Placed_Name"] = $("#txtPlaced_Name").val();
-            //ht["MemberID"] = $("#txtMemberID").val();
-            //ht["Placed_Team"] = $("#txtPlaced_Team").val();
-            ht["SplitSponsor_ID"] = $("#cmbSplitSponsor_Name :selected").val();
-
-            if ($("#cmbSplitSponsor_Name :selected").val() == undefined)
-            {
-                ht["SplitSponsor_ID"] = 0;
-            }
+            ht["Sponsor_Contact_Id"] = $("#cmbSponsor_Name :selected").val();
+            ht["Placed_Contact_Id"] = $("#cmbPlaced_Name :selected").val();
+            ht["Placed_Team"] = $("#position :selected").val();
 
             if ($("#ID_hidden").val() == "") {
-                swal("", "Please Fill Agent Personal Details First", "error");   
+                swal("", "Please Fill Agent Personal Details First", "error");
             }
             else {
                 ht["Contact_id"] = $("#ID_hidden").val();
@@ -1150,12 +1151,11 @@ function validationcheck_SponsorDetails() {
         popupErrorMsg($("#cmbSponsor_Name"), "Please Select Sponsor.", 5);
         return false;
     }
-    
+
     return true;
 }
 
-function AddNewAgentAgentBankDetails()
-{
+function AddNewAgentAgentBankDetails() {
     if (validationcheck_BankDetails() == true) {
         setTimeout(function () {
             ht = {};
@@ -1226,7 +1226,7 @@ function LoadAjaxAddressProoflist(ht, obj, Req, url, AddressProofList) {
         type: "POST",
         url: url,
         data: "{ht:" + JSON.stringify(ht) + ",Type :'" + obj + "' ,Req :'" + Req + "'," +
-            " AddressProofList:" + JSON.stringify(AddressProofList) + 
+            " AddressProofList:" + JSON.stringify(AddressProofList) +
             "}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -1262,7 +1262,7 @@ function LoadAjaxAddressProoflist(ht, obj, Req, url, AddressProofList) {
                         });
                         //function () {
                         //alert(json.ID);
-                       FillAddressProofs();
+                        FillAddressProofs();
                         //});
 
                         //FillAddressProofs();
@@ -1289,8 +1289,7 @@ function LoadAjaxAddressProoflist(ht, obj, Req, url, AddressProofList) {
     });
 }
 
-function FillAddressProofs()
-{
+function FillAddressProofs() {
     Req = 'FillAddressProof';
     obj = "Fill";
     url = "CreateAgentProfile.aspx/ContactDetails";
@@ -1299,8 +1298,7 @@ function FillAddressProofs()
     LoadAjaxContact(ht, obj, Req, url);
 }
 
-function SaveAgentAddressProof()
-{
+function SaveAgentAddressProof() {
     if ($("#ID_hidden").val() == "") {
         swal("", "Please Fill Agent Personal Details First", "error");
     }
@@ -1477,12 +1475,11 @@ function sendFile() {
     });
 }
 
-function GetIDCard()
-{
+function GetIDCard() {
     //alert($('#ID_hidden').val());
     var bt = btoa("cid=" + $('#ID_hidden').val() + "");
-  //  window.location = 'AgentID_Card.aspx?' + bt;
-   window.open('AgentID_Card.aspx?'+ bt, '_blank');
+    //  window.location = 'AgentID_Card.aspx?' + bt;
+    window.open('AgentID_Card.aspx?' + bt, '_blank');
 }
 
 function ShortTable(Tbl) {

@@ -28,7 +28,7 @@ public class TreeShow
         Left = "";
         Right = "";     
         con.Open();
-        string sql = "select c.[MemberID] from Agent_Sponsor_Details as c left join Agent_Sponsor_Details as a on c.Sponsor_ID = a.Contact_id where a.[MemberID] ='" + apid + "' and c.Placed_Team='L'";
+        string sql = "select c.[MemberID] from Agent_Sponsor_Details as c left join Agent_Sponsor_Details as a on c.Placed_Contact_Id = a.Contact_id where a.[MemberID] ='" + apid + "' and c.Placed_Team='L'";
         da = new SqlDataAdapter(sql, con);
         ds = new DataSet();
         da.Fill(ds, "Agent_Sponsor_Details");        
@@ -37,7 +37,7 @@ public class TreeShow
             Left = ds.Tables["Agent_Sponsor_Details"].Rows[0]["MemberID"].ToString();
         }
         
-        string sql1 = "select c.[MemberID] from Agent_Sponsor_Details as c left join Agent_Sponsor_Details as a on c.Sponsor_ID = a.Contact_id where a.[MemberID] ='" + apid + "' and c.Placed_Team='R'";
+        string sql1 = "select c.[MemberID] from Agent_Sponsor_Details as c left join Agent_Sponsor_Details as a on c.Placed_Contact_Id = a.Contact_id where a.[MemberID] ='" + apid + "' and c.Placed_Team='R'";
         da = new SqlDataAdapter(sql1, con);
         ds = new DataSet();
         da.Fill(ds, "Agent_Sponsor_Details");
