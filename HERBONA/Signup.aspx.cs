@@ -88,7 +88,7 @@ namespace SmartTrucking
                                 foreach (DataRow item in ds.Tables[0].Rows)
                                 {
                                     CountryModel CountryModel_Detail = new CountryModel();
-                                    CountryModel_Detail.Name = item["NAME"].ToString();
+                                    CountryModel_Detail.Name = item["NAME"].ToString() + " (" + item["memberid"].ToString() + ")";
                                     CountryModel_Detail.COUNTRY_ID = Convert.ToInt32(item["ID"].ToString());
                                     _CountryModel.Add(CountryModel_Detail);
                                 }

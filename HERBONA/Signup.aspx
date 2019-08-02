@@ -114,8 +114,8 @@
                                             <div class="form-group">
                                                 <select class="form-control select2" id="position" style="width: 100%;" data-placeholder="Select Team*">
                                                     <option value="" selected="selected">Select Team</option>
-                                                    <option value="Team-A">Team-A</option>
-                                                    <option value="Team-B">Team-B</option>
+                                                    <option value="L">Team-A</option>
+                                                    <option value="R">Team-B</option>
                                                 </select>
                                             </div>
                                             <div class="row">
@@ -139,7 +139,7 @@
 
         <!--SavePopup Modal content -->
         <div class="modal fade" id="SuccessPopupModel" role="dialog">
-            <div class="modal-dialog" style="width: 25%;">
+            <div class="modal-dialog" style="width: 50%;">
 
                 <!--Modal content-->
                 <div class="modal-content"  style="background-color:deepskyblue">

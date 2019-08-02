@@ -322,6 +322,8 @@ function LoadAjaxLogin(ht, obj, Req, url) {
             $('body').pleaseWait('stop');
         }
     });
+
+    $('body').pleaseWait('stop');
 }
 
 function Pagerefresh() {
