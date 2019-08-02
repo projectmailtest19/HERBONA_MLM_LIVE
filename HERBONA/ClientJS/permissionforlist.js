@@ -35,12 +35,12 @@
 
             if (_lview == false) {
 
-                window.location = 'Login.aspx';
+                window.location = 'Signup.aspx';
             }
             else {
                 //if (_ladd == "False" && _ledit == "False" && _ldelete == "False") {
 
-                //    window.location = 'Login.aspx';
+                //    window.location = 'Signup.aspx';
                 //}
                 //else {                
                 if (_ledit == "False") {

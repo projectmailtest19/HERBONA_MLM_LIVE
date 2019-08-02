@@ -167,7 +167,6 @@
     <Content Include="ClientJS\Home.js" />
     <Content Include="ClientJS\OrderProcess.js" />
     <Content Include="Images\new_Indian_currency.png" />
-    <Content Include="index.html" />
     <Content Include="BonusWalletSummary.aspx" />
     <Content Include="PurchaseWalletSummary.aspx" />
     <Content Include="OrderProcess.aspx" />
@@ -1316,7 +1315,6 @@
     <Content Include="Forget_Password.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
-    <Content Include="Login.aspx" />
     <Content Include="Permission.aspx" />
     <Content Include="RoleList.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -1721,13 +1719,6 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Model\AddressModel.cs" />
     <Compile Include="Model\BranchModel.cs" />

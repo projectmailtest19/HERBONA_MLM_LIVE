@@ -97,7 +97,7 @@ function Userlogin() {
             ht["Password"] = $("#txtpassword_forlogin").val();
             Req = "NormalLogin";
             obj = "Login";
-            url = "Login.aspx/LoginDetails";
+            url = "Signup.aspx/LoginDetails";
             LoadAjaxLogin(ht, obj, Req, url);
         }, 1000);
     }
