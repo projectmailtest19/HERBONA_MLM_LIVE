@@ -146,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgentID_Card.aspx" />
+    <Content Include="ClientJS\CreateTicketQueryMaster.js" />
+    <Content Include="ClientJS\CreateTicketQueryStatusMaster.js" />
+    <Content Include="ClientJS\CreateSession.js" />
+    <Content Include="ClientJS\TicketQueryMasterList.js" />
+    <Content Include="ClientJS\TicketQueryStatusMasterList.js" />
+    <Content Include="ClientJS\CreateSessionList.js" />
     <Content Include="ClientJS\Ticket_Details.js" />
     <Content Include="ClientJS\Tickets_Resolved.js" />
     <Content Include="ClientJS\Tickets_Active.js" />
@@ -155,6 +161,12 @@
     <Content Include="ClientJS\PurchaseWalletSummary.js" />
     <Content Include="ClientJS\WalletPaymentTypeList.js" />
     <Content Include="ClientJS\Signup.js" />
+    <Content Include="CreateTicketQueryMaster.aspx" />
+    <Content Include="CreateTicketQueryStatusMaster.aspx" />
+    <Content Include="CreateSession.aspx" />
+    <Content Include="TicketQueryMasterList.aspx" />
+    <Content Include="TicketQueryStatusMasterList.aspx" />
+    <Content Include="CreateSessionList.aspx" />
     <Content Include="Ticket_Details.aspx" />
     <Content Include="Tickets_Resolved.aspx" />
     <Content Include="Tickets_Active.aspx" />
@@ -1344,6 +1356,49 @@
     </Compile>
     <Compile Include="AgentID_Card.aspx.designer.cs">
       <DependentUpon>AgentID_Card.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateTicketQueryMaster.aspx.cs">
+      <DependentUpon>CreateTicketQueryMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateTicketQueryMaster.aspx.designer.cs">
+      <DependentUpon>CreateTicketQueryMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateTicketQueryStatusMaster.aspx.cs">
+      <DependentUpon>CreateTicketQueryStatusMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateTicketQueryStatusMaster.aspx.designer.cs">
+      <DependentUpon>CreateTicketQueryStatusMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateSession.aspx.cs">
+      <DependentUpon>CreateSession.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateSession.aspx.designer.cs">
+      <DependentUpon>CreateSession.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SessionModel.cs" />
+    <Compile Include="TicketQueryMasterList.aspx.cs">
+      <DependentUpon>TicketQueryMasterList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TicketQueryMasterList.aspx.designer.cs">
+      <DependentUpon>TicketQueryMasterList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TicketQueryStatusMasterList.aspx.cs">
+      <DependentUpon>TicketQueryStatusMasterList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TicketQueryStatusMasterList.aspx.designer.cs">
+      <DependentUpon>TicketQueryStatusMasterList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateSessionList.aspx.cs">
+      <DependentUpon>CreateSessionList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateSessionList.aspx.designer.cs">
+      <DependentUpon>CreateSessionList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ticket_Details.aspx.cs">
       <DependentUpon>Ticket_Details.aspx</DependentUpon>
