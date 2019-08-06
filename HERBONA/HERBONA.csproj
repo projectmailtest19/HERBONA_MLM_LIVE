@@ -164,6 +164,7 @@
     <Content Include="CreateTicketQueryMaster.aspx" />
     <Content Include="CreateTicketQueryStatusMaster.aspx" />
     <Content Include="CreateSession.aspx" />
+    <Content Include="TicketQueryReasonMaster.aspx" />
     <Content Include="TicketQueryMasterList.aspx" />
     <Content Include="TicketQueryStatusMasterList.aspx" />
     <Content Include="CreateSessionList.aspx" />
@@ -259,6 +260,7 @@
     <Content Include="TreeImages\level3.png" />
     <Content Include="TreeImages\R.jpg" />
     <Content Include="TreeImages\Treeview_107.jpg" />
+    <Content Include="WalletSettingBonusPurchase.aspx" />
     <Content Include="Wallet_List.aspx" />
     <Content Include="VacationTour_List.aspx" />
     <Content Include="gst_list.aspx" />
@@ -1379,6 +1381,13 @@
       <DependentUpon>CreateSession.aspx</DependentUpon>
     </Compile>
     <Compile Include="Model\SessionModel.cs" />
+    <Compile Include="TicketQueryReasonMaster.aspx.cs">
+      <DependentUpon>TicketQueryReasonMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TicketQueryReasonMaster.aspx.designer.cs">
+      <DependentUpon>TicketQueryReasonMaster.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TicketQueryMasterList.aspx.cs">
       <DependentUpon>TicketQueryMasterList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1638,6 +1647,13 @@
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="TreeShow.cs" />
+    <Compile Include="WalletSettingBonusPurchase.aspx.cs">
+      <DependentUpon>WalletSettingBonusPurchase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WalletSettingBonusPurchase.aspx.designer.cs">
+      <DependentUpon>WalletSettingBonusPurchase.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Wallet_List.aspx.cs">
       <DependentUpon>Wallet_List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
