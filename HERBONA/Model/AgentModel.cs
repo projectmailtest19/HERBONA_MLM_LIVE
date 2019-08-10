@@ -25,7 +25,7 @@ namespace SmartTrucking.Model
     {
         public string ID { get; set; }
         public string Name { get; set; }
-        public string Account_Number { get; set; }
+        public string MemberID { get; set; }
         public string ImageURL { get; set; }
         public string Countey_Name { get; set; }
         public string State_Name { get; set; }

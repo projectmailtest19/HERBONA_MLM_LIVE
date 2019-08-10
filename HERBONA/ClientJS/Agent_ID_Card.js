@@ -27,7 +27,7 @@ $(document).ready(function () {
     setTimeout(function () {    
         Req = 'Fill';
         obj = "Fill";
-        url = "AgentID_Card.aspx/ContactDetails";
+        url = "Agent_ID_Card.aspx/ContactDetails";
         ht = {};
        // alert(cid);
         ht["ID"] = cid;
@@ -37,18 +37,6 @@ $(document).ready(function () {
 
 function Print()
 {
-
-    //var divToPrint = document.getElementById('Print_Div');
-
-    //var newWin = window.open('', 'Print-Window', 'height=400,width=800');
-
-    //newWin.document.open();
-
-    //newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
-
-    //newWin.document.close();
-
-    //setTimeout(function () { newWin.close(); }, 10);
     var divToPrint = document.getElementById("Print_Div");
     newWin = window.open("");
     newWin.document.write(divToPrint.outerHTML);

@@ -9,9 +9,10 @@ using System.Collections;
 using System.Data;
 using System.Web.Script.Serialization;
 using System.Web.Script.Services;
+
 namespace HERBONA
 {
-    public partial class AgentID_Card : System.Web.UI.Page
+    public partial class Agent_ID_Card : System.Web.UI.Page
     {
         public static DBFunctions db = new DBFunctions();
         public static Hashtable ReturnData = new Hashtable();
@@ -22,6 +23,7 @@ namespace HERBONA
         public static JavaScriptSerializer serializer = new JavaScriptSerializer();
         static List<ErrorModel> _ErrorModel = new List<ErrorModel>();
         static List<AgentIDCardModel> AgentIDCardModel_list = new List<AgentIDCardModel>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (HttpContext.Current.Session["Company_ID"] == null || HttpContext.Current.Session["Company_ID"] == "")

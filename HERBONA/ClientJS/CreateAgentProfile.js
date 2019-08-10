@@ -1479,7 +1479,7 @@ function GetIDCard() {
     //alert($('#ID_hidden').val());
     var bt = btoa("cid=" + $('#ID_hidden').val() + "");
     //  window.location = 'AgentID_Card.aspx?' + bt;
-    window.open('AgentID_Card.aspx?' + bt, '_blank');
+    window.open('Agent_ID_Card.aspx?' + bt, '_blank');
 }
 
 function ShortTable(Tbl) {

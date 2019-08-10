@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -145,7 +146,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AgentID_Card.aspx" />
+    <Content Include="Agent_ID_Card.aspx" />
+    <Content Include="ClientJS\Agent_ID_Card.js" />
     <Content Include="ClientJS\CreateTicketQueryMaster.js" />
     <Content Include="ClientJS\CreateTicketQueryStatusMaster.js" />
     <Content Include="ClientJS\CreateSession.js" />
@@ -176,7 +178,6 @@
     <Content Include="CreateWalletPaymentType.aspx" />
     <Content Include="MyDirects.aspx" />
     <Content Include="ClientCss\Idcard.css" />
-    <Content Include="ClientJS\AgentID_Card.js" />
     <Content Include="ClientJS\MyDirects.js" />
     <Content Include="ClientJS\Home.js" />
     <Content Include="ClientJS\OrderProcess.js" />
@@ -1353,12 +1354,12 @@
     <Compile Include="AddressList.aspx.designer.cs">
       <DependentUpon>AddressList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgentID_Card.aspx.cs">
-      <DependentUpon>AgentID_Card.aspx</DependentUpon>
+    <Compile Include="Agent_ID_Card.aspx.cs">
+      <DependentUpon>Agent_ID_Card.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgentID_Card.aspx.designer.cs">
-      <DependentUpon>AgentID_Card.aspx</DependentUpon>
+    <Compile Include="Agent_ID_Card.aspx.designer.cs">
+      <DependentUpon>Agent_ID_Card.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreateTicketQueryMaster.aspx.cs">
       <DependentUpon>CreateTicketQueryMaster.aspx</DependentUpon>
