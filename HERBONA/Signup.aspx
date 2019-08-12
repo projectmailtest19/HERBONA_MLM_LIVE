@@ -3,10 +3,27 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
     <title>User Login / Signup</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css" />
+    <link rel="stylesheet" href="plugins/iCheck/flat/blue.css" />
+    <link rel="stylesheet" href="plugins/morris/morris.css" />
+    <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css" />
+    <link rel="stylesheet" href="plugins/datepicker/datepicker3.css" />
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" />
+    <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css" />
+    <link rel="stylesheet" href="plugins/timepicker/bootstrap-timepicker.min.css" />
+    <link rel="stylesheet" href="plugins/select2/select2.min.css" />
+    <link href="dist/css/sweetalert.css" rel="stylesheet" />
+    <link href="ClientCss/Custom.css" rel="stylesheet" />
+    <link href="plugins/iCheck/flat/_all.css" rel="stylesheet" />
+
 
     <script src="Scripts/jquery-1.10.2.min.js"></script>
     <script src="ClientJS/Signup.js"></script>
@@ -142,7 +159,7 @@
             <div class="modal-dialog" style="width: 50%;">
 
                 <!--Modal content-->
-                <div class="modal-content"  style="background-color:deepskyblue">
+                <div class="modal-content" style="background-color: deepskyblue">
                     <div class="modal-header">
                         <button type="button" onclick="Pagerefresh();" class="close" data-dismiss="modal">&times;</button>
                         <div style="text-align: center;">
@@ -220,23 +237,6 @@
     <script src="dist/js/sweetalert.min.js"></script>
     <script src="ClientJS/jquery.pleaseWait.js"></script>
 
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
-    <link rel="stylesheet" href="dist/css/AdminLTE.min.css" />
-    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css" />
-    <link rel="stylesheet" href="plugins/iCheck/flat/blue.css" />
-    <link rel="stylesheet" href="plugins/morris/morris.css" />
-    <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css" />
-    <link rel="stylesheet" href="plugins/datepicker/datepicker3.css" />
-    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css" />
-    <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" />
-    <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css" />
-    <link rel="stylesheet" href="plugins/timepicker/bootstrap-timepicker.min.css" />
-    <link rel="stylesheet" href="plugins/select2/select2.min.css" />
-    <link href="dist/css/sweetalert.css" rel="stylesheet" />
-    <link href="ClientCss/Custom.css" rel="stylesheet" />
-    <link href="plugins/iCheck/flat/_all.css" rel="stylesheet" />
 
 
     <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>

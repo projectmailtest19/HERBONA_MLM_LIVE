@@ -94,7 +94,7 @@ namespace SmartTrucking
                             ht_param.Clear();
                             ht_param.Add("@Company_ID", HttpContext.Current.Session["Company_ID"].ToString());
                             ht_param.Add("@Branch_ID", HttpContext.Current.Session["Branch_ID"].ToString());
-                            ds = db.SysFetchDataInDataSet("[GetALLSponsor]", ht_param);
+                            ds = db.SysFetchDataInDataSet("[GetALLSponsor_forOrderEntry]", ht_param);
 
                             if (ds.Tables.Count > 0)
                             {

@@ -41,14 +41,30 @@ function LoadAjaxCompany(ht, obj, Req, url) {
             }
 
             if (obj == "Fill") {
+                var clr = "";
                 var data = jQuery.parseJSON(Result.d.AgentData);
                 var table = '<table id="ContactList" class="table table-bordered table-striped">';
-                table = table + '<thead><tr><th>Member ID</th><th>Name</th><th>Registration Date</th><th>Position</th></tr></thead> <tbody>';
+                table = table + '<thead><tr><th>Member ID</th><th>Name</th><th>Registration Date</th><th>Position</th><th>Status</th></tr></thead> <tbody>';
                 $.each(data, function (i, item) {
-                    table = table + "<tr><td>" + item.MemberID +
+
+
+
+                    if (item.Status == "A") {
+                        clr = "#7CFC00";
+                    }
+                    else if (item.Status == "R") {
+                        clr = "#FFA500";
+                    }
+                    else if (item.Status == "DA") {
+                        clr = "#FF1919";
+                    }
+
+
+                    table = table + "<tr style='background-color: " + clr+" '><td>" + item.MemberID +
                                     "</td><td>" + item.Name +
                                     "</td><td>" + item.RegistrationDate +
                                     "</td><td>" + item.Position +
+                                    "</td><td>" + item.Status +
                                     "</td></tr>"
                 });
                 document.getElementById("ContactListDiv").innerHTML = table + '</tbody></table>';

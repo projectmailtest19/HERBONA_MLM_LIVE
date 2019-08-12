@@ -105,5 +105,6 @@ namespace SmartTrucking.Model
         public string Name { get; set; }
         public string RegistrationDate { get; set; }
         public string Position { get; set; }
+        public string Status { get; set; }
     }
 }

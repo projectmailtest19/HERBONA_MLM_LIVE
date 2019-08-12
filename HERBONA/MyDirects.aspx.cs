@@ -62,7 +62,8 @@ namespace SmartTrucking
                               MemberID = row["MemberID"].ToString(),
                               Name = row["Name"].ToString(),
                               RegistrationDate = row["RegistrationDate"].ToString(),
-                              Position = row["Position"].ToString()
+                              Position = row["Position"].ToString(),
+                              Status = row["Status"].ToString()
                           }).ToList();
                     }
                     ReturnData["AgentData"] = serializer.Serialize(NoOfDirectsModel_list);
